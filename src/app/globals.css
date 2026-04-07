@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0d0f14;
+  --card: #13151c;
+  --elevated: #1a1d2e;
+  --accent: #a78bfa;
+  --live: #34d399;
+  --text: #f1f5f9;
+  --muted: #6b7280;
+  --border: #2a2d35;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+body::selection {
+  background: rgba(167, 139, 250, 0.2);
+}
+
+* {
+  border-color: var(--border);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1d2028;
+  border: 2px solid var(--bg);
+}
+
+.dot-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  overflow: hidden;
+}
+
+.dot-grid::before {
+  content: "";
+  position: absolute;
+  inset: -24px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='1.5' cy='1.5' r='1' fill='%232a2d35'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  animation: gridDrift 18s linear infinite;
+}
+
+.surface-card {
+  background: var(--card);
+  border: 0.5px solid var(--border);
+}
+
+.surface-elevated {
+  background: var(--elevated);
+  border: 0.5px solid var(--border);
+}
+
+.mono-chip {
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.section-shell {
+  width: 100%;
+  max-width: 90rem;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-shell {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
