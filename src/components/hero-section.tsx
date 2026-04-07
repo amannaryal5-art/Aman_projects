@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import { useEffect, useState } from "react";
 import { developer, heroTitles } from "@/lib/data";
 
@@ -93,6 +93,15 @@ export function HeroSection() {
               Contact Aman
               <ArrowRight className="h-4 w-4" />
             </button>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border-[0.5px] border-accent bg-transparent px-5 py-3 text-sm font-medium text-accent transition-colors hover:bg-accent hover:text-white"
+            >
+              <Download className="h-4 w-4" />
+              Resume
+            </a>
           </div>
         </motion.div>
 

@@ -43,24 +43,11 @@ export const projects: Project[] = [
 export const skillGroups = [
   {
     title: "Backend Engineering",
-    skills: [
-      "Node.js",
-      "Java",
-      "Spring Boot",
-      "Hibernate",
-      "TypeORM"
-    ]
+    skills: ["Node.js", "Java", "Spring Boot", "Hibernate", "TypeORM"]
   },
   {
     title: "Frontend Development",
-    skills: [
-      "React",
-      "Next.js",
-      "JavaScript",
-      "TypeScript",
-      "HTML & CSS",
-      "TailwindCSS"
-    ]
+    skills: ["React", "Next.js", "JavaScript", "TypeScript", "HTML & CSS", "TailwindCSS"]
   },
   {
     title: "Data & Storage",
@@ -68,12 +55,66 @@ export const skillGroups = [
   },
   {
     title: "DevOps & Tooling",
-    skills: [
-      "Git",
-      "GitHub",
-      "Vercel",
-      "Postman",
-      "Python Automation"
-    ]
+    skills: ["Git", "GitHub", "Vercel", "Postman", "Python Automation"]
   }
 ];
+
+export type ExperienceEntry = {
+  period: string;
+  company?: string;
+  role: string;
+  location?: string;
+  badge?: string;
+  badgeTone?: "accent" | "cyan";
+  tags: string[];
+  detail: string;
+  current?: boolean;
+};
+
+export const experienceEntries: ExperienceEntry[] = [
+  {
+    period: "Feb 2026 — Present",
+    company: "CognexiaAI LLP",
+    role: "Trainee Engineer",
+    location: "Navi Mumbai, India",
+    tags: ["Node.js", "TypeScript", "PostgreSQL", "Full Stack"],
+    detail:
+      "Working as a Trainee Engineer at CognexiaAI, contributing to intelligent, API-driven systems and building practical engineering experience in a professional product environment.",
+    current: true
+  },
+  {
+    period: "Aug 2025 — Feb 2026",
+    company: "SETTribe LLP",
+    role: "Trainee Software Engineer (Intern)",
+    location: "Pune, India",
+    tags: ["Java", "Full Stack Development", "Spring Boot", "Software Documentation"],
+    detail:
+      "Completed an intensive Full Stack Development training program (Java) with SEED Infotech Ltd, followed by real project work involving software development, requirement understanding, and technical documentation at SETTribe LLP."
+  },
+  {
+    period: "2023 — Aug 2025",
+    role: "Self-Taught Full Stack Developer",
+    tags: ["Node.js", "React", "PostgreSQL", "REST APIs", "JavaScript"],
+    detail:
+      "Built strong backend and full stack foundations independently — working through real projects, API design, database architecture, and debugging complex systems before stepping into professional roles."
+  },
+  {
+    period: "2024 — Present",
+    company: "Chandigarh University (Online)",
+    role: "Master of Computer Applications (MCA)",
+    badge: "Education",
+    badgeTone: "cyan",
+    tags: [
+      "Python",
+      "Machine Learning",
+      "Web Development",
+      "Algorithms",
+      "Cyber Security",
+      "Database Systems"
+    ],
+    detail:
+      "Pursuing MCA at Chandigarh University with a strong academic record (CGPA 8.53). Coursework spans advanced database systems, machine learning, web application development, algorithms, and cyber security — directly supporting my backend and full stack engineering work."
+  }
+];
+
+export const learningItems = ["Docker", "Redis", "System Design", "Microservices", "AWS Basics"];
