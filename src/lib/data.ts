@@ -102,6 +102,7 @@ export const experienceEntries: ExperienceEntry[] = [
     period: "2024 — Present",
     company: "Chandigarh University (Online)",
     role: "Master of Computer Applications (MCA)",
+    location: "CGPA 8.53",
     badge: "Education",
     badgeTone: "cyan",
     tags: [
@@ -114,6 +115,24 @@ export const experienceEntries: ExperienceEntry[] = [
     ],
     detail:
       "Pursuing MCA at Chandigarh University with a strong academic record (CGPA 8.53). Coursework spans advanced database systems, machine learning, web application development, algorithms, and cyber security — directly supporting my backend and full stack engineering work."
+  },
+  {
+    period: "2021 — 2024",
+    company: "Himachal Pradesh University",
+    role: "Bachelor of Computer Applications (BCA)",
+    location: "Laureate Institute of Information & Technology, Kangra",
+    badge: "Education",
+    badgeTone: "cyan",
+    tags: [
+      "C++",
+      "DBMS",
+      "Computer Networks",
+      "Web Design",
+      "Software Engineering",
+      "Operating Systems"
+    ],
+    detail:
+      "Completed BCA from Himachal Pradesh University with a CGPA of 6.97 (Grade A+). Coursework covered core CS fundamentals including OOP, databases, networking, and web design — forming the foundation for my full stack development journey."
   }
 ];
 
