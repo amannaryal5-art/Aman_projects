@@ -29,6 +29,8 @@ export function ExperienceSection() {
                 className={`absolute -left-[2.15rem] top-6 h-3 w-3 rounded-full border-[0.5px] md:-left-[2.55rem] ${
                   entry.badgeTone === "cyan"
                     ? "border-cyan-400 bg-cyan-400"
+                    : entry.badgeTone === "emerald"
+                      ? "border-emerald-400 bg-emerald-400"
                     : "border-accent bg-accent"
                 } ${entry.current ? "ring-4 ring-accent/20" : ""}`}
               />
@@ -40,6 +42,8 @@ export function ExperienceSection() {
                         className={`mono-chip rounded-full border-[0.5px] bg-elevated px-3 py-1 text-[11px] uppercase tracking-[0.16em] ${
                           entry.badgeTone === "cyan"
                             ? "border-cyan-400/60 text-cyan-300"
+                            : entry.badgeTone === "emerald"
+                              ? "border-emerald-400/60 text-emerald-300"
                             : "border-accent text-accent"
                         }`}
                       >

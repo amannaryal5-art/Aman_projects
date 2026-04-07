@@ -65,7 +65,7 @@ export type ExperienceEntry = {
   role: string;
   location?: string;
   badge?: string;
-  badgeTone?: "accent" | "cyan";
+  badgeTone?: "accent" | "cyan" | "emerald";
   tags: string[];
   detail: string;
   current?: boolean;
@@ -133,6 +133,63 @@ export const experienceEntries: ExperienceEntry[] = [
     ],
     detail:
       "Completed BCA from Himachal Pradesh University with a CGPA of 6.97 (Grade A+). Coursework covered core CS fundamentals including OOP, databases, networking, and web design — forming the foundation for my full stack development journey."
+  },
+  {
+    period: "March 2023 — May 2023",
+    company: "E-Max Council / Aim Clear Technology Computer Institute",
+    role: "CCA — Certificate in Computer Application",
+    location: "Jwalamukhi, Kangra, HP",
+    badge: "Certification",
+    badgeTone: "emerald",
+    tags: ["MS Office", "DOS", "Windows", "C Programming", "Internet", "Tally"],
+    detail:
+      "Completed CCA certification with 80% marks (A Grade). Covered computer fundamentals, MS Office suite, DOS/Windows, internet basics, C programming, and practical lab work."
+  },
+  {
+    period: "June 2023 — November 2023",
+    company: "E-Max Council / Aim Clear Technology Computer Institute",
+    role: "DPWD — Diploma in Programming and Web Designing",
+    location: "Jwalamukhi, Kangra, HP",
+    badge: "Certification",
+    badgeTone: "emerald",
+    tags: ["C Language", "C++", "Visual Basic.NET", "ASP.NET", "Python", "JavaScript", "CSS"],
+    detail:
+      "Completed Diploma in Programming and Web Designing with 90% marks (A+ Grade). Covered multi-language programming including C, C++, Python, JavaScript, ASP.NET, and web design fundamentals — marking the beginning of my software development journey."
+  },
+  {
+    period: "2019 — 2021",
+    company: "HP Board of School Education",
+    role: "Senior Secondary (Class XII) — Commerce",
+    location: "Govt. Sr. Sec. School, Kathog, District Kangra",
+    badge: "Education",
+    badgeTone: "cyan",
+    tags: [
+      "Accountancy",
+      "Business Studies",
+      "Economics",
+      "English",
+      "Physical Education"
+    ],
+    detail:
+      "Passed Senior Secondary examination in Commerce stream from HP Board of School Education with First Division, securing 314/500 marks."
+  },
+  {
+    period: "2019",
+    company: "CBSE",
+    role: "Secondary School (Class X)",
+    location: "Shivalik International Convent School, Jwalamukhi, Kangra",
+    badge: "Education",
+    badgeTone: "cyan",
+    tags: [
+      "Mathematics",
+      "Science",
+      "English",
+      "Hindi",
+      "Social Science",
+      "Foundation of IT"
+    ],
+    detail:
+      "Passed CBSE Class X board examination from Shivalik International Convent School, Kangra. Demonstrated early interest in technology with Foundation of IT as an additional subject."
   }
 ];
 
