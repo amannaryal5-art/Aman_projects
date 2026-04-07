@@ -16,11 +16,7 @@ export const heroTitles = [
   "Problem Solver"
 ];
 
-export const stats = [
-  { label: "Modules Architected", value: "5+" },
-  { label: "Bugs Squashed", value: "100+" },
-  { label: "Cups of Chai", value: "\u221E" }
-];
+export const stats: Array<{ label: string; value: string }> = [];
 
 export type Project = {
   title: string;

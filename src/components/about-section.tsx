@@ -31,16 +31,21 @@ export function AboutSection() {
               architectures that actually hold up in production.
             </p>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {stats.map((stat) => (
-                <div key={stat.label} className="rounded-lg border-[0.5px] border-border bg-elevated p-4">
-                  <p className="mono-chip text-xs uppercase tracking-[0.16em] text-slate-500">
-                    {stat.label}
-                  </p>
-                  <p className="mt-3 text-2xl font-semibold text-text">{stat.value}</p>
-                </div>
-              ))}
-            </div>
+            {stats.length > 0 ? (
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {stats.map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="rounded-lg border-[0.5px] border-border bg-elevated p-4"
+                  >
+                    <p className="mono-chip text-xs uppercase tracking-[0.16em] text-slate-500">
+                      {stat.label}
+                    </p>
+                    <p className="mt-3 text-2xl font-semibold text-text">{stat.value}</p>
+                  </div>
+                ))}
+              </div>
+            ) : null}
           </motion.div>
         </div>
 
