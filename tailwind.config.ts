@@ -9,40 +9,35 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        bg: "#0d0f14",
-        card: "#13151c",
-        elevated: "#1a1d2e",
-        accent: "#a78bfa",
-        live: "#34d399",
-        text: "#f1f5f9",
-        muted: "#6b7280",
-        border: "#2a2d35"
+        bg: "#0a0a0a",
+        panel: "#101010",
+        "panel-soft": "#151515",
+        accent: "#e8ff47",
+        text: "#f5f5f5",
+        muted: "#8a8a8a",
+        border: "#262626"
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)"],
-        mono: ["var(--font-geist-mono)"]
+        sans: ["var(--font-dm-sans)"],
+        display: ["var(--font-syne)"],
+        mono: ["var(--font-ibm-plex-mono)"]
       },
       maxWidth: {
-        "8xl": "90rem"
+        "8xl": "68.75rem"
       },
       keyframes: {
-        blink: {
-          "0%, 49%": { opacity: "1" },
-          "50%, 100%": { opacity: "0" }
-        },
-        pulseDot: {
-          "0%, 100%": { transform: "scale(1)", opacity: "0.85" },
-          "50%": { transform: "scale(1.12)", opacity: "1" }
-        },
-        gridDrift: {
-          "0%": { transform: "translate3d(0, 0, 0)" },
-          "100%": { transform: "translate3d(-24px, -24px, 0)" }
+        fadeUp: {
+          "0%": { opacity: "0", transform: "translateY(18px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" }
         }
       },
       animation: {
-        blink: "blink 1s step-end infinite",
-        pulseDot: "pulseDot 1.8s ease-in-out infinite",
-        gridDrift: "gridDrift 18s linear infinite"
+        fadeUp: "fadeUp 700ms cubic-bezier(0.22, 1, 0.36, 1) both"
+      },
+      boxShadow: {
+        hero: "0 30px 120px rgba(0, 0, 0, 0.45)",
+        card: "0 18px 50px rgba(0, 0, 0, 0.35)",
+        glow: "0 18px 60px rgba(232, 255, 71, 0.12)"
       }
     }
   },
@@ -50,4 +45,3 @@ const config: Config = {
 };
 
 export default config;
-
