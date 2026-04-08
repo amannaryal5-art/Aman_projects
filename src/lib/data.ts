@@ -30,10 +30,10 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "Risk Intelligence System",
+    title: "CRIE v3.0 — Cyber Risk Intelligence Engine",
     description:
-      "An intelligent risk analysis platform that processes supply chain, logistics, and inventory data to identify and flag operational risks in real time.",
-    tags: ["Node.js", "TypeScript", "PostgreSQL", "REST API"],
+      "Multi-endpoint FastAPI backend rebuilt from v2 to v3 for real-time cyber risk scoring, with a terminal-style frontend and uvicorn delivery.",
+    tags: ["Python", "FastAPI", "uvicorn", "Cyber Security", "Risk Analysis", "REST API"],
     category: "backend",
     githubUrl: "https://github.com/amannaryal5-art/risk_intelligence_system",
     liveUrl: "https://risk-intelligence-system.vercel.app/"
@@ -193,4 +193,5 @@ export const experienceEntries: ExperienceEntry[] = [
   }
 ];
 
-export const learningItems = ["Docker", "Redis", "System Design", "Microservices", "AWS Basics"];
+export const learningSummary =
+  "Currently applying Docker for containerizing backend services. Exploring Redis for caching API responses. Studying system design patterns through real backend work.";
