@@ -1,20 +1,22 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { developer, stats } from "@/lib/data";
+import { Download, Mail, MapPin, School } from "lucide-react";
+import { developer } from "@/lib/data";
 
 export function AboutSection() {
   return (
-    <section id="about" className="section-shell scroll-mt-24 py-16 md:py-24">
-      <div className="grid gap-8 lg:grid-cols-2">
+    <section id="about" className="section-shell scroll-mt-28 py-20 md:py-28">
+      <div className="section-frame grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
         <div>
-          <p className="mono-chip text-sm uppercase tracking-[0.24em] text-accent">ABOUT</p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-text md:text-4xl">
-            Full stack thinking with practical product execution.
+          <p className="section-pill">About Me</p>
+          <h2 className="section-title mt-6 text-left">
+            Software Developer focused on building practical systems.
           </h2>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-slate-400">
-            Aman works best where system design, API structure, and real-world debugging meet
-            practical product delivery.
+          <p className="section-copy mt-5 max-w-2xl text-left">
+            I&apos;m passionate about designing and shipping reliable full stack applications. My
+            work blends backend architecture, frontend polish, and real-world debugging to turn
+            ideas into useful products.
           </p>
 
           <motion.div
@@ -22,30 +24,25 @@ export function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.45 }}
-            className="surface-card mt-10 rounded-xl p-6 md:p-8"
+            className="neo-card mt-10 p-6 md:p-8"
           >
-            <p className="text-base leading-8 text-slate-300">
-              I&apos;m Aman Naryal, a Full Stack Developer specializing in Node.js, TypeScript, and
-              PostgreSQL &mdash; building scalable APIs and turning ideas into real, working
-              products. I enjoy debugging complex systems and creating web applications that hold
-              up in production.
-            </p>
-
-            {stats.length > 0 ? (
-              <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                {stats.map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="rounded-lg border-[0.5px] border-border bg-elevated p-4"
-                  >
-                    <p className="mono-chip text-xs uppercase tracking-[0.16em] text-slate-500">
-                      {stat.label}
-                    </p>
-                    <p className="mt-3 text-2xl font-semibold text-text">{stat.value}</p>
-                  </div>
-                ))}
+            <div className="code-window">
+              <div className="code-window-bar">
+                <span className="code-dot bg-[#ff5d77]" />
+                <span className="code-dot bg-[#ffcf5a]" />
+                <span className="code-dot bg-[#29d391]" />
               </div>
-            ) : null}
+              <pre className="code-snippet">
+{`// About Aman Naryal
+const developer = {
+  role: "Full Stack Developer",
+  location: "Thane, Maharashtra",
+  backend: ["Node.js", "NestJS", "FastAPI"],
+  frontend: ["React", "Next.js", "Tailwind CSS"],
+  focus: "APIs, products, and dependable delivery"
+};`}
+              </pre>
+            </div>
           </motion.div>
         </div>
 
@@ -54,42 +51,41 @@ export function AboutSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.45, delay: 0.08 }}
-          className="surface-card h-fit rounded-xl p-6"
+          className="space-y-5"
         >
-          <div className="flex items-center gap-2 border-b-[0.5px] border-border pb-4">
-            <span className="h-2.5 w-2.5 rounded-full bg-live" />
-            <span className="mono-chip text-xs uppercase tracking-[0.18em] text-slate-400">
-              quick info
-            </span>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="info-card">
+              <MapPin className="info-icon" />
+              <p className="info-card-label">Location</p>
+              <p className="info-card-value">{developer.location}</p>
+            </div>
+            <div className="info-card">
+              <Mail className="info-icon" />
+              <p className="info-card-label">Email</p>
+              <a href={`mailto:${developer.email}`} className="info-card-value hover:text-cyan-300">
+                {developer.email}
+              </a>
+            </div>
+            <div className="info-card">
+              <School className="info-icon" />
+              <p className="info-card-label">Current Study</p>
+              <p className="info-card-value">MCA, Chandigarh University</p>
+            </div>
+            <div className="info-card">
+              <Download className="info-icon" />
+              <p className="info-card-label">Resume</p>
+              <a href="/resume.pdf" target="_blank" rel="noreferrer" className="info-card-value hover:text-cyan-300">
+                Download CV
+              </a>
+            </div>
           </div>
 
-          <div className="space-y-5 pt-6">
-            <div>
-              <p className="mono-chip text-xs uppercase tracking-[0.18em] text-slate-500">
-                location
-              </p>
-              <p className="mt-2 text-lg text-text">{developer.location}</p>
-            </div>
-            <div>
-              <p className="mono-chip text-xs uppercase tracking-[0.18em] text-slate-500">
-                preferred stack
-              </p>
-              <p className="mt-2 text-slate-300">
-                Node.js, TypeScript, PostgreSQL, Next.js
-              </p>
-            </div>
-            <div>
-              <p className="mono-chip text-xs uppercase tracking-[0.18em] text-slate-500">
-                availability
-              </p>
-              <p className="mt-2 text-slate-300">{developer.availability}</p>
-            </div>
-            <div>
-              <p className="mono-chip text-xs uppercase tracking-[0.18em] text-slate-500">focus</p>
-              <p className="mt-2 text-slate-300">
-                Full stack products, API architecture, dependable delivery
-              </p>
-            </div>
+          <div className="neo-card p-6 md:p-8">
+            <p className="text-base leading-8 text-slate-300">
+              I work best where clean system thinking meets shipping speed. From academic training
+              to internships and current product work, I&apos;ve been building a strong foundation in
+              backend engineering, full stack development, and polished delivery.
+            </p>
           </div>
         </motion.div>
       </div>

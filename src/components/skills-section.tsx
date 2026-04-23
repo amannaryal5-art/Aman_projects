@@ -1,45 +1,50 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Bot, Braces, Database, LayoutTemplate, Wrench } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { skillGroups } from "@/lib/data";
 
+const icons = [Braces, LayoutTemplate, Database, Wrench, Bot];
+
 export function SkillsSection() {
   return (
-    <section id="skills" className="section-shell scroll-mt-24 py-16 md:py-24">
+    <section id="skills" className="section-shell scroll-mt-28 py-20 md:py-28">
       <SectionHeading
-        eyebrow="SKILLS"
-        title="Technical capabilities aligned with full stack product development."
-        description="Hands-on experience across backend engineering, modern frontend development, data systems, and delivery tooling used to build reliable applications."
+        eyebrow="Tech Stack"
+        title="Skills & Technologies"
+        description="Technologies I’ve been working with across backend, frontend, databases, delivery tooling, and AI-assisted workflows."
       />
 
-      <div className="mt-10 rounded-xl border-[0.5px] border-border bg-card">
-        {skillGroups.map((group, index) => (
-          <motion.div
-            key={group.title}
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.4, delay: index * 0.08 }}
-            className={`flex flex-col gap-6 px-6 py-8 md:px-8 md:py-10 lg:flex-row lg:items-start lg:justify-between ${
-              index !== skillGroups.length - 1 ? "border-b-[0.5px] border-border" : ""
-            }`}
-          >
-            <div className="lg:w-64 lg:flex-none">
-              <h3 className="text-xl font-semibold text-text">{group.title}</h3>
-            </div>
-            <div className="flex flex-wrap gap-3 lg:flex-1">
-              {group.skills.map((skill) => (
-                <span
-                  key={skill}
-                  className="mono-chip rounded-full border-[0.5px] border-accent/40 bg-elevated px-4 py-1.5 text-sm tracking-[0.04em] text-accent"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-        ))}
+      <div className="mt-14 grid gap-5 sm:grid-cols-2 xl:grid-cols-5">
+        {skillGroups.map((group, index) => {
+          const Icon = icons[index] ?? Wrench;
+
+          return (
+            <motion.article
+              key={group.title}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.42, delay: index * 0.06 }}
+              className="skill-card"
+            >
+              <div className="skill-card-icon">
+                <Icon className="h-6 w-6" />
+              </div>
+              <h3 className="mt-5 font-display text-2xl tracking-[-0.04em] text-white">
+                {group.title}
+              </h3>
+              <div className="mt-6 flex flex-wrap gap-2.5">
+                {group.skills.map((skill) => (
+                  <span key={skill} className="skill-chip">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </motion.article>
+          );
+        })}
       </div>
     </section>
   );

@@ -38,11 +38,32 @@ export const projects: Project[] = [
 export const skillGroups = [
   {
     title: "Backend Engineering",
-    skills: ["Node.js", "TypeORM", "NestJS"]
+    skills: [
+      "Node.js",
+      "NestJS",
+      "Java",
+      "Spring Boot",
+      "Hibernate",
+      "Python",
+      "FastAPI",
+      "REST API",
+      "TypeORM"
+    ]
   },
   {
     title: "Frontend Technologies",
-    skills: ["React", "Next.js", "JavaScript", "TypeScript", "HTML", "CSS", "Tailwind CSS"]
+    skills: [
+      "React",
+      "Next.js",
+      "JavaScript",
+      "TypeScript",
+      "HTML",
+      "CSS",
+      "Tailwind CSS",
+      "Responsive Design",
+      "Semantic Markup",
+      "Web Design"
+    ]
   },
   {
     title: "Databases & Data Tools",
@@ -51,6 +72,17 @@ export const skillGroups = [
   {
     title: "Developer Tools & Deployment",
     skills: ["Git", "GitHub", "Vercel", "Postman", "Python Automation"]
+  },
+  {
+    title: "AI Tools & Prompting",
+    skills: [
+      "Prompt Engineering",
+      "ChatGPT",
+      "Claude AI",
+      "OpenAI Codex",
+      "GitHub Copilot",
+      "AI-assisted Development"
+    ]
   }
 ];
 
@@ -59,6 +91,7 @@ export type ExperienceEntry = {
   company?: string;
   role: string;
   location?: string;
+  outcome?: string;
   badge?: string;
   badgeTone?: "accent" | "cyan" | "emerald";
   tags: string[];
@@ -90,7 +123,8 @@ export const experienceEntries: ExperienceEntry[] = [
     period: "2024 - Present",
     company: "Chandigarh University (Online)",
     role: "Master of Computer Applications (MCA)",
-    location: "CGPA 8.53",
+    location: "Online Program",
+    outcome: "CGPA: 8.53 / 10",
     badge: "Education",
     badgeTone: "cyan",
     tags: [
@@ -109,6 +143,7 @@ export const experienceEntries: ExperienceEntry[] = [
     company: "Himachal Pradesh University",
     role: "Bachelor of Computer Applications (BCA)",
     location: "Laureate Institute of Information & Technology, Kangra",
+    outcome: "CGPA: 6.97 / 10 | Grade: A+",
     badge: "Education",
     badgeTone: "cyan",
     tags: [
@@ -182,6 +217,7 @@ export const experienceEntries: ExperienceEntry[] = [
     company: "HP Board of School Education",
     role: "Senior Secondary (Class XII) - Commerce",
     location: "Govt. Sr. Sec. School, Kathog, District Kangra",
+    outcome: "First Division | 314 / 500 Marks",
     badge: "Education",
     badgeTone: "cyan",
     tags: [
@@ -199,6 +235,7 @@ export const experienceEntries: ExperienceEntry[] = [
     company: "CBSE",
     role: "Secondary School (Class X)",
     location: "Shivalik International Convent School, Jwalamukhi, Kangra",
+    outcome: "Passed | 218 / 500 Marks",
     badge: "Education",
     badgeTone: "cyan",
     tags: [

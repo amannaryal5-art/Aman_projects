@@ -1,21 +1,28 @@
 import type { Metadata } from "next";
-import { AboutStrip } from "@/components/landing/AboutStrip";
-import { Footer } from "@/components/landing/Footer";
-import { Hero } from "@/components/landing/Hero";
-import { ProductsGrid } from "@/components/landing/ProductsGrid";
+import { AboutSection } from "@/components/about-section";
+import { ContactSection } from "@/components/contact-section";
+import { ExperienceSection } from "@/components/experience-section";
+import { HeroSection } from "@/components/hero-section";
+import { Navbar } from "@/components/navbar";
+import { ProjectsSection } from "@/components/projects-section";
+import { SkillsSection } from "@/components/skills-section";
 
 export const metadata: Metadata = {
-  title: "Aman Naryal | Products",
-  description: "A product-focused landing page for Aman Naryal's shipped tools and upcoming systems."
+  title: "Aman Naryal | Full Stack Developer",
+  description:
+    "Aman Naryal is a Full Stack Developer building APIs, products, and polished web experiences."
 };
 
 export default function HomePage() {
   return (
     <main className="min-h-screen overflow-x-clip bg-bg text-text">
-      <Hero />
-      <ProductsGrid />
-      <AboutStrip />
-      <Footer />
+      <Navbar />
+      <HeroSection />
+      <AboutSection />
+      <SkillsSection />
+      <ExperienceSection />
+      <ProjectsSection />
+      <ContactSection />
     </main>
   );
 }

@@ -151,11 +151,32 @@ export const projects: ResumeProject[] = [
 export const skillGroups = [
   {
     title: "Backend Engineering",
-    items: ["Node.js", "TypeORM", "NestJS"]
+    items: [
+      "Node.js",
+      "NestJS",
+      "Java",
+      "Spring Boot",
+      "Hibernate",
+      "Python",
+      "FastAPI",
+      "REST API",
+      "TypeORM"
+    ]
   },
   {
     title: "Frontend Technologies",
-    items: ["React", "Next.js", "JavaScript", "TypeScript", "HTML", "CSS", "Tailwind CSS"]
+    items: [
+      "React",
+      "Next.js",
+      "JavaScript",
+      "TypeScript",
+      "HTML",
+      "CSS",
+      "Tailwind CSS",
+      "Responsive Design",
+      "Semantic Markup",
+      "Web Design"
+    ]
   },
   {
     title: "Databases & Data Tools",
