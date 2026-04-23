@@ -1,4 +1,4 @@
-import { currentlyLearning, skillGroups } from "@/data/resume";
+import { skillGroups } from "@/data/resume";
 
 export function SkillsGrid() {
   return (
@@ -6,7 +6,7 @@ export function SkillsGrid() {
       <div className="fade-up delay-4 mb-8">
         <p className="section-kicker">Skills</p>
         <h2 className="mt-3 font-display text-4xl tracking-[-0.04em] text-text md:text-5xl">
-          Tools, stacks, and systems I work with.
+          Core technologies I use to build production-ready applications.
         </h2>
       </div>
 
@@ -23,17 +23,6 @@ export function SkillsGrid() {
             </div>
           </article>
         ))}
-      </div>
-
-      <div className="resume-panel fade-up delay-5 mt-5 p-6 md:p-8">
-        <p className="section-kicker">Currently Learning</p>
-        <div className="mt-5 flex flex-wrap gap-2">
-          {currentlyLearning.map((item) => (
-            <span key={item} className="resume-chip">
-              {item}
-            </span>
-          ))}
-        </div>
       </div>
     </section>
   );

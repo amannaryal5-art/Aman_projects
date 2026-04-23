@@ -11,7 +11,7 @@ import { resumeProfile, resumeSummary } from "@/data/resume";
 
 export const metadata: Metadata = {
   title: "Aman Naryal | Resume",
-  description: "Resume and professional profile for Aman Naryal, Full Stack Developer focused on backend systems and API architecture."
+  description: "Resume and professional profile for Aman Naryal, Full Stack Developer focused on APIs, products, and scalable web applications."
 };
 
 export default function ResumePage() {

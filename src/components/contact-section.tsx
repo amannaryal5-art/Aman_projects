@@ -33,7 +33,7 @@ export function ContactSection() {
         <SectionHeading
           eyebrow="Contact"
           title="Ready for the next full-time engineering opportunity."
-          description="Aman is based in Thane, Maharashtra and open to full-time roles where backend ownership, API architecture, and full stack problem solving matter."
+          description="Aman is based in Thane, Maharashtra and open to full-time roles where full stack ownership, API architecture, and product problem solving matter."
         />
 
         <motion.div

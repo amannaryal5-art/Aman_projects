@@ -8,7 +8,7 @@ import { projects } from "@/lib/data";
 
 const filters = [
   { label: "All", value: "all" },
-  { label: "Backend", value: "backend" }
+  { label: "Full Stack", value: "fullstack" }
 ] as const;
 
 export function ProjectsSection() {
@@ -26,8 +26,8 @@ export function ProjectsSection() {
     <section id="projects" className="section-shell scroll-mt-24 py-16 md:py-24">
       <SectionHeading
         eyebrow="Projects"
-        title="Systems-focused projects with real backend depth."
-        description="Aman&apos;s work is currently focused on building and shipping real backend systems. More projects coming soon."
+        title="Full stack projects built for real-world use."
+        description="Aman&apos;s work is focused on building and shipping practical full stack products. More projects coming soon."
       />
 
       <div className="mt-10 flex flex-wrap gap-3">

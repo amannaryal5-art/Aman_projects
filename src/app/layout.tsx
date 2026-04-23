@@ -24,7 +24,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "Aman Naryal",
   description:
-    "Aman Naryal builds backend systems, APIs, and product-focused experiences."
+    "Aman Naryal is a Full Stack Developer building APIs, products, and polished web experiences."
 };
 
 export default function RootLayout({

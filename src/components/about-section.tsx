@@ -10,7 +10,7 @@ export function AboutSection() {
         <div>
           <p className="mono-chip text-sm uppercase tracking-[0.24em] text-accent">ABOUT</p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight text-text md:text-4xl">
-            Backend-first thinking with full stack execution.
+            Full stack thinking with practical product execution.
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-slate-400">
             Aman works best where system design, API structure, and real-world debugging meet
@@ -25,10 +25,10 @@ export function AboutSection() {
             className="surface-card mt-10 rounded-xl p-6 md:p-8"
           >
             <p className="text-base leading-8 text-slate-300">
-              I&apos;m Aman Naryal, a full-stack developer focused on backend systems. I specialize in
-              Node.js, TypeScript, and PostgreSQL &mdash; building scalable APIs and turning ideas into
-              real, working products. I enjoy debugging complex systems and creating backend
-              architectures that actually hold up in production.
+              I&apos;m Aman Naryal, a Full Stack Developer specializing in Node.js, TypeScript, and
+              PostgreSQL &mdash; building scalable APIs and turning ideas into real, working
+              products. I enjoy debugging complex systems and creating web applications that hold
+              up in production.
             </p>
 
             {stats.length > 0 ? (
@@ -87,7 +87,7 @@ export function AboutSection() {
             <div>
               <p className="mono-chip text-xs uppercase tracking-[0.18em] text-slate-500">focus</p>
               <p className="mt-2 text-slate-300">
-                Backend systems, API architecture, Full stack delivery
+                Full stack products, API architecture, dependable delivery
               </p>
             </div>
           </div>

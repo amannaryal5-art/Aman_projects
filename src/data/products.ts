@@ -11,7 +11,7 @@ export type ProductCardData = {
 
 export const landingProfile = {
   name: "Aman Naryal",
-  headline: "I build backend systems and ship real products.",
+  headline: "I build full stack products and ship real experiences.",
   status: "Open to full-time",
   city: "Thane, India",
   email: "amannaryal5@gmail.com",
@@ -24,7 +24,7 @@ export const products: ProductCardData[] = [
     name: "CRIE v3.0",
     tagline: "Cyber Risk Intelligence Engine",
     description:
-      "Real-time cyber risk scoring platform. FastAPI backend, terminal-aesthetic UI, multi-endpoint REST API.",
+      "Real-time cyber risk scoring platform with a terminal-aesthetic UI and multi-endpoint REST API.",
     stack: ["Python", "FastAPI", "uvicorn", "REST API"],
     githubUrl: "https://github.com/amannaryal5-art/risk_intelligence_system",
     liveUrl: "https://risk-intelligence-system.vercel.app/",
@@ -49,4 +49,4 @@ export const products: ProductCardData[] = [
 ];
 
 export const aboutStripCopy =
-  "Backend-first engineer. I go deep on system design, API architecture, and real-world debugging. Currently a Trainee Engineer at CognexiaAI LLP, Navi Mumbai.";
+  "Full Stack Developer focused on system design, API architecture, and real-world debugging. Currently a Trainee Engineer at CognexiaAI LLP, Navi Mumbai.";

@@ -9,8 +9,8 @@ export function SkillsSection() {
     <section id="skills" className="section-shell scroll-mt-24 py-16 md:py-24">
       <SectionHeading
         eyebrow="SKILLS"
-        title="Aman&apos;s stack is built around APIs, data flow, and dependable delivery."
-        description="Practical engineering - reliable backend modules, well-structured database work, and frontend layers that integrate cleanly with real services."
+        title="Technical capabilities aligned with full stack product development."
+        description="Hands-on experience across backend engineering, modern frontend development, data systems, and delivery tooling used to build reliable applications."
       />
 
       <div className="mt-10 rounded-xl border-[0.5px] border-border bg-card">

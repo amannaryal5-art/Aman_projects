@@ -7,7 +7,7 @@ export function ProjectsList() {
       <div className="fade-up delay-3 mb-8">
         <p className="section-kicker">Projects</p>
         <h2 className="mt-3 font-display text-4xl tracking-[-0.04em] text-text md:text-5xl">
-          Shipped work with real backend depth.
+          Shipped work across real full stack products.
         </h2>
       </div>
 

@@ -9,12 +9,7 @@ export const developer = {
   tagline: "Full Stack Developer crafting intelligent, API-driven applications"
 };
 
-export const heroTitles = [
-  "Full Stack Developer",
-  "API Architect",
-  "TypeScript + Node.js Engineer",
-  "Problem Solver"
-];
+export const heroTitles = ["Full Stack Developer"];
 
 export const stats: Array<{ label: string; value: string }> = [];
 
@@ -22,7 +17,7 @@ export type Project = {
   title: string;
   description: string;
   tags: string[];
-  category: "backend" | "fullstack" | "ai";
+  category: "fullstack" | "ai";
   githubUrl?: string;
   liveUrl?: string;
   comingSoon?: boolean;
@@ -30,11 +25,11 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "CRIE v3.0 — Cyber Risk Intelligence Engine",
+    title: "CRIE v3.0 - Cyber Risk Intelligence Engine",
     description:
-      "Multi-endpoint FastAPI backend rebuilt from v2 to v3 for real-time cyber risk scoring, with a terminal-style frontend and uvicorn delivery.",
+      "Built and shipped a FastAPI-based cyber risk intelligence platform for real-time risk scoring. Reengineered the product from v2 to v3, delivered a terminal-inspired interface, and streamlined deployment with Uvicorn.",
     tags: ["Python", "FastAPI", "uvicorn", "Cyber Security", "Risk Analysis", "REST API"],
-    category: "backend",
+    category: "fullstack",
     githubUrl: "https://github.com/amannaryal5-art/risk_intelligence_system",
     liveUrl: "https://risk-intelligence-system.vercel.app/"
   }
@@ -46,15 +41,15 @@ export const skillGroups = [
     skills: ["Node.js", "Java", "Spring Boot", "Hibernate", "TypeORM"]
   },
   {
-    title: "Frontend Development",
-    skills: ["React", "Next.js", "JavaScript", "TypeScript", "HTML & CSS", "TailwindCSS"]
+    title: "Frontend Technologies",
+    skills: ["React", "Next.js", "JavaScript", "TypeScript", "HTML", "CSS", "Tailwind CSS"]
   },
   {
-    title: "Data & Storage",
+    title: "Databases & Data Tools",
     skills: ["PostgreSQL", "SQL", "pgAdmin"]
   },
   {
-    title: "DevOps & Tooling",
+    title: "Developer Tools & Deployment",
     skills: ["Git", "GitHub", "Vercel", "Postman", "Python Automation"]
   }
 ];
@@ -73,7 +68,7 @@ export type ExperienceEntry = {
 
 export const experienceEntries: ExperienceEntry[] = [
   {
-    period: "Feb 2026 — Present",
+    period: "Feb 2026 - Present",
     company: "CognexiaAI LLP",
     role: "Trainee Engineer",
     location: "Navi Mumbai, India",
@@ -83,7 +78,7 @@ export const experienceEntries: ExperienceEntry[] = [
     current: true
   },
   {
-    period: "Aug 2025 — Feb 2026",
+    period: "Aug 2025 - Feb 2026",
     company: "SETTribe LLP",
     role: "Trainee Software Engineer (Intern)",
     location: "Pune, India",
@@ -92,14 +87,7 @@ export const experienceEntries: ExperienceEntry[] = [
       "Completed an intensive Full Stack Development training program (Java) with SEED Infotech Ltd, followed by real project work involving software development, requirement understanding, and technical documentation at SETTribe LLP."
   },
   {
-    period: "2023 — Aug 2025",
-    role: "Self-Taught Full Stack Developer",
-    tags: ["Node.js", "React", "PostgreSQL", "REST APIs", "JavaScript"],
-    detail:
-      "Built strong backend and full stack foundations independently — working through real projects, API design, database architecture, and debugging complex systems before stepping into professional roles."
-  },
-  {
-    period: "2024 — Present",
+    period: "2024 - Present",
     company: "Chandigarh University (Online)",
     role: "Master of Computer Applications (MCA)",
     location: "CGPA 8.53",
@@ -114,10 +102,10 @@ export const experienceEntries: ExperienceEntry[] = [
       "Database Systems"
     ],
     detail:
-      "Pursuing MCA at Chandigarh University with a strong academic record (CGPA 8.53). Coursework spans advanced database systems, machine learning, web application development, algorithms, and cyber security — directly supporting my backend and full stack engineering work."
+      "Pursuing MCA at Chandigarh University with a strong academic record (CGPA 8.53). Coursework spans advanced database systems, machine learning, web application development, algorithms, and cyber security - directly supporting my full stack engineering work."
   },
   {
-    period: "2021 — 2024",
+    period: "2021 - 2024",
     company: "Himachal Pradesh University",
     role: "Bachelor of Computer Applications (BCA)",
     location: "Laureate Institute of Information & Technology, Kangra",
@@ -132,12 +120,12 @@ export const experienceEntries: ExperienceEntry[] = [
       "Operating Systems"
     ],
     detail:
-      "Completed BCA from Himachal Pradesh University with a CGPA of 6.97 (Grade A+). Coursework covered core CS fundamentals including OOP, databases, networking, and web design — forming the foundation for my full stack development journey."
+      "Completed BCA from Himachal Pradesh University with a CGPA of 6.97 (Grade A+). Coursework covered core CS fundamentals including OOP, databases, networking, and web design - forming the foundation for my full stack development journey."
   },
   {
-    period: "March 2023 — May 2023",
+    period: "March 2023 - May 2023",
     company: "E-Max Council / Aim Clear Technology Computer Institute",
-    role: "CCA — Certificate in Computer Application",
+    role: "CCA - Certificate in Computer Application",
     location: "Jwalamukhi, Kangra, HP",
     badge: "Certification",
     badgeTone: "emerald",
@@ -146,20 +134,53 @@ export const experienceEntries: ExperienceEntry[] = [
       "Completed CCA certification with 80% marks (A Grade). Covered computer fundamentals, MS Office suite, DOS/Windows, internet basics, C programming, and practical lab work."
   },
   {
-    period: "June 2023 — November 2023",
+    period: "June 2023 - November 2023",
     company: "E-Max Council / Aim Clear Technology Computer Institute",
-    role: "DPWD — Diploma in Programming and Web Designing",
+    role: "DPWD - Diploma in Programming and Web Designing",
     location: "Jwalamukhi, Kangra, HP",
     badge: "Certification",
     badgeTone: "emerald",
     tags: ["C Language", "C++", "Visual Basic.NET", "ASP.NET", "Python", "JavaScript", "CSS"],
     detail:
-      "Completed Diploma in Programming and Web Designing with 90% marks (A+ Grade). Covered multi-language programming including C, C++, Python, JavaScript, ASP.NET, and web design fundamentals — marking the beginning of my software development journey."
+      "Completed Diploma in Programming and Web Designing with 90% marks (A+ Grade). Covered multi-language programming including C, C++, Python, JavaScript, ASP.NET, and web design fundamentals - marking the beginning of my software development journey."
   },
   {
-    period: "2019 — 2021",
+    period: "During BCA",
+    company: "Spoken Tutorial Project, IIT Bombay",
+    role: "JavaScript Training",
+    location: "Laureate Institute of Management & Information Technology",
+    badge: "Certification",
+    badgeTone: "emerald",
+    tags: ["JavaScript", "Web Development", "Front-End"],
+    detail:
+      "Completed structured JavaScript training and assessment through the Spoken Tutorial Project at IIT Bombay, strengthening core front-end development skills."
+  },
+  {
+    period: "During BCA",
+    company: "Spoken Tutorial Project, IIT Bombay",
+    role: "CSS Training",
+    location: "Laureate Institute of Management & Information Technology",
+    badge: "Certification",
+    badgeTone: "emerald",
+    tags: ["CSS", "Responsive Design", "Front-End"],
+    detail:
+      "Completed CSS training through IIT Bombay's Spoken Tutorial Project, with focus on styling fundamentals, layout techniques, and practical interface development."
+  },
+  {
+    period: "During BCA",
+    company: "Spoken Tutorial Project, IIT Bombay",
+    role: "HTML Training",
+    location: "Laureate Institute of Management & Information Technology",
+    badge: "Certification",
+    badgeTone: "emerald",
+    tags: ["HTML", "Semantic Markup", "Web Fundamentals"],
+    detail:
+      "Completed HTML training through the Spoken Tutorial Project at IIT Bombay, building a solid foundation in semantic markup and core web page structure."
+  },
+  {
+    period: "2019 - 2021",
     company: "HP Board of School Education",
-    role: "Senior Secondary (Class XII) — Commerce",
+    role: "Senior Secondary (Class XII) - Commerce",
     location: "Govt. Sr. Sec. School, Kathog, District Kangra",
     badge: "Education",
     badgeTone: "cyan",
@@ -192,6 +213,3 @@ export const experienceEntries: ExperienceEntry[] = [
       "Passed CBSE Class X board examination from Shivalik International Convent School, Kangra. Demonstrated early interest in technology with Foundation of IT as an additional subject."
   }
 ];
-
-export const learningSummary =
-  "Currently applying Docker for containerizing backend services. Exploring Redis for caching API responses. Studying system design patterns through real backend work.";

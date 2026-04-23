@@ -15,13 +15,16 @@ export function EducationSection() {
           {education.map((entry, index) => (
             <article key={`${entry.institution}-${entry.period}`} className={`resume-panel fade-up delay-${Math.min(index + 2, 5)} p-6 md:p-8`}>
               <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
-                <div>
-                  <h3 className="font-display text-3xl tracking-[-0.03em] text-text">{entry.institution}</h3>
-                  <p className="mt-2 text-base text-slate-300">{entry.degree}</p>
+                <div className="max-w-[36rem]">
+                  <h3 className="font-display text-2xl tracking-[-0.03em] text-text md:text-3xl">
+                    {entry.institution}
+                  </h3>
+                  <p className="mt-2 text-base font-medium text-slate-200">{entry.degree}</p>
+                  {entry.campus ? <p className="mt-2 text-sm leading-6 text-slate-400">{entry.campus}</p> : null}
                 </div>
-                <div className="text-sm text-slate-400 md:text-right">
+                <div className="shrink-0 text-sm text-slate-400 md:max-w-[13rem] md:text-right">
                   <p>{entry.period}</p>
-                  {entry.detail ? <p className="mt-2">{entry.detail}</p> : null}
+                  {entry.result ? <p className="mt-2 font-medium text-slate-300">{entry.result}</p> : null}
                 </div>
               </div>
 
