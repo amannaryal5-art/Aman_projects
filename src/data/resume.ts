@@ -151,7 +151,7 @@ export const projects: ResumeProject[] = [
 export const skillGroups = [
   {
     title: "Backend Engineering",
-    items: ["Node.js", "Java", "Spring Boot", "Hibernate", "TypeORM", "NestJS"]
+    items: ["Node.js", "TypeORM", "NestJS"]
   },
   {
     title: "Frontend Technologies",

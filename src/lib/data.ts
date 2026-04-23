@@ -38,7 +38,7 @@ export const projects: Project[] = [
 export const skillGroups = [
   {
     title: "Backend Engineering",
-    skills: ["Node.js", "Java", "Spring Boot", "Hibernate", "TypeORM"]
+    skills: ["Node.js", "TypeORM", "NestJS"]
   },
   {
     title: "Frontend Technologies",
