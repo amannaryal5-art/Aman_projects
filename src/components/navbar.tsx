@@ -35,6 +35,18 @@ export function Navbar() {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const handleNavClick = () => {
     setMenuOpen(false);
   };
@@ -100,6 +112,12 @@ export function Navbar() {
             transition={{ duration: 0.22, ease: "easeOut" }}
             className="mobile-nav-wrap md:hidden"
           >
+            <button
+              type="button"
+              aria-label="Close navigation menu"
+              className="mobile-nav-backdrop"
+              onClick={() => setMenuOpen(false)}
+            />
             <nav className="section-shell mobile-nav-panel">
               {navItems.map((item) => (
                 <a

@@ -76,6 +76,15 @@ textarea {
   padding-right: 1rem;
 }
 
+section,
+main,
+header,
+footer,
+div,
+article {
+  min-width: 0;
+}
+
 .section-frame {
   position: relative;
   overflow: hidden;
@@ -249,6 +258,7 @@ textarea {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   border: 1px solid rgba(109, 108, 255, 0.22);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.03);
@@ -298,10 +308,21 @@ textarea {
 }
 
 .mobile-nav-wrap {
+  position: relative;
   overflow: hidden;
 }
 
+.mobile-nav-backdrop {
+  position: fixed;
+  inset: 4.5rem 0 0;
+  border: 0;
+  background: rgba(5, 7, 24, 0.52);
+  backdrop-filter: blur(6px);
+}
+
 .mobile-nav-panel {
+  position: relative;
+  z-index: 1;
   display: grid;
   gap: 0.5rem;
   padding-top: 0.5rem;
@@ -330,10 +351,11 @@ textarea {
 .hero-title {
   margin-top: 1.5rem;
   font-family: var(--font-syne), sans-serif;
-  font-size: clamp(2.7rem, 12vw, 5.6rem);
-  line-height: 0.98;
+  font-size: clamp(2.35rem, 11vw, 5.6rem);
+  line-height: 1.02;
   letter-spacing: -0.06em;
   color: #fff;
+  text-wrap: balance;
 }
 
 .hero-kicker {
@@ -347,7 +369,7 @@ textarea {
   margin: 1.25rem auto 0;
   max-width: 40rem;
   font-size: clamp(1rem, 4vw, 1.32rem);
-  line-height: 1.8;
+  line-height: 1.7;
   color: #cbd5e1;
 }
 
@@ -483,10 +505,11 @@ textarea {
   margin-top: 0.55rem;
   color: #fff;
   line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 
 .skill-card {
-  min-height: 19rem;
+  min-height: 0;
   padding: 1.6rem;
 }
 
@@ -505,12 +528,14 @@ textarea {
 .project-chip {
   display: inline-flex;
   align-items: center;
+  max-width: 100%;
   border: 1px solid rgba(109, 108, 255, 0.2);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.03);
   padding: 0.5rem 0.78rem;
   color: #cfd5ff;
   font-size: 0.82rem;
+  overflow-wrap: anywhere;
 }
 
 .timeline-card {
@@ -554,6 +579,7 @@ textarea {
   align-items: center;
   gap: 1rem;
   padding: 1rem 1.15rem;
+  min-width: 0;
   transition:
     transform 180ms ease,
     border-color 180ms ease,
@@ -587,6 +613,7 @@ textarea {
 .contact-link-value {
   margin-top: 0.25rem;
   color: #fff;
+  overflow-wrap: anywhere;
 }
 
 .contact-input {
@@ -625,6 +652,7 @@ textarea {
     rgba(14, 16, 41, 0.88);
   border-radius: 1.75rem;
   box-shadow: 0 18px 60px rgba(0, 0, 0, 0.26);
+  min-width: 0;
 }
 
 .resume-chip {
@@ -712,6 +740,10 @@ textarea {
     min-height: 5rem;
   }
 
+  .mobile-nav-backdrop {
+    inset: 5rem 0 0;
+  }
+
   .navbar-toggle {
     display: none;
   }
@@ -757,6 +789,10 @@ textarea {
   .hero-meta .info-pill {
     justify-content: flex-start;
   }
+
+  .skill-card {
+    min-height: 19rem;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -791,5 +827,51 @@ textarea {
   .hero-orb-left,
   .hero-orb-right {
     display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .section-frame,
+  .hero-panel,
+  .resume-panel,
+  .neo-card,
+  .timeline-card,
+  .project-card,
+  .skill-card,
+  .info-card {
+    border-radius: 1.35rem;
+  }
+
+  .section-pill {
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
+  }
+
+  .section-copy {
+    line-height: 1.7;
+  }
+
+  .timeline-card {
+    padding: 1.2rem;
+  }
+
+  .project-card-banner {
+    min-height: 8rem;
+  }
+
+  .contact-link-card {
+    padding: 0.95rem 1rem;
+  }
+
+  .contact-link-icon {
+    width: 2.6rem;
+    height: 2.6rem;
+    flex-shrink: 0;
+  }
+
+  .info-pill,
+  .availability-pill {
+    width: 100%;
+    justify-content: center;
   }
 }
