@@ -6,37 +6,38 @@ import { developer } from "@/lib/data";
 
 export function HeroSection() {
   return (
-    <section id="top" className="section-shell relative pt-32 md:pt-36">
+    <section id="top" className="section-shell relative pt-24">
       <div className="hero-panel">
         <div className="hero-orb hero-orb-left" />
         <div className="hero-orb hero-orb-right" />
 
-        <div className="relative z-10 grid gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <div className="hero-layout">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
+            className="hero-copy"
           >
             <div className="availability-pill">
               <span className="availability-dot" />
               Available for opportunities
             </div>
 
-            <h1 className="mt-10 font-display text-5xl leading-[0.98] tracking-[-0.06em] text-white sm:text-6xl md:text-7xl lg:text-[5.6rem]">
+            <h1 className="hero-title">
               Hi, I&apos;m
               <span className="hero-gradient-text block">Aman Naryal</span>
             </h1>
 
-            <p className="mt-6 font-mono text-lg text-[#8d83ff] md:text-2xl">
+            <p className="hero-kicker">
               {"// Full Stack Developer"}
             </p>
 
-            <p className="mt-8 max-w-2xl text-lg leading-9 text-slate-300 md:text-[1.32rem]">
+            <p className="hero-description">
               Software Developer building API-driven web products, modern frontend experiences,
               and practical backend systems. Based in Thane, Maharashtra, India.
             </p>
 
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="hero-actions">
               <a href="#contact" className="button-primary">
                 Contact Me
                 <ArrowRight className="h-4 w-4" />
@@ -50,7 +51,7 @@ export function HeroSection() {
               </a>
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="hero-meta">
               <div className="info-pill">{developer.availability}</div>
               <div className="info-pill">{developer.location}</div>
               <a href={developer.github} target="_blank" rel="noreferrer" className="info-pill">
@@ -64,8 +65,25 @@ export function HeroSection() {
             initial={{ opacity: 0, x: 28 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.65, delay: 0.12, ease: "easeOut" }}
-            className="relative mx-auto w-full max-w-[460px]"
-          />
+            className="hero-visual"
+          >
+            <div className="hero-visual-card">
+              <div className="code-window">
+                <div className="code-window-bar">
+                  <span className="code-dot bg-[#ff5d77]" />
+                  <span className="code-dot bg-[#ffcf5a]" />
+                  <span className="code-dot bg-[#29d391]" />
+                </div>
+                <pre className="code-snippet">
+{`const stack = {
+  frontend: ["Next.js", "React", "TypeScript"],
+  backend: ["Node.js", "NestJS", "FastAPI"],
+  focus: "Scalable products with polished UI"
+};`}
+                </pre>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -1,4 +1,3 @@
-import { ArrowUpRight, Download } from "lucide-react";
 import { resumeProfile } from "@/data/resume";
 
 export function ResumeHeader() {
@@ -25,17 +24,6 @@ export function ResumeHeader() {
                 linkedin.com/in/aman-naryal-608034221
               </a>
             </div>
-          </div>
-
-          <div className="flex flex-wrap gap-3 md:max-w-xs md:justify-end">
-            <a href={resumeProfile.resumePdf} className="button-primary" target="_blank" rel="noreferrer">
-              <Download className="h-4 w-4" />
-              Resume PDF
-            </a>
-            <a href={resumeProfile.github} className="button-secondary" target="_blank" rel="noreferrer">
-              <ArrowUpRight className="h-4 w-4" />
-              GitHub
-            </a>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const navItems = [
@@ -9,11 +10,13 @@ const navItems = [
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
-  { label: "Education", href: "#education" }
+  { label: "Education", href: "#education" },
+  { label: "Contact", href: "#contact" }
 ];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 18);
@@ -24,6 +27,18 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  const handleNavClick = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <motion.header
       initial={false}
@@ -33,24 +48,33 @@ export function Navbar() {
       }}
       className="fixed inset-x-0 top-0 z-50 border-b backdrop-blur-xl"
     >
-      <div className="section-shell flex h-20 items-center justify-between gap-6">
-        <nav className="hidden items-center gap-2 md:flex">
+      <div className="section-shell navbar-shell">
+        <a href="#top" className="navbar-brand">
+          Aman
+        </a>
+
+        <nav className="navbar-links">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="rounded-full px-4 py-2.5 text-sm text-slate-300 transition-all hover:bg-white/5 hover:text-white"
+              className="navbar-link"
             >
               {item.label}
             </a>
           ))}
         </nav>
 
-        <div className="hidden md:block" />
-
-        <a href="#contact" className="button-primary ml-auto hidden md:inline-flex">
-          Hire Me
-        </a>
+        <button
+          type="button"
+          className="navbar-toggle"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-nav"
+          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+          onClick={() => setMenuOpen((current) => !current)}
+        >
+          {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </div>
 
       <AnimatePresence>
@@ -62,6 +86,33 @@ export function Navbar() {
             exit={{ opacity: 0 }}
             className="h-px w-full bg-[linear-gradient(90deg,transparent,rgba(61,232,224,0.32),transparent)]"
           />
+        ) : null}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {menuOpen ? (
+          <motion.div
+            id="mobile-nav"
+            key="mobile-nav"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="mobile-nav-wrap md:hidden"
+          >
+            <nav className="section-shell mobile-nav-panel">
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="mobile-nav-link"
+                  onClick={handleNavClick}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+          </motion.div>
         ) : null}
       </AnimatePresence>
     </motion.header>

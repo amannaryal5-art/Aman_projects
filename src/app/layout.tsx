@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Sans, IBM_Plex_Mono, Syne } from "next/font/google";
 import "./globals.css";
 
@@ -25,6 +25,11 @@ export const metadata: Metadata = {
   title: "Aman Naryal",
   description:
     "Aman Naryal is a Full Stack Developer building APIs, products, and polished web experiences."
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1
 };
 
 export default function RootLayout({

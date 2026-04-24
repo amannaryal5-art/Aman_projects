@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { createHash } from "crypto";
 import nodemailer from "nodemailer";
 
 type ContactPayload = {
@@ -6,6 +7,7 @@ type ContactPayload = {
   email: string;
   subject: string;
   message: string;
+  website?: string;
 };
 
 const gmailUser = process.env.GMAIL_USER;
@@ -24,10 +26,14 @@ function escapeHtml(value: string) {
 }
 
 function validatePayload(payload: Partial<ContactPayload>) {
-  const { name, email, subject, message } = payload;
+  const { name, email, subject, message, website } = payload;
 
   if (!name || !email || !subject || !message) {
     return "All fields are required";
+  }
+
+  if (website) {
+    return "Spam protection triggered";
   }
 
   if (!nameRegex.test(name.trim()) || !emailRegex.test(email.trim())) {
@@ -39,6 +45,21 @@ function validatePayload(payload: Partial<ContactPayload>) {
   }
 
   return null;
+}
+
+function createDigest(payload: ContactPayload, timestamp: string) {
+  return createHash("sha512")
+    .update(
+      [
+        payload.name.trim(),
+        payload.email.trim(),
+        payload.subject.trim(),
+        payload.message.trim(),
+        payload.website?.trim() ?? "",
+        timestamp
+      ].join("|")
+    )
+    .digest("hex");
 }
 
 export async function POST(request: Request) {
@@ -66,12 +87,31 @@ export async function POST(request: Request) {
 
     const payload = (await request.json()) as Partial<ContactPayload>;
     const validationError = validatePayload(payload);
+    const timestamp = request.headers.get("x-contact-timestamp");
+    const digest = request.headers.get("x-contact-digest");
 
     if (validationError) {
       return NextResponse.json({ error: validationError }, { status: 400 });
     }
 
-    const { name, email, subject, message } = payload as ContactPayload;
+    if (!timestamp || !digest) {
+      return NextResponse.json({ error: "Missing request protection headers" }, { status: 400 });
+    }
+
+    const timestampValue = Number(timestamp);
+
+    if (!Number.isFinite(timestampValue) || Math.abs(Date.now() - timestampValue) > 10 * 60 * 1000) {
+      return NextResponse.json({ error: "Request expired. Please try again." }, { status: 400 });
+    }
+
+    const safePayload = payload as ContactPayload;
+    const expectedDigest = createDigest(safePayload, timestamp);
+
+    if (digest !== expectedDigest) {
+      return NextResponse.json({ error: "Request validation failed" }, { status: 400 });
+    }
+
+    const { name, email, subject, message } = safePayload;
     const submittedAt = new Date().toLocaleString("en-IN", {
       dateStyle: "medium",
       timeStyle: "short"
