@@ -10,11 +10,20 @@ type ContactPayload = {
   website?: string;
 };
 
-const gmailUser = process.env.GMAIL_USER;
-const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
-
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const nameRegex = /^[a-zA-Z][a-zA-Z\s.'-]{1,78}[a-zA-Z.]?$/;
+
+function getMailConfig() {
+  const gmailUser = process.env.GMAIL_USER?.trim() ?? "";
+  const gmailAppPassword = process.env.GMAIL_APP_PASSWORD?.trim() ?? "";
+  const contactRecipient = process.env.CONTACT_TO_EMAIL?.trim() || gmailUser;
+
+  return {
+    gmailUser,
+    gmailAppPassword,
+    contactRecipient
+  };
+}
 
 function escapeHtml(value: string) {
   return value
@@ -64,9 +73,14 @@ function createDigest(payload: ContactPayload, timestamp: string) {
 
 export async function POST(request: Request) {
   try {
+    const { gmailUser, gmailAppPassword, contactRecipient } = getMailConfig();
+
     if (!gmailUser || !gmailAppPassword) {
       return NextResponse.json(
-        { error: "GMAIL_USER or GMAIL_APP_PASSWORD is not configured" },
+        {
+          error:
+            "Email service is not configured. Add GMAIL_USER and GMAIL_APP_PASSWORD in your Vercel project environment variables."
+        },
         { status: 500 }
       );
     }
@@ -79,7 +93,7 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           error:
-            "Set your real Gmail address and Gmail App Password in .env.local before sending messages."
+            "Set your real Gmail address and Gmail App Password in the deployment environment variables before sending messages."
         },
         { status: 500 }
       );
@@ -127,7 +141,7 @@ export async function POST(request: Request) {
 
     await transporter.sendMail({
       from: gmailUser,
-      to: "amannaryal5@gmail.com",
+      to: contactRecipient,
       replyTo: email,
       subject: `[Portfolio Contact] ${subject}`,
       html: `
@@ -174,7 +188,7 @@ export async function POST(request: Request) {
         error:
           message.includes("Username and Password not accepted") ||
           message.includes("Invalid login")
-            ? "Gmail rejected the login. Use a valid Gmail App Password in .env.local."
+            ? "Gmail rejected the login. Use a valid Gmail App Password in your deployment environment variables."
             : message
       },
       { status: 500 }
