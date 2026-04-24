@@ -11,6 +11,7 @@ type ContactFormData = {
   email: string;
   subject: string;
   message: string;
+  website: string;
 };
 
 type Status = "idle" | "loading" | "success" | "error";
@@ -19,7 +20,8 @@ const initialFormData: ContactFormData = {
   name: "",
   email: "",
   subject: "",
-  message: ""
+  message: "",
+  website: ""
 };
 
 const links = [
@@ -55,6 +57,15 @@ const links = [
   }
 ];
 
+async function createSha512(value: string) {
+  const data = new TextEncoder().encode(value);
+  const hashBuffer = await window.crypto.subtle.digest("SHA-512", data);
+
+  return Array.from(new Uint8Array(hashBuffer))
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
+}
+
 export function ContactSection() {
   const [formData, setFormData] = useState<ContactFormData>(initialFormData);
   const [status, setStatus] = useState<Status>("idle");
@@ -85,12 +96,26 @@ export function ContactSection() {
     setErrorMsg("");
 
     try {
+      const payload = {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        subject: formData.subject.trim(),
+        message: formData.message.trim(),
+        website: formData.website.trim()
+      };
+      const timestamp = Date.now().toString();
+      const digest = await createSha512(
+        [payload.name, payload.email, payload.subject, payload.message, payload.website, timestamp].join("|")
+      );
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "x-contact-timestamp": timestamp,
+          "x-contact-digest": digest
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(payload)
       });
 
       const result = (await response.json()) as { success?: boolean; error?: string };
@@ -192,6 +217,16 @@ export function ContactSection() {
               name="subject"
               placeholder="Subject"
               value={formData.subject}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="hidden"
+              value={formData.website}
               onChange={handleChange}
             />
             <textarea
