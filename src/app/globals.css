@@ -821,6 +821,7 @@ article {
   .hero-orb-right {
     display: block;
   }
+
 }
 
 @media (max-width: 1023px) {
@@ -874,4 +875,5 @@ article {
     width: 100%;
     justify-content: center;
   }
+
 }
