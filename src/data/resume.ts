@@ -139,6 +139,14 @@ export type ResumeProject = {
 
 export const projects: ResumeProject[] = [
   {
+    title: "Threadsapp",
+    description:
+      "A full-stack web application featuring user authentication, profile management, and interactive threading capabilities. Built with Next.js for the frontend and a robust Node.js backend with PostgreSQL.",
+    stack: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS"],
+    githubUrl: "https://github.com/amannaryal5-art/Threadsapp",
+    liveUrl: "https://threadsapp-nine.vercel.app/"
+  },
+  {
     title: "CRIE v3.0 - Cyber Risk Intelligence Engine",
     description:
       "Built and shipped a Python/FastAPI application for real-time cyber risk scoring. Led the v2 to v3 rebuild, redesigned the frontend with a terminal-style interface, and prepared the product for live deployment and internal presentation.",

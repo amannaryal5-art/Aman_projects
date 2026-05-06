@@ -25,6 +25,14 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: "Threadsapp",
+    description:
+      "Full-stack platform organized as a monorepo with dedicated web, admin, and backend packages. Features authentication, profiles, and threaded interactions, deployed to production on Vercel.",
+    tags: ["Next.js", "Node.js", "PostgreSQL", "Tailwind CSS", "Vercel", "Monorepo"],
+    category: "fullstack",
+    githubUrl: "https://github.com/amannaryal5-art/Threadsapp"
+  },
+  {
     title: "CRIE v3.0 - Cyber Risk Intelligence Engine",
     description:
       "Built and shipped a FastAPI-based cyber risk intelligence platform for real-time risk scoring. Reengineered the product from v2 to v3, delivered a terminal-inspired interface, and streamlined deployment with Uvicorn.",
