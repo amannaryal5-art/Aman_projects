@@ -20,6 +20,11 @@ export type Project = {
   category: "fullstack" | "ai";
   githubUrl?: string;
   liveUrl?: string;
+  deploymentLinks?: Array<{
+    label: string;
+    url: string;
+    primary?: boolean;
+  }>;
   comingSoon?: boolean;
 };
 
@@ -30,7 +35,18 @@ export const projects: Project[] = [
       "Full-stack platform organized as a monorepo with dedicated web, admin, and backend packages. Features authentication, profiles, and threaded interactions, deployed to production on Vercel.",
     tags: ["Next.js", "Node.js", "PostgreSQL", "Tailwind CSS", "Vercel", "Monorepo"],
     category: "fullstack",
-    githubUrl: "https://github.com/amannaryal5-art/Threadsapp"
+    githubUrl: "https://github.com/amannaryal5-art/Threadsapp",
+    deploymentLinks: [
+      {
+        label: "User App",
+        url: "https://threadsapp-pearl.vercel.app/",
+        primary: true
+      },
+      {
+        label: "Admin Panel",
+        url: "https://threadsapp-u66l.vercel.app/"
+      }
+    ]
   },
   {
     title: "CRIE v3.0 - Cyber Risk Intelligence Engine",

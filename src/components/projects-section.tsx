@@ -51,7 +51,19 @@ export function ProjectsSection() {
                 </div>
 
                 <div className="mt-7 flex flex-wrap gap-3">
-                  {project.liveUrl ? (
+                  {project.deploymentLinks?.map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={link.primary ? "button-primary" : "button-secondary"}
+                    >
+                      <ArrowUpRight className="h-4 w-4" />
+                      {link.label}
+                    </a>
+                  ))}
+                  {!project.deploymentLinks?.length && project.liveUrl ? (
                     <a href={project.liveUrl} target="_blank" rel="noreferrer" className="button-primary">
                       <ArrowUpRight className="h-4 w-4" />
                       Live Demo

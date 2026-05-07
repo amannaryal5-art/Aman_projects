@@ -134,7 +134,12 @@ export type ResumeProject = {
   description: string;
   stack: string[];
   githubUrl: string;
-  liveUrl: string;
+  liveUrl?: string;
+  deploymentLinks?: Array<{
+    label: string;
+    url: string;
+    primary?: boolean;
+  }>;
 };
 
 export const projects: ResumeProject[] = [
@@ -144,7 +149,17 @@ export const projects: ResumeProject[] = [
       "A full-stack web application featuring user authentication, profile management, and interactive threading capabilities. Built with Next.js for the frontend and a robust Node.js backend with PostgreSQL.",
     stack: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS"],
     githubUrl: "https://github.com/amannaryal5-art/Threadsapp",
-    liveUrl: "https://threadsapp-nine.vercel.app/"
+    deploymentLinks: [
+      {
+        label: "User App",
+        url: "https://threadsapp-pearl.vercel.app/",
+        primary: true
+      },
+      {
+        label: "Admin Panel",
+        url: "https://threadsapp-u66l.vercel.app/"
+      }
+    ]
   },
   {
     title: "CRIE v3.0 - Cyber Risk Intelligence Engine",
