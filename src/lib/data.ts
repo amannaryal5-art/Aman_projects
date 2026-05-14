@@ -32,7 +32,7 @@ export const projects: Project[] = [
   {
     title: "Threadsapp",
     description:
-      "Full-stack platform organized as a monorepo with dedicated web, admin, and backend packages. Features authentication, profiles, and threaded interactions, deployed to production on Vercel.",
+      "Created a full-stack multi-panel e-commerce platform for fashion retail with customer, admin, and backend systems, supporting variant-based catalog management, secure checkout, payment verification, inventory control, shipping integration, returns, and analytics.",
     tags: ["Next.js", "Node.js", "PostgreSQL", "Tailwind CSS", "Vercel", "Monorepo"],
     category: "fullstack",
     githubUrl: "https://github.com/amannaryal5-art/Threadsapp",

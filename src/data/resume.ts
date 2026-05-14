@@ -146,7 +146,7 @@ export const projects: ResumeProject[] = [
   {
     title: "Threadsapp",
     description:
-      "A full-stack web application featuring user authentication, profile management, and interactive threading capabilities. Built with Next.js for the frontend and a robust Node.js backend with PostgreSQL.",
+      "Created a full-stack multi-panel e-commerce platform for fashion retail with customer, admin, and backend systems, supporting variant-based catalog management, secure checkout, payment verification, inventory control, shipping integration, returns, and analytics.",
     stack: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS"],
     githubUrl: "https://github.com/amannaryal5-art/Threadsapp",
     deploymentLinks: [
