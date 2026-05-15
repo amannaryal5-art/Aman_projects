@@ -1,11 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Bot, Braces, Database, LayoutTemplate, Wrench } from "lucide-react";
+import { Bot, Braces, Database, LayoutTemplate, Link2 } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { skillGroups } from "@/lib/data";
 
-const icons = [Braces, LayoutTemplate, Database, Wrench, Bot];
+const icons = [Braces, LayoutTemplate, Database, Link2, Bot];
 
 export function SkillsSection() {
   return (
@@ -13,12 +13,12 @@ export function SkillsSection() {
       <SectionHeading
         eyebrow="Tech Stack"
         title="Skills & Technologies"
-        description="Technologies I’ve been working with across backend, frontend, databases, delivery tooling, and AI-assisted workflows."
+        description="From APIs and data modeling to polished React experiences, third-party integrations, and how I ship—grouped the way I think about production systems."
       />
 
       <div className="mt-14 grid gap-5 sm:grid-cols-2 xl:grid-cols-5">
         {skillGroups.map((group, index) => {
-          const Icon = icons[index] ?? Wrench;
+          const Icon = icons[index] ?? Bot;
 
           return (
             <motion.article

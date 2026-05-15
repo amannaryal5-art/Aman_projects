@@ -40,7 +40,28 @@ export function ProjectsSection() {
                   </h3>
                 </div>
 
-                <p className="mt-4 text-sm leading-7 text-slate-300">{project.description}</p>
+                <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-7 text-slate-300">
+                  {project.summary.map((line, i) => (
+                    <li key={i}>{line}</li>
+                  ))}
+                </ul>
+
+                {project.techUsed?.length ? (
+                  <div className="mt-5 rounded-xl border border-white/10 bg-white/[0.03] p-4 backdrop-blur-sm">
+                    <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-cyan-300/90">
+                      Tech used
+                    </p>
+                    <div className="mt-3 space-y-2.5">
+                      {project.techUsed.map((row) => (
+                        <p key={row.title} className="text-sm leading-6 text-slate-300">
+                          <span className="font-medium text-slate-100">{row.title}</span>
+                          <span className="text-slate-500"> — </span>
+                          <span>{row.items.join(", ")}</span>
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
 
                 <div className="mt-5 flex flex-wrap gap-2">
                   {project.tags.map((tag) => (

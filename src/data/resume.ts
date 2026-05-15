@@ -1,3 +1,6 @@
+import type { ProjectTechCategory } from "@/lib/data";
+import { threadsAppTechUsed } from "@/lib/data";
+
 export const resumeProfile = {
   name: "Aman Naryal",
   title: "Full Stack Developer - APIs, Products & Scalable Web Apps",
@@ -131,8 +134,10 @@ export const certifications: CertificationEntry[] = [
 
 export type ResumeProject = {
   title: string;
-  description: string;
+  summary: string[];
+  /** Quick-scan chips; use `techUsed` for a full grouped stack when present. */
   stack: string[];
+  techUsed?: ProjectTechCategory[];
   githubUrl: string;
   liveUrl?: string;
   deploymentLinks?: Array<{
@@ -144,27 +149,24 @@ export type ResumeProject = {
 
 export const projects: ResumeProject[] = [
   {
-    title: "Threadsapp",
-    description:
-      "Created a full-stack multi-panel e-commerce platform for fashion retail with customer, admin, and backend systems, supporting variant-based catalog management, secure checkout, payment verification, inventory control, shipping integration, returns, and analytics.",
-    stack: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS"],
-    githubUrl: "https://github.com/amannaryal5-art/Threadsapp",
-    deploymentLinks: [
-      {
-        label: "User App",
-        url: "https://threadsapp-pearl.vercel.app/",
-        primary: true
-      },
-      {
-        label: "Admin Panel",
-        url: "https://threadsapp-u66l.vercel.app/"
-      }
-    ]
+    title: "ThreadsApp",
+    summary: [
+      "Full-stack fashion e-commerce platform featuring a customer app and admin dashboard.",
+      "Built with React, Next.js, and Tailwind CSS on the frontend, powered by Node.js and PostgreSQL.",
+      "Integrated with Razorpay, Shiprocket, and NextAuth for payments, logistics, and secure access."
+    ],
+    stack: [],
+    techUsed: threadsAppTechUsed,
+    githubUrl: "https://github.com/amannaryal5-art/Threadsapp"
   },
   {
     title: "CRIE v3.0 - Cyber Risk Intelligence Engine",
-    description:
-      "Built and shipped a Python/FastAPI application for real-time cyber risk scoring. Led the v2 to v3 rebuild, redesigned the frontend with a terminal-style interface, and prepared the product for live deployment and internal presentation.",
+    summary: [
+      "Cyber risk intelligence platform for real-time risk scoring, delivered as a production FastAPI service.",
+      "Led the v2 to v3 rebuild: clearer architecture, improved APIs, and a more maintainable codebase.",
+      "Terminal-inspired web UI for analysts and stakeholders reviewing risk outputs.",
+      "Packaged for deployment with Uvicorn and documented for internal demos and handoff."
+    ],
     stack: ["Python", "FastAPI", "uvicorn", "Cyber Security", "REST API"],
     githubUrl: "https://github.com/amannaryal5-art/risk_intelligence_system",
     liveUrl: "https://risk-intelligence-system.vercel.app/"
@@ -173,40 +175,62 @@ export const projects: ResumeProject[] = [
 
 export const skillGroups = [
   {
-    title: "Backend Engineering",
+    title: "Backend & APIs",
     items: [
       "Node.js",
+      "Express.js",
       "NestJS",
+      "REST API",
       "Java",
       "Spring Boot",
       "Hibernate",
       "Python",
-      "FastAPI",
-      "REST API",
-      "TypeORM"
+      "FastAPI"
     ]
   },
   {
-    title: "Frontend Technologies",
+    title: "Frontend & UI Systems",
     items: [
-      "React",
       "Next.js",
-      "JavaScript",
+      "React",
       "TypeScript",
+      "JavaScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Radix UI",
       "HTML",
       "CSS",
-      "Tailwind CSS",
       "Responsive Design",
-      "Semantic Markup",
-      "Web Design"
+      "Semantic Markup"
     ]
   },
   {
-    title: "Databases & Data Tools",
-    items: ["PostgreSQL", "SQL", "pgAdmin", "TypeORM"]
+    title: "Databases & ORMs",
+    items: ["PostgreSQL", "Sequelize", "TypeORM", "SQL", "pgAdmin"]
   },
   {
-    title: "Developer Tools & Deployment",
-    items: ["Git", "GitHub", "Vercel", "Postman", "Python Automation"]
+    title: "Auth, Integrations & Platforms",
+    items: [
+      "NextAuth",
+      "Firebase",
+      "Razorpay",
+      "Shiprocket",
+      "Cloudinary",
+      "Nodemailer",
+      "Twilio"
+    ]
+  },
+  {
+    title: "Delivery, Tooling & AI",
+    items: [
+      "Git",
+      "GitHub",
+      "Vercel",
+      "Postman",
+      "Monorepo Workflow",
+      "Prompt Engineering",
+      "GitHub Copilot",
+      "AI-assisted Development"
+    ]
   }
 ];
