@@ -1,4 +1,4 @@
-import { ArrowUpRight, Github } from "lucide-react";
+import { Github } from "lucide-react";
 import { projects } from "@/data/resume";
 
 export function ProjectsList() {
@@ -38,13 +38,6 @@ export function ProjectsList() {
                     </div>
                   </div>
                 ) : null}
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {project.stack.map((item) => (
-                    <span key={item} className="resume-chip">
-                      {item}
-                    </span>
-                  ))}
-                </div>
               </div>
 
               <div className="flex flex-wrap gap-3 md:justify-end">
@@ -52,24 +45,6 @@ export function ProjectsList() {
                   <Github className="h-4 w-4" />
                   GitHub
                 </a>
-                {project.deploymentLinks?.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={link.primary ? "button-primary" : "button-secondary"}
-                  >
-                    <ArrowUpRight className="h-4 w-4" />
-                    {link.label}
-                  </a>
-                ))}
-                {!project.deploymentLinks?.length && project.liveUrl ? (
-                  <a href={project.liveUrl} target="_blank" rel="noreferrer" className="button-secondary">
-                    <ArrowUpRight className="h-4 w-4" />
-                    Live
-                  </a>
-                ) : null}
               </div>
             </div>
           </article>

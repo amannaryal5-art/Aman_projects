@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Github } from "lucide-react";
+import { Github } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { projects } from "@/lib/data";
 
@@ -63,33 +63,7 @@ export function ProjectsSection() {
                   </div>
                 ) : null}
 
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="project-chip">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
                 <div className="mt-7 flex flex-wrap gap-3">
-                  {project.deploymentLinks?.map((link) => (
-                    <a
-                      key={link.label}
-                      href={link.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className={link.primary ? "button-primary" : "button-secondary"}
-                    >
-                      <ArrowUpRight className="h-4 w-4" />
-                      {link.label}
-                    </a>
-                  ))}
-                  {!project.deploymentLinks?.length && project.liveUrl ? (
-                    <a href={project.liveUrl} target="_blank" rel="noreferrer" className="button-primary">
-                      <ArrowUpRight className="h-4 w-4" />
-                      Live Demo
-                    </a>
-                  ) : null}
                   {project.githubUrl ? (
                     <a href={project.githubUrl} target="_blank" rel="noreferrer" className="button-secondary">
                       <Github className="h-4 w-4" />

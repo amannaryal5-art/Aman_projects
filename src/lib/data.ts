@@ -23,15 +23,8 @@ export type Project = {
   summary: string[];
   /** Grouped stack for detailed project cards (optional). */
   techUsed?: ProjectTechCategory[];
-  tags: string[];
   category: "fullstack" | "ai";
   githubUrl?: string;
-  liveUrl?: string;
-  deploymentLinks?: Array<{
-    label: string;
-    url: string;
-    primary?: boolean;
-  }>;
   comingSoon?: boolean;
 };
 
@@ -41,12 +34,23 @@ export const threadsAppTechUsed: ProjectTechCategory[] = [
     items: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
   },
   {
-    title: "Backend & DB",
-    items: ["Node.js", "Express.js", "PostgreSQL"]
+    title: "Backend & integrations",
+    items: ["Node.js", "Express.js", "PostgreSQL", "Razorpay", "Shiprocket", "NextAuth"]
+  }
+];
+
+export const crieTechUsed: ProjectTechCategory[] = [
+  {
+    title: "Backend",
+    items: ["Python", "FastAPI", "SQLite", "Uvicorn", "Groq", "APScheduler"]
   },
   {
-    title: "Integrations",
-    items: ["Razorpay", "Shiprocket", "NextAuth", "Cloudinary"]
+    title: "Frontend",
+    items: ["React", "Vite", "Tailwind CSS", "TanStack Query", "Zustand", "Recharts"]
+  },
+  {
+    title: "Platform",
+    items: ["X-API-Key auth", "Role-based access", "FastAPI + SPA deploy"]
   }
 ];
 
@@ -54,27 +58,23 @@ export const projects: Project[] = [
   {
     title: "ThreadsApp",
     summary: [
-      "Full-stack fashion e-commerce platform featuring a customer app and admin dashboard.",
-      "Built with React, Next.js, and Tailwind CSS on the frontend, powered by Node.js and PostgreSQL.",
-      "Integrated with Razorpay, Shiprocket, and NextAuth for payments, logistics, and secure access."
+      "Fashion e-commerce with a customer storefront and admin dashboard.",
+      "Next.js and Node.js on PostgreSQL; Razorpay, Shiprocket, and NextAuth for checkout, shipping, and secure access."
     ],
     techUsed: threadsAppTechUsed,
-    tags: [],
     category: "fullstack",
     githubUrl: "https://github.com/amannaryal5-art/Threadsapp"
   },
   {
     title: "CRIE v3.0 - Cyber Risk Intelligence Engine",
     summary: [
-      "Cyber risk intelligence platform for real-time risk scoring, delivered as a production FastAPI service.",
-      "Led the v2 to v3 rebuild: clearer architecture, improved APIs, and a more maintainable codebase.",
-      "Terminal-inspired web UI for analysts and stakeholders reviewing risk outputs.",
-      "Packaged for deployment with Uvicorn and documented for internal demos and handoff."
+      "Full-stack platform for analyzing suspicious text, websites, malware, IOCs, and monitored assets.",
+      "FastAPI engines for risk scoring, threat intel, fusion scans, cases, ARIA monitoring, alerts, and reports.",
+      "React dashboard with API-key login, role-based access, and production-ready FastAPI or Vercel deployment."
     ],
-    tags: ["Python", "FastAPI", "uvicorn", "Cyber Security", "Risk Analysis", "REST API"],
+    techUsed: crieTechUsed,
     category: "fullstack",
-    githubUrl: "https://github.com/amannaryal5-art/risk_intelligence_system",
-    liveUrl: "https://risk-intelligence-system.vercel.app/"
+    githubUrl: "https://github.com/amannaryal5-art/risk_intelligence_system"
   }
 ];
 
