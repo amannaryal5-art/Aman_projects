@@ -25,6 +25,7 @@ export type Project = {
   techUsed?: ProjectTechCategory[];
   category: "fullstack" | "ai";
   githubUrl?: string;
+  liveUrl?: string;
   comingSoon?: boolean;
 };
 
@@ -74,7 +75,8 @@ export const projects: Project[] = [
     ],
     techUsed: crieTechUsed,
     category: "fullstack",
-    githubUrl: "https://github.com/amannaryal5-art/risk_intelligence_system"
+    githubUrl: "https://github.com/amannaryal5-art/risk_intelligence_system",
+    liveUrl: "https://risk-intelligence-system.vercel.app/"
   }
 ];
 

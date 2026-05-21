@@ -1,4 +1,4 @@
-import { Github } from "lucide-react";
+import { ArrowUpRight, Github } from "lucide-react";
 import { projects } from "@/data/resume";
 
 export function ProjectsList() {
@@ -45,6 +45,12 @@ export function ProjectsList() {
                   <Github className="h-4 w-4" />
                   GitHub
                 </a>
+                {project.liveUrl ? (
+                  <a href={project.liveUrl} target="_blank" rel="noreferrer" className="button-secondary">
+                    <ArrowUpRight className="h-4 w-4" />
+                    Live
+                  </a>
+                ) : null}
               </div>
             </div>
           </article>

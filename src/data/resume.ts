@@ -137,6 +137,7 @@ export type ResumeProject = {
   summary: string[];
   techUsed?: ProjectTechCategory[];
   githubUrl: string;
+  liveUrl?: string;
 };
 
 export const projects: ResumeProject[] = [
@@ -157,7 +158,8 @@ export const projects: ResumeProject[] = [
       "React dashboard with API-key login, role-based access, and production-ready FastAPI or Vercel deployment."
     ],
     techUsed: crieTechUsed,
-    githubUrl: "https://github.com/amannaryal5-art/risk_intelligence_system"
+    githubUrl: "https://github.com/amannaryal5-art/risk_intelligence_system",
+    liveUrl: "https://risk-intelligence-system.vercel.app/"
   }
 ];
 

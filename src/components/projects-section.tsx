@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github } from "lucide-react";
+import { ArrowUpRight, Github } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { projects } from "@/lib/data";
 
@@ -68,6 +68,12 @@ export function ProjectsSection() {
                     <a href={project.githubUrl} target="_blank" rel="noreferrer" className="button-secondary">
                       <Github className="h-4 w-4" />
                       Source
+                    </a>
+                  ) : null}
+                  {project.liveUrl ? (
+                    <a href={project.liveUrl} target="_blank" rel="noreferrer" className="button-secondary">
+                      <ArrowUpRight className="h-4 w-4" />
+                      Live
                     </a>
                   ) : null}
                 </div>
