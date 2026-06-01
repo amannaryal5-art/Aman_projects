@@ -157,14 +157,14 @@ export type ExperienceEntry = {
 
 export const experienceEntries: ExperienceEntry[] = [
   {
-    period: "Feb 2026 - Present",
+    period: "Feb 2026 - May 2026",
     company: "CognexiaAI LLP",
     role: "Trainee Engineer",
     location: "Navi Mumbai, India",
+    badge: "Worked",
     tags: ["Node.js", "TypeScript", "PostgreSQL", "Full Stack"],
     detail:
-      "Working as a Trainee Engineer at CognexiaAI, contributing to intelligent, API-driven systems and building practical engineering experience in a professional product environment.",
-    current: true
+      "Worked as a Trainee Engineer at CognexiaAI, contributing to intelligent, API-driven systems and building practical engineering experience in a professional product environment."
   },
   {
     period: "Aug 2025 - Feb 2026",

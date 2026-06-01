@@ -49,4 +49,4 @@ export const products: ProductCardData[] = [
 ];
 
 export const aboutStripCopy =
-  "Full Stack Developer focused on system design, API architecture, and real-world debugging. Currently a Trainee Engineer at CognexiaAI LLP, Navi Mumbai.";
+  "Full Stack Developer focused on system design, API architecture, and real-world debugging. Previously worked as a Trainee Engineer at CognexiaAI LLP, Navi Mumbai.";

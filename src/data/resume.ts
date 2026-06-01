@@ -13,7 +13,7 @@ export const resumeProfile = {
 };
 
 export const resumeSummary =
-  "Full Stack Developer specializing in Node.js, TypeScript, and PostgreSQL. I build scalable APIs and deliver end-to-end products. Currently a Trainee Engineer at CognexiaAI LLP.";
+  "Full Stack Developer specializing in Node.js, TypeScript, and PostgreSQL. I build scalable APIs and deliver end-to-end products. Previously worked as a Trainee Engineer at CognexiaAI LLP.";
 
 export type ResumeExperience = {
   company: string;
@@ -28,11 +28,11 @@ export const experience: ResumeExperience[] = [
   {
     company: "CognexiaAI LLP",
     role: "Trainee Engineer",
-    period: "Feb 2026 - Present",
+    period: "Feb 2026 - May 2026",
     location: "Navi Mumbai, India",
     tags: ["Node.js", "TypeScript", "PostgreSQL", "Full Stack"],
     description:
-      "Contributing to intelligent, API-driven systems at CognexiaAI. Building production-grade application features and gaining hands-on experience in a professional product environment."
+      "Contributed to intelligent, API-driven systems at CognexiaAI. Built production-grade application features and gained hands-on experience in a professional product environment."
   },
   {
     company: "SETTribe LLP",

@@ -83,7 +83,7 @@ const developer = {
           <div className="neo-card p-6 md:p-8">
             <p className="text-base leading-8 text-slate-300">
               I work best where clean system thinking meets shipping speed. From academic training
-              to internships and current product work, I&apos;ve been building a strong foundation in
+              to internships and product work, I&apos;ve been building a strong foundation in
               backend engineering, full stack development, and polished delivery.
             </p>
           </div>

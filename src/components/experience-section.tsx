@@ -102,7 +102,7 @@ export function ExperienceSection() {
       <SectionHeading
         eyebrow="Career Path"
         title="Work Experience"
-        description="From training and internships to current engineering work, each step has built stronger product sense and technical depth."
+        description="From training and internships to engineering work, each step has built stronger product sense and technical depth."
       />
 
       <TimelineGroup title="Work Experience" entries={workEntries} />
