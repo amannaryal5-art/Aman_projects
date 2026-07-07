@@ -3,6 +3,7 @@ export const developer = {
   shortName: "Aman",
   location: "Thane, Maharashtra, India",
   email: "amannaryal5@gmail.com",
+  phone: "7018868159",
   github: "https://github.com/amannaryal5-art",
   linkedin: "https://www.linkedin.com/in/aman-naryal-608034221",
   availability: "Open to full-time roles",
@@ -176,7 +177,7 @@ export const experienceEntries: ExperienceEntry[] = [
       "Completed an intensive Full Stack Development training program (Java) with SEED Infotech Ltd, followed by real project work involving software development, requirement understanding, and technical documentation at SETTribe LLP."
   },
   {
-    period: "2024 - Present",
+    period: "2024 - 2026",
     company: "Chandigarh University (Online)",
     role: "Master of Computer Applications (MCA)",
     location: "Online Program",
@@ -192,7 +193,7 @@ export const experienceEntries: ExperienceEntry[] = [
       "Database Systems"
     ],
     detail:
-      "Pursuing MCA at Chandigarh University with a strong academic record (CGPA 8.53). Coursework spans advanced database systems, machine learning, web application development, algorithms, and cyber security - directly supporting my full stack engineering work."
+      "Completed MCA at Chandigarh University with a strong academic record (CGPA 8.53). Coursework spanned advanced database systems, machine learning, web application development, algorithms, and cyber security - directly supporting my full stack engineering work."
   },
   {
     period: "2021 - 2024",

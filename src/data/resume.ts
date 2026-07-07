@@ -6,6 +6,7 @@ export const resumeProfile = {
   title: "Full Stack Developer - APIs, Products & Scalable Web Apps",
   location: "Thane, Maharashtra, India",
   email: "amannaryal5@gmail.com",
+  phone: "7018868159",
   github: "https://github.com/amannaryal5-art",
   linkedin: "https://www.linkedin.com/in/aman-naryal-608034221",
   status: "Open to full-time roles",
@@ -58,7 +59,7 @@ export const education: EducationEntry[] = [
   {
     institution: "Chandigarh University",
     degree: "Master of Computer Applications (MCA)",
-    period: "2024 - Present",
+    period: "2024 - 2026",
     result: "CGPA: 8.53",
     campus: "Online Program",
     tags: ["Python", "Machine Learning", "Web Development", "Algorithms", "Cyber Security", "Database Systems"]

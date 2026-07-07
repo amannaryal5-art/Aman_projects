@@ -51,8 +51,8 @@ const links = [
   },
   {
     label: "Phone",
-    value: "Available on request",
-    href: `mailto:${developer.email}`,
+    value: developer.phone,
+    href: `tel:+91${developer.phone}`,
     icon: Phone
   }
 ];

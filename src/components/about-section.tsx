@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Download, Mail, MapPin, School } from "lucide-react";
+import { Download, Mail, MapPin } from "lucide-react";
 import { developer } from "@/lib/data";
 
 export function AboutSection() {
@@ -65,11 +65,6 @@ const developer = {
               <a href={`mailto:${developer.email}`} className="info-card-value hover:text-cyan-300">
                 {developer.email}
               </a>
-            </div>
-            <div className="info-card">
-              <School className="info-icon" />
-              <p className="info-card-label">Current Study</p>
-              <p className="info-card-value">MCA, Chandigarh University</p>
             </div>
             <div className="info-card">
               <Download className="info-icon" />

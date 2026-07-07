@@ -15,6 +15,7 @@ export const landingProfile = {
   status: "Open to full-time",
   city: "Thane, India",
   email: "amannaryal5@gmail.com",
+  phone: "7018868159",
   github: "https://github.com/amannaryal5-art",
   linkedin: "https://www.linkedin.com/in/aman-naryal-608034221"
 };

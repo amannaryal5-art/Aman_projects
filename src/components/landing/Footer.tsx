@@ -13,6 +13,12 @@ export function Footer() {
             {landingProfile.email}
           </a>
           <a
+            href={`tel:+91${landingProfile.phone}`}
+            className="block transition-colors hover:text-accent"
+          >
+            {landingProfile.phone}
+          </a>
+          <a
             href={landingProfile.github}
             target="_blank"
             rel="noreferrer"

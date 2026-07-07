@@ -17,6 +17,9 @@ export function ResumeHeader() {
               <a href={`mailto:${resumeProfile.email}`} className="transition-colors hover:text-accent">
                 {resumeProfile.email}
               </a>
+              <a href={`tel:+91${resumeProfile.phone}`} className="transition-colors hover:text-accent">
+                {resumeProfile.phone}
+              </a>
               <a href={resumeProfile.github} target="_blank" rel="noreferrer" className="transition-colors hover:text-accent">
                 github.com/amannaryal5-art
               </a>

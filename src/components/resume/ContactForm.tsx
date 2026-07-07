@@ -1,6 +1,6 @@
 "use client";
 
-import { Github, Linkedin, Loader2, Mail, MapPin, Send } from "lucide-react";
+import { Github, Linkedin, Loader2, Mail, MapPin, Phone, Send } from "lucide-react";
 import { useEffect, useState } from "react";
 import { resumeProfile } from "@/data/resume";
 
@@ -46,6 +46,12 @@ const links = [
     value: resumeProfile.location,
     href: "#resume-contact",
     icon: MapPin
+  },
+  {
+    label: "Phone",
+    value: resumeProfile.phone,
+    href: `tel:+91${resumeProfile.phone}`,
+    icon: Phone
   }
 ] as const;
 
