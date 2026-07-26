@@ -3,10 +3,11 @@
 import { motion } from "framer-motion";
 import { Download, Mail, MapPin } from "lucide-react";
 import { developer } from "@/lib/data";
+import { AnimatedSection } from "@/components/AnimatedSection";
 
 export function AboutSection() {
   return (
-    <section id="about" className="section-shell scroll-mt-28 py-20 md:py-28">
+    <AnimatedSection id="about" className="section-shell scroll-mt-28 py-20 md:py-28">
       <div className="section-frame grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
         <div>
           <p className="section-pill">About Me</p>
@@ -84,6 +85,6 @@ const developer = {
           </div>
         </motion.div>
       </div>
-    </section>
+    </AnimatedSection>
   );
 }

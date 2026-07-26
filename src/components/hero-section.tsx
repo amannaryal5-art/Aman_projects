@@ -1,8 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { ArrowRight, Download, Github } from "lucide-react";
 import { developer } from "@/lib/data";
+
+const HeroObject = dynamic(() => import("@/components/HeroObject"), { ssr: false });
 
 export function HeroSection() {
   return (
@@ -59,6 +62,7 @@ export function HeroSection() {
                 GitHub
               </a>
             </div>
+            <div className="hero-mobile-shape" aria-hidden="true" />
           </motion.div>
 
           <motion.div
@@ -68,6 +72,8 @@ export function HeroSection() {
             className="hero-visual"
           >
             <div className="hero-visual-card">
+              <div className="hero-object-canvas" aria-hidden="true"><HeroObject /></div>
+              <div className="hero-object-fallback" aria-hidden="true" />
               <div className="code-window">
                 <div className="code-window-bar">
                   <span className="code-dot bg-[#ff5d77]" />

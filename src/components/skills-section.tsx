@@ -4,12 +4,13 @@ import { motion } from "framer-motion";
 import { Bot, Braces, Database, LayoutTemplate, Link2 } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { skillGroups } from "@/lib/data";
+import { AnimatedSection } from "@/components/AnimatedSection";
 
 const icons = [Braces, LayoutTemplate, Database, Link2, Bot];
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="section-shell scroll-mt-28 py-20 md:py-28">
+    <AnimatedSection id="skills" className="section-shell scroll-mt-28 py-20 md:py-28">
       <SectionHeading
         eyebrow="Tech Stack"
         title="Skills & Technologies"
@@ -46,6 +47,6 @@ export function SkillsSection() {
           );
         })}
       </div>
-    </section>
+    </AnimatedSection>
   );
 }

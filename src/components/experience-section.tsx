@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/section-heading";
 import { experienceEntries } from "@/lib/data";
+import { AnimatedSection } from "@/components/AnimatedSection";
 
 function TimelineGroup({
   title,
@@ -98,7 +99,7 @@ export function ExperienceSection() {
   const certificationEntries = experienceEntries.filter((entry) => entry.badge === "Certification");
 
   return (
-    <section id="experience" className="section-shell scroll-mt-28 py-20 md:py-28">
+    <AnimatedSection id="experience" className="section-shell scroll-mt-28 py-20 md:py-28">
       <SectionHeading
         eyebrow="Career Path"
         title="Work Experience"
@@ -108,6 +109,6 @@ export function ExperienceSection() {
       <TimelineGroup title="Work Experience" entries={workEntries} />
       <TimelineGroup id="education" title="Education" entries={educationEntries} />
       <TimelineGroup title="Certifications" entries={certificationEntries} />
-    </section>
+    </AnimatedSection>
   );
 }
