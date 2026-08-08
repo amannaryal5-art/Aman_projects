@@ -60,7 +60,7 @@ export const education: EducationEntry[] = [
     institution: "Chandigarh University",
     degree: "Master of Computer Applications (MCA)",
     period: "2024 - 2026",
-    result: "CGPA: 8.53",
+    result: "CGPA: 8.50",
     campus: "Online Program",
     tags: ["Python", "Machine Learning", "Web Development", "Algorithms", "Cyber Security", "Database Systems"]
   },

@@ -181,7 +181,7 @@ export const experienceEntries: ExperienceEntry[] = [
     company: "Chandigarh University (Online)",
     role: "Master of Computer Applications (MCA)",
     location: "Online Program",
-    outcome: "CGPA: 8.53 / 10",
+    outcome: "CGPA: 8.50 / 10",
     badge: "Education",
     badgeTone: "cyan",
     tags: [
@@ -193,7 +193,7 @@ export const experienceEntries: ExperienceEntry[] = [
       "Database Systems"
     ],
     detail:
-      "Completed MCA at Chandigarh University with a strong academic record (CGPA 8.53). Coursework spanned advanced database systems, machine learning, web application development, algorithms, and cyber security - directly supporting my full stack engineering work."
+      "Completed MCA at Chandigarh University with a strong academic record (CGPA 8.50). Coursework spanned advanced database systems, machine learning, web application development, algorithms, and cyber security - directly supporting my full stack engineering work."
   },
   {
     period: "2021 - 2024",
