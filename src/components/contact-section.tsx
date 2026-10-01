@@ -159,7 +159,7 @@ export function ContactSection() {
                   className="contact-link-card"
                 >
                   <div className="contact-link-icon">
-                    <Icon className="h-5 w-5" />
+                    <Icon className="h-5 w-5 text-spark-500" />
                   </div>
                   <div>
                     <p className="contact-link-label">{link.label}</p>
@@ -178,17 +178,17 @@ export function ContactSection() {
           transition={{ duration: 0.45 }}
           className="neo-card p-6 md:p-8"
         >
-          <p className="font-display text-3xl tracking-[-0.04em] text-white">Send a Message</p>
+          <p className="font-display text-3xl tracking-[-0.04em] text-text">Send a Message</p>
 
           {status === "success" ? (
-            <div className="mt-6 rounded-2xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-200">
-              ✅ Message sent! I&apos;ll get back to you soon.
+            <div className="mt-6 rounded-2xl border border-spark-500/30 bg-spark-500/10 px-4 py-3 text-sm text-spark-300">
+              Message sent! I&apos;ll get back to you soon.
             </div>
           ) : null}
 
           {status === "error" ? (
-            <div className="mt-6 rounded-2xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-200">
-              ❌ {errorMsg || "Something went wrong. Please email me directly."}
+            <div className="mt-6 rounded-2xl border border-red-500/20 bg-red-950/40 px-4 py-3 text-sm text-red-200">
+              {errorMsg || "Something went wrong. Please email me directly."}
             </div>
           ) : null}
 
@@ -243,12 +243,12 @@ export function ContactSection() {
             >
               {status === "loading" ? (
                 <>
-                  <Loader2 className="h-4 w-4 animate-spin" />
+                  <Loader2 className="h-4 w-4 animate-spin text-graphite-900" />
                   Sending...
                 </>
               ) : (
                 <>
-                  <Send className="h-4 w-4" />
+                  <Send className="h-4 w-4 text-graphite-900" />
                   Send Message
                 </>
               )}
@@ -257,13 +257,13 @@ export function ContactSection() {
 
           <div className="mt-6 flex flex-wrap gap-3">
             <a href={developer.linkedin} target="_blank" rel="noreferrer" className="social-chip">
-              <Linkedin className="h-4 w-4" />
+              <Linkedin className="h-4 w-4 text-spark-500" />
             </a>
             <a href={developer.github} target="_blank" rel="noreferrer" className="social-chip">
-              <Github className="h-4 w-4" />
+              <Github className="h-4 w-4 text-spark-500" />
             </a>
             <a href={`mailto:${developer.email}`} className="social-chip">
-              <Mail className="h-4 w-4" />
+              <Mail className="h-4 w-4 text-spark-500" />
             </a>
           </div>
         </motion.div>

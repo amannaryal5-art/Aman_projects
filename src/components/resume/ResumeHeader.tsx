@@ -10,9 +10,9 @@ export function ResumeHeader() {
             <h1 className="mt-6 font-display text-5xl tracking-[-0.04em] text-text md:text-7xl">
               {resumeProfile.name}
             </h1>
-            <p className="mt-4 text-lg leading-8 text-slate-300 md:text-xl">{resumeProfile.title}</p>
+            <p className="mt-4 text-lg leading-8 text-muted md:text-xl">{resumeProfile.title}</p>
 
-            <div className="mt-8 grid gap-3 text-sm text-slate-400 sm:grid-cols-2">
+            <div className="mt-8 grid gap-3 text-sm text-muted sm:grid-cols-2">
               <p>{resumeProfile.location}</p>
               <a href={`mailto:${resumeProfile.email}`} className="transition-colors hover:text-accent">
                 {resumeProfile.email}
