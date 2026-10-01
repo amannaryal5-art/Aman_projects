@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion, useMotionTemplate, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";
@@ -23,7 +23,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
   const pointerY = useMotionValue(50);
   const rotateX = useSpring(useTransform(pointerY, [0, 100], [12, -12]), { stiffness: 180, damping: 22 });
   const rotateY = useSpring(useTransform(pointerX, [0, 100], [-12, 12]), { stiffness: 180, damping: 22 });
-  const glare = useMotionTemplate`radial-gradient(circle at ${pointerX}% ${pointerY}%, rgba(182, 255, 46, 0.12), transparent 42%)`;
+  const glare = useMotionTemplate`radial-gradient(circle at ${pointerX}% ${pointerY}%, rgba(255, 255, 255, 0.11), transparent 38%)`;
 
   const updateTilt = (event: React.MouseEvent<HTMLElement>) => {
     if (reduced) return;
@@ -49,37 +49,27 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
         <div className="project-card-banner"><span className="project-card-year">2026</span></div>
         <div className="p-6">
           <div>
-            <p className="text-xs uppercase tracking-[0.22em] text-spark-400">{project.category}</p>
-            <h3 className="mt-3 font-display text-3xl tracking-[-0.04em] text-text">{project.title}</h3>
+            <p className="text-xs uppercase tracking-[0.22em] text-cyan-300">{project.category}</p>
+            <h3 className="mt-3 font-display text-3xl tracking-[-0.04em] text-white">{project.title}</h3>
           </div>
-          <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-7 text-muted">
+          <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-7 text-slate-300">
             {project.summary.map((line, i) => <li key={i}>{line}</li>)}
           </ul>
           {project.techUsed?.length ? (
-            <div className="mt-5 rounded-xl border border-white/[0.08] bg-graphite-900/60 p-4 backdrop-blur-sm">
-              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-spark-400">Tech used</p>
+            <div className="mt-5 rounded-xl border border-white/10 bg-white/[0.03] p-4 backdrop-blur-sm">
+              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-cyan-300/90">Tech used</p>
               <div className="mt-3 space-y-2.5">
                 {project.techUsed.map((row) => (
-                  <p key={row.title} className="text-sm leading-6 text-muted">
-                    <span className="font-medium text-text">{row.title}</span><span className="text-graphite-500"> — </span><span>{row.items.join(", ")}</span>
+                  <p key={row.title} className="text-sm leading-6 text-slate-300">
+                    <span className="font-medium text-slate-100">{row.title}</span><span className="text-slate-500"> — </span><span>{row.items.join(", ")}</span>
                   </p>
                 ))}
               </div>
             </div>
           ) : null}
           <div className="mt-7 flex flex-wrap gap-3">
-            {project.githubUrl ? (
-              <a href={project.githubUrl} target="_blank" rel="noreferrer" className="button-secondary">
-                <Github className="h-4 w-4 text-spark-500" />
-                Source
-              </a>
-            ) : null}
-            {project.liveUrl ? (
-              <a href={project.liveUrl} target="_blank" rel="noreferrer" className="button-secondary">
-                <ArrowUpRight className="h-4 w-4 text-spark-500" />
-                Live
-              </a>
-            ) : null}
+            {project.githubUrl ? <a href={project.githubUrl} target="_blank" rel="noreferrer" className="button-secondary"><Github className="h-4 w-4" />Source</a> : null}
+            {project.liveUrl ? <a href={project.liveUrl} target="_blank" rel="noreferrer" className="button-secondary"><ArrowUpRight className="h-4 w-4" />Live</a> : null}
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { ArrowUpRight, Github } from "lucide-react";
+﻿import { ArrowUpRight, Github } from "lucide-react";
 import { projects } from "@/data/resume";
 
 export function ProjectsList() {

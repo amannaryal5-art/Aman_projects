@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+﻿import type { Metadata, Viewport } from "next";
 import { DM_Sans, IBM_Plex_Mono, Syne } from "next/font/google";
 import { ParticleBackground } from "@/components/ParticleBackground";
 import "./globals.css";
@@ -30,7 +30,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   width: "device-width",
-  initialScale: 1
+  initialScale: 1,
+  themeColor: "#16181E"
 };
 
 export default function RootLayout({
@@ -39,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-bg text-text">
+    <html lang="en" className="bg-[#16181E] text-[#F4F6F8]">
       <body className={`${dmSans.variable} ${syne.variable} ${ibmPlexMono.variable} isolate font-sans antialiased`}>
         <ParticleBackground />
         {children}
