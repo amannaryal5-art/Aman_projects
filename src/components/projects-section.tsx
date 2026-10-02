@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion, useMotionTemplate, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";

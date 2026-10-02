@@ -32,33 +32,35 @@ Strict adherence to the luxury Graphite & Lime Spark family:
 ---
 
 ## 3. Motion Architecture & Ownership
-1. **Lenis**: Owns inertial smooth scrolling.
-2. **GSAP ScrollTrigger**: Owns scroll choreography (scrubbed text masks, pinned card deck, sticky timeline rail).
+1. **Lenis**: Owns inertial smooth scrolling (`lerp: 0.09`).
+2. **GSAP ScrollTrigger**: Synchronized via ticker (`lagSmoothing(0)`), drives scroll choreography and pinning.
 3. **React Three Fiber (R3F)**: Owns 3D scene camera rig, procedural geometry, lighting, and ambient particle physics.
 4. **Framer Motion**: Reserved strictly for local component micro-interactions (magnetic buttons, card hover glare, modal transitions).
 
 ---
 
 ## 4. The Seven Scenes
-- **Scene 1: Prologue / Home (`#home`)**
+- **Scene 1: Prologue / Home (`#top`)**
   - Camera: Frontal close-up on wireframe nested icosahedra ("The Spark").
   - Environment: Soft top spotlight cone, drifting ambient dust.
-  - DOM: Full-bleed hero, 2-line mask reveal title, mono micro-label (`SCENE 01 // PROLOGUE`), magnetic CTA buttons.
+  - DOM: Full-bleed hero, 2-line mask reveal title, mono micro-label (`SCENE 01 // PROLOGUE`), CTAs and manifest window.
 - **Scene 2: The Architect / About (`#about`)**
-  - Camera: Tilts downward and drifts slightly right; icosahedron expands into orbital wireframe rings.
-  - DOM: 2-line statement heading, scrubbed word-by-word paragraph highlight, interactive auto-typing code terminal.
+  - Camera: Tilts downward and drifts slightly right; icosahedron scales down smoothly.
+  - DOM: 2-line statement heading, developer manifest card, graphite info cards with zero off-palette colors.
 - **Scene 3: The Matrix / Skills (`#skills`)**
   - Camera: Pulls back; floating instanced octahedra cluster into constellation patterns.
-  - DOM: Asymmetric 12-column bento grid, cursor-following border spotlight, category headers.
-- **Scene 4: The Journey / Experience (`#experience` & `#education`)**
+  - DOM: Asymmetric 12-column bento grid (`7-5`, `4-4-4`), cursor-following border spotlight, category headers.
+- **Scene 4: The Journey / Experience (`#experience`)**
   - Camera: Vertical tracking shot through luminous spatial ring gates.
   - DOM: Continuous 3-act chronological timeline (Act I: Work -> Act II: Education -> Act III: Certifications) with glowing fill line and category shape markers (circle/ring/diamond).
-- **Scene 5: The Works / Projects (`#projects`)**
+- **Scene 5: Foundation / Education (`#education`)**
+  - Anchored directly to Act II of the continuous timeline.
+- **Scene 6: The Works / Projects (`#projects`)**
   - Camera: Settles over a reflective perspective grid floor.
-  - DOM: Sticky stacking card deck (ThreadsApp & CRIE v3.0). Cards slide into view, earlier cards scale back to 0.94 and dim to 0.55 opacity. Generated dynamic SVG cover art.
-- **Scene 6: Transmission / Contact (`#contact`)**
-  - Camera: Particles converge toward a central point of light.
-  - DOM: Left-aligned layout, glassmorphic contact form panel, security-verified form inputs, back-to-top trigger.
+  - DOM: Sticky stacking card deck (ThreadsApp & CRIE v3.0). Earlier cards scale back and dim. Generated dynamic SVG cover art (digital thread curves and radar scanner).
+- **Scene 7: Transmission / Contact (`#contact`)**
+  - Camera: Particles converge toward central light.
+  - DOM: Left-aligned layout, glassmorphic contact form panel, security-verified form inputs (SHA-512 anti-tamper, honeypot preserved), back-to-top trigger.
 
 ---
 
@@ -67,13 +69,13 @@ Strict adherence to the luxury Graphite & Lime Spark family:
 - **Scene HUD**: Bottom-left active scene name (`ACT 01 // PROLOGUE`), bottom-right scroll percentage.
 - **Custom Cursor**: Precision dot with lagging ambient ring (hidden on touch/pointer-coarse devices).
 - **Grain & Vignette**: Lightweight SVG noise filter and subtle perimeter darkness.
-- **Floating Navbar**: Minimal graphite-800 pill with lime scene indicator dot.
+- **Floating Navbar**: Minimal graphite-800 pill with lime scene indicator dot and scene order alignment.
 
 ---
 
-## 6. Execution Roadmap & Checklist
+## 6. Execution Roadmap & Status
 - [x] Phase 0: Repository audit, verification, and architecture plan
-- [ ] Phase 1: Core setup (Dependencies, Tailwind tokens, CSS vars, Motion config, Lenis + GSAP setup, HUD, Cursor, Preloader)
-- [ ] Phase 2: WebGL Scene Engine (SceneCanvas, CameraRig, 3D Spark, Dust Cone, Rings, Grid floor)
-- [ ] Phase 3: Scene-by-Scene DOM upgrade (Full bleed Hero, About scrub, Skills bento, Continuous Experience timeline, Stacking Projects deck, Contact realignment)
-- [ ] Phase 4: Production verification, TypeScript strict check, build test, and git commit
+- [x] Phase 1: Core setup (Dependencies, Tailwind tokens, CSS vars, Motion config, Lenis + GSAP setup, HUD, Cursor, Preloader, Navbar)
+- [x] Phase 2: WebGL Scene Engine (SceneCanvas, CameraRig, 3D Spark, Dust Cone, Rings, Grid floor)
+- [x] Phase 3: Scene-by-Scene DOM upgrade (Full bleed Hero, About scrub, Skills bento, Continuous Experience timeline, Stacking Projects deck, Contact realignment)
+- [x] Phase 4: Production verification, TypeScript strict check, build test, and git commit

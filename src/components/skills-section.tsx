@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import { Bot, Braces, Database, LayoutTemplate, Link2 } from "lucide-react";
