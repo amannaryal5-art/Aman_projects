@@ -89,9 +89,6 @@ export const skillGroups = [
       "Express.js",
       "NestJS",
       "REST API",
-      "Java",
-      "Spring Boot",
-      "Hibernate",
       "Python",
       "FastAPI"
     ]
@@ -172,9 +169,9 @@ export const experienceEntries: ExperienceEntry[] = [
     company: "SETTribe LLP",
     role: "Trainee Software Engineer (Intern)",
     location: "Pune, India",
-    tags: ["Java", "Full Stack Development", "Spring Boot", "Software Documentation"],
+    tags: ["Full Stack Development", "Software Documentation"],
     detail:
-      "Completed an intensive Full Stack Development training program (Java) with SEED Infotech Ltd, followed by real project work involving software development, requirement understanding, and technical documentation at SETTribe LLP."
+      "Completed an intensive Full Stack Development training program with SEED Infotech Ltd, followed by real project work involving software development, requirement understanding, and technical documentation at SETTribe LLP."
   },
   {
     period: "2024 - 2026",
