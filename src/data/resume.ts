@@ -1,4 +1,4 @@
-import type { ProjectTechCategory } from "@/lib/data";
+﻿import type { ProjectTechCategory } from "@/lib/data";
 import { crieTechUsed, threadsAppTechUsed } from "@/lib/data";
 
 export const resumeProfile = {
@@ -40,9 +40,9 @@ export const experience: ResumeExperience[] = [
     role: "Trainee Software Engineer (Intern)",
     period: "Aug 2025 - Feb 2026",
     location: "Pune, India",
-    tags: ["Java", "Spring Boot", "Hibernate", "Software Documentation"],
+    tags: ["Full Stack Development", "Software Documentation"],
     description:
-      "Completed Full Stack Development training (Java) with SEED Infotech Ltd. Delivered real project work including software development, requirement analysis, and technical documentation."
+      "Completed Full Stack Development training with SEED Infotech Ltd. Delivered real project work including software development, requirement analysis, and technical documentation."
   }
 ];
 
@@ -172,9 +172,6 @@ export const skillGroups = [
       "Express.js",
       "NestJS",
       "REST API",
-      "Java",
-      "Spring Boot",
-      "Hibernate",
       "Python",
       "FastAPI"
     ]

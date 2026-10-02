@@ -3,8 +3,6 @@ import {
   SiNodedotjs,
   SiExpress,
   SiNestjs,
-  SiSpringboot,
-  SiHibernate,
   SiPython,
   SiFastapi,
   SiNextdotjs,
@@ -28,7 +26,6 @@ import {
   SiPostman,
   SiGithubcopilot,
 } from "react-icons/si";
-import { FaJava } from "react-icons/fa6";
 import {
   TbApi,
   TbDatabase,
@@ -94,24 +91,6 @@ export const SKILL_CATEGORIES: SkillCategoryData[] = [
         subtext: "Integration",
         icon: TbApi,
         brandColor: "#B6FF2E",
-      },
-      {
-        name: "Java",
-        subtext: "Enterprise",
-        icon: FaJava,
-        brandColor: "#ED8B00",
-      },
-      {
-        name: "Spring Boot",
-        subtext: "Framework",
-        icon: SiSpringboot,
-        brandColor: "#6DB33F",
-      },
-      {
-        name: "Hibernate",
-        subtext: "ORM",
-        icon: SiHibernate,
-        brandColor: "#59666C",
       },
       {
         name: "Python",
