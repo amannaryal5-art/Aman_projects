@@ -1,47 +1,59 @@
-﻿import type { Config } from "tailwindcss";
+import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}"
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       colors: {
-        bg: "#0a0a0a",
-        panel: "#101010",
-        "panel-soft": "#151515",
-        accent: "#e8ff47",
-        text: "#f5f5f5",
-        muted: "#8a8a8a",
-        border: "#262626"
+        graphite: {
+          950: "#111317",
+          900: "#181A20",
+          800: "#23262F",
+          700: "#2E323E",
+          600: "#3B404F",
+          400: "#9499A8",
+          300: "#B9BCC6",
+          100: "#F1F2F4",
+        },
+        spark: {
+          DEFAULT: "#B6FF2E",
+          hover: "#C4FF57",
+          deep: "#8DC91D",
+          soft: "#D4FF85",
+        },
+        hairline: "rgba(255, 255, 255, 0.08)",
+        error: "#FF7A7A",
+        // Legacy semantic mappings mapped to exact graphite & spark palette
+        bg: "#23262F",
+        panel: "#2E323E",
+        "panel-soft": "#3B404F",
+        accent: "#B6FF2E",
+        text: "#F1F2F4",
+        muted: "#9499A8",
+        border: "rgba(255, 255, 255, 0.08)",
       },
       fontFamily: {
-        sans: ["var(--font-dm-sans)"],
-        display: ["var(--font-syne)"],
-        mono: ["var(--font-ibm-plex-mono)"]
+        sans: ["var(--font-dm-sans)", "sans-serif"],
+        display: ["var(--font-syne)", "sans-serif"],
+        mono: ["var(--font-ibm-plex-mono)", "monospace"],
       },
       maxWidth: {
-        "8xl": "68.75rem"
-      },
-      keyframes: {
-        fadeUp: {
-          "0%": { opacity: "0", transform: "translateY(18px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" }
-        }
-      },
-      animation: {
-        fadeUp: "fadeUp 700ms cubic-bezier(0.22, 1, 0.36, 1) both"
+        "8xl": "68.75rem",
       },
       boxShadow: {
         hero: "0 30px 120px rgba(0, 0, 0, 0.45)",
         card: "0 18px 50px rgba(0, 0, 0, 0.35)",
-        glow: "0 18px 60px rgba(232, 255, 71, 0.12)"
-      }
-    }
+        glow: "0 18px 60px rgba(182, 255, 46, 0.12)",
+        "spark-sm": "0 0 20px rgba(182, 255, 46, 0.2)",
+        "spark-lg": "0 0 50px rgba(182, 255, 46, 0.15)",
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 };
 
 export default config;

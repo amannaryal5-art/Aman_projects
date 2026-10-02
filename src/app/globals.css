@@ -1,36 +1,64 @@
-﻿@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --bg: #16181E;
-  --bg-deep: #101216;
-  --bg-soft: #1C1F26;
-  --panel: #23262F;
-  --panel-soft: #1C1F26;
-  --panel-strong: #101216;
-  --text: #F4F6F8;
-  --muted: #A7ADBA;
-  --border: rgba(255, 255, 255, 0.07);
+  --graphite-950: #111317;
+  --graphite-900: #181A20;
+  --graphite-800: #23262F;
+  --graphite-700: #2E323E;
+  --graphite-600: #3B404F;
+  --graphite-400: #9499A8;
+  --graphite-300: #B9BCC6;
+  --graphite-100: #F1F2F4;
+  --spark: #B6FF2E;
+  --spark-hover: #C4FF57;
+  --spark-deep: #8DC91D;
+  --spark-soft: #D4FF85;
+  --hairline: rgba(255, 255, 255, 0.08);
+  --error: #FF7A7A;
+
+  --bg: #23262F;
+  --bg-deep: #111317;
+  --bg-soft: #181A20;
+  --panel: #2E323E;
+  --panel-soft: #23262F;
+  --panel-strong: #111317;
+  --text: #F1F2F4;
+  --muted: #9499A8;
+  --border: rgba(255, 255, 255, 0.08);
   --border-hover: rgba(182, 255, 46, 0.35);
   --accent: #B6FF2E;
-  --accent-hover: #C6FF5C;
+  --accent-hover: #C4FF57;
   --glow: 0 24px 80px rgba(0, 0, 0, 0.5);
   --glow-spark: 0 16px 48px rgba(182, 255, 46, 0.15);
 }
 
 html {
-  scroll-behavior: smooth;
   overflow-x: hidden;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   overflow-x: hidden;
-  background:
-    radial-gradient(circle at 50% -10%, rgba(182, 255, 46, 0.04), transparent 45%),
-    linear-gradient(180deg, #16181E 0%, #121419 60%, #101216 100%);
+  background-color: #23262F;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(182, 255, 46, 0.04), transparent 45%),
+    linear-gradient(180deg, #181A20 0%, #23262F 30%, #181A20 70%, #111317 100%);
   color: var(--text);
   font-family: var(--font-dm-sans), sans-serif;
 }
@@ -42,7 +70,7 @@ body {
 
 *::selection {
   background: #B6FF2E;
-  color: #16181E;
+  color: #111317;
 }
 
 a {
@@ -61,13 +89,13 @@ textarea {
 }
 
 ::-webkit-scrollbar-track {
-  background: #101216;
+  background: #111317;
 }
 
 ::-webkit-scrollbar-thumb {
-  border: 2px solid #101216;
+  border: 2px solid #111317;
   border-radius: 999px;
-  background: #2D313C;
+  background: #3B404F;
 }
 
 ::-webkit-scrollbar-thumb:hover {
