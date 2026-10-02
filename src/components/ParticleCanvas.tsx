@@ -57,14 +57,14 @@ function Network({ count, compact }: { count: number; compact: boolean }) {
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[pointPositions, 3]} />
         </bufferGeometry>
-        <pointsMaterial color="#6d6cff" size={0.035} transparent opacity={0.32} sizeAttenuation />
+        <pointsMaterial color="#B6FF2E" size={0.035} transparent opacity={0.35} sizeAttenuation />
       </points>
       {!compact && (
         <lineSegments ref={lines}>
           <bufferGeometry>
             <bufferAttribute attach="attributes-position" args={[linePositions, 3]} />
           </bufferGeometry>
-          <lineBasicMaterial color="#20d7d5" transparent opacity={0.14} />
+          <lineBasicMaterial color="#B6FF2E" transparent opacity={0.18} />
         </lineSegments>
       )}
     </group>
@@ -88,3 +88,4 @@ export default function ParticleCanvas() {
     </Canvas>
   );
 }
+
