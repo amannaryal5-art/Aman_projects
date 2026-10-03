@@ -15,7 +15,8 @@ export function Preloader() {
       return;
     }
 
-    const duration = 1200; // ms
+    const isMobile = window.innerWidth < 768 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const duration = isMobile ? 600 : 1200; // ms
     const startTime = performance.now();
 
     const updateCounter = (currentTime: number) => {

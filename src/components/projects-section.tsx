@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion, useMotionTemplate, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";
 import { AnimatedSection } from "@/components/AnimatedSection";
@@ -19,6 +20,12 @@ export function ProjectsSection() {
 
 function ProjectCard({ project, index }: { project: (typeof projects)[number]; index: number }) {
   const reduced = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768 || "ontouchstart" in window);
+  }, []);
+
   const pointerX = useMotionValue(50);
   const pointerY = useMotionValue(50);
   const rotateX = useSpring(useTransform(pointerY, [0, 100], [12, -12]), { stiffness: 180, damping: 22 });
@@ -26,13 +33,14 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
   const glare = useMotionTemplate`radial-gradient(circle at ${pointerX}% ${pointerY}%, rgba(255, 255, 255, 0.11), transparent 38%)`;
 
   const updateTilt = (event: React.MouseEvent<HTMLElement>) => {
-    if (reduced) return;
+    if (reduced || isMobile) return;
     const bounds = event.currentTarget.getBoundingClientRect();
     pointerX.set(((event.clientX - bounds.left) / bounds.width) * 100);
     pointerY.set(((event.clientY - bounds.top) / bounds.height) * 100);
   };
 
   const resetTilt = () => {
+    if (reduced || isMobile) return;
     pointerX.set(50);
     pointerY.set(50);
   };
@@ -41,15 +49,15 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
     <motion.article
       initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.4, delay: index * 0.05 }} onMouseMove={updateTilt} onMouseLeave={resetTilt}
-      className="project-card project-card-tilt" style={reduced ? undefined : { rotateX, rotateY, transformPerspective: 1000 }}
+      className="project-card project-card-tilt" style={reduced || isMobile ? undefined : { rotateX, rotateY, transformPerspective: 1000 }}
     >
       <div className="project-card-glow" />
-      {!reduced && <motion.div aria-hidden="true" className="project-card-glare" style={{ background: glare }} />}
+      {!reduced && !isMobile && <motion.div aria-hidden="true" className="project-card-glare" style={{ background: glare }} />}
       <div className="relative z-10">
         <div className="project-card-banner"><span className="project-card-year">2026</span></div>
         <div className="p-6">
           <div>
-            <p className="text-xs uppercase tracking-[0.22em] text-cyan-300">{project.category}</p>
+            <p className="text-xs uppercase tracking-[0.22em] text-spark">{project.category}</p>
             <h3 className="mt-3 font-display text-3xl tracking-[-0.04em] text-white">{project.title}</h3>
           </div>
           <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-7 text-slate-300">
@@ -57,7 +65,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
           </ul>
           {project.techUsed?.length ? (
             <div className="mt-5 rounded-xl border border-white/10 bg-graphite-800 p-4">
-              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-cyan-300/90">Tech used</p>
+              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-spark/90">Tech used</p>
               <div className="mt-3 space-y-2.5">
                 {project.techUsed.map((row) => (
                   <p key={row.title} className="text-sm leading-6 text-slate-300">
