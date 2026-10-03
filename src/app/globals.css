@@ -382,7 +382,8 @@ article {
   position: fixed;
   inset: 4.5rem 0 0;
   border: 0;
-  background: rgba(16, 18, 22, 0.92);
+  background: rgba(16, 18, 22, 0.75);
+  backdrop-filter: blur(8px);
 }
 
 .mobile-nav-panel {
@@ -961,11 +962,6 @@ article {
     width: 100%;
     justify-content: center;
   }
-
-  .project-card-glow {
-    filter: none;
-    opacity: 0.2;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -981,15 +977,5 @@ article {
 
   .hero-object-canvas {
     display: none;
-  }
-
-  .hero-orb {
-    filter: none;
-    opacity: 0.6;
-  }
-
-  .project-card-glow {
-    filter: none;
-    opacity: 0.4;
   }
 }
