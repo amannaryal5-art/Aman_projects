@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Download, Mail, MapPin } from "lucide-react";
 import { developer } from "@/lib/data";
@@ -64,31 +63,16 @@ const developer = {
             <div className="info-card">
               <Mail className="info-icon" />
               <p className="info-card-label">Email</p>
-              <a href={`mailto:${developer.email}`} className="info-card-value hover:text-spark">
+              <a href={`mailto:${developer.email}`} className="info-card-value hover:text-cyan-300">
                 {developer.email}
               </a>
             </div>
             <div className="info-card">
               <Download className="info-icon" />
               <p className="info-card-label">Resume</p>
-              <a href="/resume.pdf" target="_blank" rel="noreferrer" className="info-card-value hover:text-spark">
+              <a href="/resume.pdf" target="_blank" rel="noreferrer" className="info-card-value hover:text-cyan-300">
                 Download CV
               </a>
-            </div>
-            <div className="info-card flex items-center gap-3.5">
-              <div className="relative w-12 h-12 rounded-full overflow-hidden border border-spark/40 shadow-spark-sm shrink-0">
-                <Image
-                  src="/aman-profile.png"
-                  alt="Aman Naryal"
-                  fill
-                  sizes="48px"
-                  className="object-cover scale-[1.14]"
-                />
-              </div>
-              <div>
-                <p className="info-card-label mt-0">Developer</p>
-                <p className="info-card-value mt-0.5 text-sm font-semibold text-graphite-100">{developer.name}</p>
-              </div>
             </div>
           </div>
 
