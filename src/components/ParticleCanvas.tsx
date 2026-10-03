@@ -6,7 +6,7 @@ import * as THREE from "three";
 
 type Particle = { position: THREE.Vector3; velocity: THREE.Vector3 };
 
-function Network({ count, compact }: { count: number; compact: boolean }) {
+function Network({ count }: { count: number }) {
   const points = useRef<THREE.Points>(null);
   const lines = useRef<THREE.LineSegments>(null);
   const particles = useMemo<Particle[]>(() => Array.from({ length: count }, () => ({
@@ -35,7 +35,7 @@ function Network({ count, compact }: { count: number; compact: boolean }) {
     });
     if (points.current) points.current.geometry.attributes.position.needsUpdate = true;
 
-    if (!compact && lines.current) {
+    if (lines.current) {
       let cursor = 0;
       for (let i = 0; i < particles.length; i += 1) {
         for (let j = i + 1; j < particles.length; j += 1) {
@@ -57,34 +57,33 @@ function Network({ count, compact }: { count: number; compact: boolean }) {
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[pointPositions, 3]} />
         </bufferGeometry>
-        <pointsMaterial color="#6d6cff" size={0.035} transparent opacity={0.32} sizeAttenuation />
+        <pointsMaterial color="#B6FF2E" size={0.035} transparent opacity={0.25} sizeAttenuation />
       </points>
-      {!compact && (
-        <lineSegments ref={lines}>
-          <bufferGeometry>
-            <bufferAttribute attach="attributes-position" args={[linePositions, 3]} />
-          </bufferGeometry>
-          <lineBasicMaterial color="#20d7d5" transparent opacity={0.14} />
-        </lineSegments>
-      )}
+      <lineSegments ref={lines}>
+        <bufferGeometry>
+          <bufferAttribute attach="attributes-position" args={[linePositions, 3]} />
+        </bufferGeometry>
+        <lineBasicMaterial color="#B6FF2E" transparent opacity={0.12} />
+      </lineSegments>
     </group>
   );
 }
 
 export default function ParticleCanvas() {
-  const [compact, setCompact] = useState(false);
+  const [isMobile, setIsMobile] = useState(true); // Default to mobile (SSR-safe)
 
   useEffect(() => {
-    const media = window.matchMedia("(max-width: 767px)");
-    const sync = () => setCompact(media.matches);
-    sync();
-    media.addEventListener("change", sync);
-    return () => media.removeEventListener("change", sync);
+    const mobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+      || window.innerWidth < 768;
+    setIsMobile(mobile);
   }, []);
+
+  // Skip WebGL entirely on mobile - massive perf win
+  if (isMobile) return null;
 
   return (
     <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 8], fov: 55 }} gl={{ alpha: true, antialias: false }}>
-      <Network count={compact ? 40 : 96} compact={compact} />
+      <Network count={72} />
     </Canvas>
   );
 }

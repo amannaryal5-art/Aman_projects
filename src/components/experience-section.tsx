@@ -76,7 +76,7 @@ function TimelineAct({
               )}
 
               {/* Timeline Card */}
-              <div className="rounded-2xl border border-hairline bg-graphite-800/60 backdrop-blur-xl p-6 sm:p-7 shadow-[0_16px_40px_rgba(0,0,0,0.35)] transition-all duration-300 hover:border-spark/30">
+              <div className="rounded-2xl border border-hairline bg-graphite-800 p-6 sm:p-7 shadow-card transition-[border-color] duration-300 hover:border-spark/30">
                 <div className="flex flex-col gap-3.5">
                   <div className="flex flex-wrap items-center gap-2.5">
                     {entry.current || entry.badge ? (

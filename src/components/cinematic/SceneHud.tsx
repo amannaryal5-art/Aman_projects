@@ -9,6 +9,9 @@ export function SceneHud() {
   const percentRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
+    // Only render HUD on desktop (hidden via CSS on mobile anyway)
+    if (window.innerWidth < 768) return;
+
     let animId: number;
     let lastSceneIdx = -1;
     let lastPercent = -1;

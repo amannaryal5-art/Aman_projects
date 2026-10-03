@@ -63,14 +63,14 @@ const developer = {
             <div className="info-card">
               <Mail className="info-icon" />
               <p className="info-card-label">Email</p>
-              <a href={`mailto:${developer.email}`} className="info-card-value hover:text-cyan-300">
+              <a href={`mailto:${developer.email}`} className="info-card-value hover:text-spark">
                 {developer.email}
               </a>
             </div>
             <div className="info-card">
               <Download className="info-icon" />
               <p className="info-card-label">Resume</p>
-              <a href="/resume.pdf" target="_blank" rel="noreferrer" className="info-card-value hover:text-cyan-300">
+              <a href="/resume.pdf" target="_blank" rel="noreferrer" className="info-card-value hover:text-spark">
                 Download CV
               </a>
             </div>

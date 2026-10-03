@@ -31,7 +31,7 @@ function Form({ reduced }: { reduced: boolean }) {
   return (
     <mesh ref={mesh} rotation={[0.15, 0, 0.1]}>
       <icosahedronGeometry args={[1.65, 2]} />
-      <meshBasicMaterial color="#6d6cff" wireframe transparent opacity={0.72} />
+      <meshBasicMaterial color="#B6FF2E" wireframe transparent opacity={0.55} />
     </mesh>
   );
 }

@@ -20,7 +20,10 @@ export function useMediaTier(): MediaTierInfo {
 
     // Detect hardware limits
     const cores = navigator.hardwareConcurrency || 4;
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isMobile =
+      /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+      window.innerWidth < 768 ||
+      ("ontouchstart" in window && window.innerWidth < 1024);
     const dpr = window.devicePixelRatio || 1;
 
     let tier: MediaTier = "high";

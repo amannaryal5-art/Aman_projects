@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import { SKILL_CATEGORIES, SkillCategoryData, SkillItem } from "@/data/skillsData";
@@ -17,7 +17,7 @@ export function SkillCard({ skill, index }: { skill: SkillItem; index: number })
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.35, delay: Math.min(index * 0.03, 0.3), ease: [0.16, 1, 0.3, 1] }}
-      className="group relative flex flex-col justify-between p-4 rounded-xl border border-hairline bg-graphite-900/70 backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-1 hover:border-spark/45 hover:bg-graphite-800/80 hover:shadow-[0_10px_28px_rgba(182,255,46,0.12)] min-h-[105px] select-none"
+      className="group relative flex flex-col justify-between p-4 rounded-xl border border-hairline bg-graphite-900 transition-[transform,border-color,background-color] duration-300 ease-out hover:-translate-y-1 hover:border-spark/45 hover:bg-graphite-800 min-h-[105px] select-none"
     >
       {/* Subtle hover gradient glow */}
       <div
@@ -65,7 +65,7 @@ export function SkillCategory({ category, categoryIndex }: { category: SkillCate
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.5, delay: categoryIndex * 0.06, ease: [0.16, 1, 0.3, 1] }}
-      className="relative rounded-2xl border border-hairline bg-graphite-950/40 p-5 sm:p-7 backdrop-blur-sm"
+      className="relative rounded-2xl border border-hairline bg-graphite-950 p-5 sm:p-7"
     >
       {/* Category Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 mb-5 border-b border-hairline">

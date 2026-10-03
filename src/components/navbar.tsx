@@ -55,10 +55,10 @@ export function Navbar() {
     <motion.header
       initial={false}
       animate={{
-        borderColor: scrolled ? "rgba(108,114,255,0.22)" : "rgba(108,114,255,0.12)",
-        backgroundColor: scrolled ? "rgba(10,10,32,0.88)" : "rgba(10,10,32,0.68)"
+        borderColor: scrolled ? "rgba(182,255,46,0.15)" : "rgba(255,255,255,0.08)",
+        backgroundColor: scrolled ? "rgba(24,26,32,0.97)" : "rgba(24,26,32,0.92)"
       }}
-      className="fixed inset-x-0 top-0 z-50 border-b backdrop-blur-xl"
+      className="fixed inset-x-0 top-0 z-50 border-b"
     >
       <div className="section-shell navbar-shell">
         <a href="#top" className="navbar-brand">
@@ -96,7 +96,7 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="h-px w-full bg-[linear-gradient(90deg,transparent,rgba(61,232,224,0.32),transparent)]"
+            className="h-px w-full bg-[linear-gradient(90deg,transparent,rgba(182,255,46,0.2),transparent)]"
           />
         ) : null}
       </AnimatePresence>
