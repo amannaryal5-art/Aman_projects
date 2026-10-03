@@ -13,6 +13,26 @@ type ContactPayload = {
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const nameRegex = /^[a-zA-Z][a-zA-Z\s.'-]{1,78}[a-zA-Z.]?$/;
 
+// In-memory sliding-window IP rate limiting: max 5 requests per 10 minutes per IP
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const MAX_REQUESTS_PER_WINDOW = 5;
+const ipRequestHistory = new Map<string, number[]>();
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const timestamps = ipRequestHistory.get(ip) || [];
+  const validTimestamps = timestamps.filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+
+  if (validTimestamps.length >= MAX_REQUESTS_PER_WINDOW) {
+    ipRequestHistory.set(ip, validTimestamps);
+    return true;
+  }
+
+  validTimestamps.push(now);
+  ipRequestHistory.set(ip, validTimestamps);
+  return false;
+}
+
 function getMailConfig() {
   const gmailUser = process.env.GMAIL_USER?.trim() ?? "";
   const gmailAppPassword = process.env.GMAIL_APP_PASSWORD?.trim() ?? "";
@@ -73,6 +93,16 @@ function createDigest(payload: ContactPayload, timestamp: string) {
 
 export async function POST(request: Request) {
   try {
+    const forwarded = request.headers.get("x-forwarded-for");
+    const ip = forwarded ? forwarded.split(",")[0].trim() : "127.0.0.1";
+
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: "Too many contact requests. Please wait a few minutes before trying again." },
+        { status: 429 }
+      );
+    }
+
     const { gmailUser, gmailAppPassword, contactRecipient } = getMailConfig();
 
     if (!gmailUser || !gmailAppPassword) {
@@ -180,16 +210,17 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    const message =
-      error instanceof Error ? error.message : "Unable to send your message right now. Please try again.";
+    console.error("Error processing contact request:", error);
+    const message = error instanceof Error ? error.message : "";
+    const isAuthError =
+      message.includes("Username and Password not accepted") ||
+      message.includes("Invalid login");
 
     return NextResponse.json(
       {
-        error:
-          message.includes("Username and Password not accepted") ||
-          message.includes("Invalid login")
-            ? "Gmail rejected the login. Use a valid Gmail App Password in your deployment environment variables."
-            : message
+        error: isAuthError
+          ? "Email service authentication issue. Please contact directly via email."
+          : "Unable to send your message right now. Please try again later."
       },
       { status: 500 }
     );

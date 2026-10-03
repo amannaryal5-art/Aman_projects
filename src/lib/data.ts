@@ -10,10 +10,6 @@ export const developer = {
   tagline: "Full Stack Developer crafting intelligent, API-driven applications"
 };
 
-export const heroTitles = ["Full Stack Developer"];
-
-export const stats: Array<{ label: string; value: string }> = [];
-
 export type ProjectTechCategory = {
   title: string;
   items: string[];
@@ -78,65 +74,6 @@ export const projects: Project[] = [
     category: "fullstack",
     githubUrl: "https://github.com/amannaryal5-art/risk_intelligence_system",
     liveUrl: "https://risk-intelligence-system.vercel.app/"
-  }
-];
-
-export const skillGroups = [
-  {
-    title: "Backend & APIs",
-    skills: [
-      "Node.js",
-      "Express.js",
-      "NestJS",
-      "REST API",
-      "Python",
-      "FastAPI"
-    ]
-  },
-  {
-    title: "Frontend & UI Systems",
-    skills: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "JavaScript",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Radix UI",
-      "HTML",
-      "CSS",
-      "Responsive Design",
-      "Semantic Markup"
-    ]
-  },
-  {
-    title: "Databases & ORMs",
-    skills: ["PostgreSQL", "Sequelize", "TypeORM", "SQL", "pgAdmin"]
-  },
-  {
-    title: "Auth, Integrations & Platforms",
-    skills: [
-      "NextAuth",
-      "Firebase",
-      "Razorpay",
-      "Shiprocket",
-      "Cloudinary",
-      "Nodemailer",
-      "Twilio"
-    ]
-  },
-  {
-    title: "Delivery, Tooling & AI",
-    skills: [
-      "Git",
-      "GitHub",
-      "Vercel",
-      "Postman",
-      "Monorepo Workflow",
-      "Prompt Engineering",
-      "GitHub Copilot",
-      "AI-assisted Development"
-    ]
   }
 ];
 

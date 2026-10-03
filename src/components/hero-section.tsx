@@ -1,11 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
 import { ArrowRight, Download, Github } from "lucide-react";
 import { developer } from "@/lib/data";
-
-const HeroObject = dynamic(() => import("@/components/HeroObject"), { ssr: false });
+import { AnimatedPortrait } from "@/components/AnimatedPortrait";
 
 export function HeroSection() {
   return (
@@ -24,6 +22,11 @@ export function HeroSection() {
             <div className="availability-pill">
               <span className="availability-dot" />
               Available for opportunities
+            </div>
+
+            {/* Mobile Animated Portrait */}
+            <div className="lg:hidden my-6 flex items-center justify-center">
+              <AnimatedPortrait size="md" />
             </div>
 
             <h1 className="hero-title">
@@ -62,7 +65,6 @@ export function HeroSection() {
                 GitHub
               </a>
             </div>
-            <div className="hero-mobile-shape" aria-hidden="true" />
           </motion.div>
 
           <motion.div
@@ -71,10 +73,14 @@ export function HeroSection() {
             transition={{ duration: 0.65, delay: 0.12, ease: "easeOut" }}
             className="hero-visual"
           >
-            <div className="hero-visual-card">
-              <div className="hero-object-canvas" aria-hidden="true"><HeroObject /></div>
-              <div className="hero-object-fallback" aria-hidden="true" />
-              <div className="code-window">
+            <div className="hero-visual-card p-6 flex flex-col items-center">
+              {/* Grand Animated Portrait */}
+              <div className="py-6 my-2">
+                <AnimatedPortrait size="lg" />
+              </div>
+
+              {/* Code window */}
+              <div className="code-window w-full mt-4">
                 <div className="code-window-bar">
                   <span className="code-dot bg-[#ff5d77]" />
                   <span className="code-dot bg-[#ffcf5a]" />
@@ -95,3 +101,4 @@ export function HeroSection() {
     </section>
   );
 }
+

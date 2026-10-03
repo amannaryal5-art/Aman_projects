@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { DM_Sans, IBM_Plex_Mono, Syne } from "next/font/google";
-import { ParticleBackground } from "@/components/ParticleBackground";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -42,7 +41,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-[#16181E] text-[#F4F6F8]">
       <body className={`${dmSans.variable} ${syne.variable} ${ibmPlexMono.variable} isolate font-sans antialiased`}>
-        <ParticleBackground />
         {children}
       </body>
     </html>

@@ -7,7 +7,7 @@ import { SkillsSection } from "@/components/skills-section";
 import { ExperienceSection } from "@/components/experience-section";
 import { ProjectsSection } from "@/components/projects-section";
 import { ContactSection } from "@/components/contact-section";
-import { Footer } from "@/components/landing/Footer";
+import { Footer } from "@/components/footer";
 import { SmoothScroll } from "@/components/cinematic/SmoothScroll";
 import { Preloader } from "@/components/cinematic/Preloader";
 import { Cursor } from "@/components/cinematic/Cursor";

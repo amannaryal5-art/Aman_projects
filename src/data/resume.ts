@@ -1,15 +1,15 @@
-﻿import type { ProjectTechCategory } from "@/lib/data";
-import { crieTechUsed, threadsAppTechUsed } from "@/lib/data";
+import type { ProjectTechCategory } from "@/lib/data";
+import { crieTechUsed, developer, threadsAppTechUsed } from "@/lib/data";
 
 export const resumeProfile = {
-  name: "Aman Naryal",
+  name: developer.name,
   title: "Full Stack Developer - APIs, Products & Scalable Web Apps",
-  location: "Thane, Maharashtra, India",
-  email: "amannaryal5@gmail.com",
-  phone: "7018868159",
-  github: "https://github.com/amannaryal5-art",
-  linkedin: "https://www.linkedin.com/in/aman-naryal-608034221",
-  status: "Open to full-time roles",
+  location: developer.location,
+  email: developer.email,
+  phone: developer.phone,
+  github: developer.github,
+  linkedin: developer.linkedin,
+  status: developer.availability,
   resumePdf: "/resume.pdf"
 };
 
