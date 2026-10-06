@@ -673,7 +673,7 @@ article {
 
 .project-card-banner {
   position: relative;
-  min-height: 11rem;
+  min-height: 4.5rem;
   background: linear-gradient(135deg, #1C1F26 0%, #23262F 50%, #2D313C 100%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }

@@ -9,13 +9,13 @@ import { projects, Project } from "@/lib/data";
 
 export function ProjectsSection() {
   return (
-    <AnimatedSection id="projects" className="section-shell scroll-mt-28 py-20 md:py-28">
+    <AnimatedSection id="projects" className="section-shell scroll-mt-24 py-14 md:py-20">
       <SectionHeading
         eyebrow="Portfolio"
         title="Featured Projects"
         description="A focused selection of production client platforms, enterprise systems, and full stack engineering architectures built for real-world reliability."
       />
-      <div className="mt-14 grid gap-6 lg:grid-cols-2">
+      <div className="mt-10 grid gap-5 lg:grid-cols-2">
         {projects.map((project, index) => (
           <ProjectCard key={project.title} project={project} index={index} />
         ))}
@@ -53,10 +53,10 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.4, delay: index * 0.06 }}
+      viewport={{ once: true, amount: 0.12 }}
+      transition={{ duration: 0.35, delay: index * 0.05 }}
       onMouseMove={updateTilt}
       onMouseLeave={resetTilt}
       className={`project-card ${project.featured ? "lg:col-span-2 border-spark/25 shadow-2xl" : "project-card-tilt"}`}
@@ -68,11 +68,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       )}
 
       <div className="relative z-10">
-        {/* Banner with branded watermark & status */}
-        <div className="project-card-banner flex items-center justify-between px-6 md:px-8">
-          <div className="flex items-center gap-3">
+        {/* Compact banner header */}
+        <div className="project-card-banner !min-h-[3.75rem] sm:!min-h-[4.25rem] py-2.5 flex items-center justify-between px-5 md:px-7">
+          <div className="flex items-center gap-2.5">
             {project.badge ? (
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-spark/30 bg-spark/10 px-3 py-1 font-mono text-[0.7rem] uppercase tracking-wider text-spark">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-spark/30 bg-spark/10 px-2.5 py-0.5 font-mono text-[0.68rem] uppercase tracking-wider text-spark">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-spark opacity-75" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-spark" />
@@ -85,50 +85,50 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               </span>
             )}
           </div>
-          <span className="project-card-year">{project.year ?? "2026"}</span>
+          <span className="project-card-year text-[0.7rem] py-0.5 px-2">{project.year ?? "2026"}</span>
         </div>
 
-        {/* Card Body */}
-        <div className="p-6 md:p-8">
+        {/* Card Body with tighter padding */}
+        <div className="p-5 md:p-6">
           {project.featured && project.verification ? (
             /* Featured Enterprise Layout (2 columns on large screens) */
-            <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
+            <div className="grid gap-6 lg:grid-cols-12 lg:items-start">
               {/* Left Column: Overview & Tech Stack */}
-              <div className="space-y-6 lg:col-span-7">
+              <div className="space-y-4 lg:col-span-7">
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
                     <p className="text-xs uppercase tracking-[0.22em] text-spark">{project.category}</p>
                     <span className="text-slate-600" aria-hidden>•</span>
                     <span className="font-mono text-xs text-slate-400">Production Client</span>
                     <span className="text-slate-600" aria-hidden>•</span>
-                    <span className="rounded-md border border-spark/20 bg-spark/5 px-2 py-0.5 font-mono text-[0.68rem] text-spark">
+                    <span className="rounded-md border border-spark/20 bg-spark/5 px-2 py-0.5 font-mono text-[0.65rem] text-spark">
                       Maintenance & Feature Dev
                     </span>
                   </div>
-                  <h3 className="mt-2 font-display text-3xl tracking-[-0.03em] text-white md:text-4xl">
+                  <h3 className="mt-1.5 font-display text-2xl tracking-[-0.03em] text-white md:text-3xl">
                     {project.title}
                   </h3>
                   {project.subtitle ? (
-                    <p className="mt-1.5 text-sm font-medium text-slate-300 md:text-base">
+                    <p className="mt-1 text-xs font-medium text-slate-300 md:text-sm">
                       {project.subtitle}
                     </p>
                   ) : null}
                 </div>
 
-                <ul className="list-disc space-y-2.5 pl-5 text-sm leading-7 text-slate-300">
+                <ul className="list-disc space-y-1.5 pl-4 text-xs leading-6 text-slate-300 sm:text-[13.5px]">
                   {project.summary.map((line, i) => (
                     <li key={i}>{line}</li>
                   ))}
                 </ul>
 
                 {project.techUsed?.length ? (
-                  <div className="rounded-xl border border-white/10 bg-graphite-800/80 p-4">
-                    <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-spark/90">
+                  <div className="rounded-xl border border-white/10 bg-graphite-800/80 p-3 sm:p-3.5">
+                    <p className="text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-spark/90">
                       Architecture & Stack
                     </p>
-                    <div className="mt-3 space-y-2.5">
+                    <div className="mt-2 space-y-1.5">
                       {project.techUsed.map((row) => (
-                        <p key={row.title} className="text-sm leading-6 text-slate-300">
+                        <p key={row.title} className="text-xs leading-5 text-slate-300">
                           <span className="font-medium text-slate-100">{row.title}</span>
                           <span className="text-slate-500"> — </span>
                           <span>{row.items.join(", ")}</span>
@@ -138,15 +138,15 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                   </div>
                 ) : null}
 
-                <div className="flex flex-wrap gap-3 pt-2">
+                <div className="flex flex-wrap gap-2.5 pt-1">
                   {project.liveUrl ? (
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="button-primary inline-flex items-center gap-2"
+                      className="button-primary inline-flex items-center gap-1.5 text-xs py-2 px-3.5"
                     >
-                      <ArrowUpRight className="h-4 w-4" />
+                      <ArrowUpRight className="h-3.5 w-3.5" />
                       Visit Live Platform
                     </a>
                   ) : null}
@@ -166,24 +166,24 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             <div>
               <div>
                 <p className="text-xs uppercase tracking-[0.22em] text-spark">{project.category}</p>
-                <h3 className="mt-3 font-display text-3xl tracking-[-0.04em] text-white">{project.title}</h3>
+                <h3 className="mt-2 font-display text-2xl tracking-[-0.04em] text-white md:text-3xl">{project.title}</h3>
                 {project.subtitle ? (
-                  <p className="mt-1 text-sm font-medium text-slate-300">{project.subtitle}</p>
+                  <p className="mt-1 text-xs font-medium text-slate-300">{project.subtitle}</p>
                 ) : null}
               </div>
 
-              <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-7 text-slate-300">
+              <ul className="mt-3 list-disc space-y-1.5 pl-4 text-xs leading-6 text-slate-300 sm:text-[13.5px]">
                 {project.summary.map((line, i) => (
                   <li key={i}>{line}</li>
                 ))}
               </ul>
 
               {project.techUsed?.length ? (
-                <div className="mt-5 rounded-xl border border-white/10 bg-graphite-800 p-4">
-                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-spark/90">Tech used</p>
-                  <div className="mt-3 space-y-2.5">
+                <div className="mt-4 rounded-xl border border-white/10 bg-graphite-800 p-3 sm:p-3.5">
+                  <p className="text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-spark/90">Tech used</p>
+                  <div className="mt-2 space-y-1.5">
                     {project.techUsed.map((row) => (
-                      <p key={row.title} className="text-sm leading-6 text-slate-300">
+                      <p key={row.title} className="text-xs leading-5 text-slate-300">
                         <span className="font-medium text-slate-100">{row.title}</span>
                         <span className="text-slate-500"> — </span>
                         <span>{row.items.join(", ")}</span>
@@ -193,16 +193,16 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 </div>
               ) : null}
 
-              <div className="mt-7 flex flex-wrap gap-3">
+              <div className="mt-5 flex flex-wrap gap-2.5">
                 {project.githubUrl ? (
-                  <a href={project.githubUrl} target="_blank" rel="noreferrer" className="button-secondary">
-                    <Github className="h-4 w-4" />
+                  <a href={project.githubUrl} target="_blank" rel="noreferrer" className="button-secondary text-xs py-2 px-3">
+                    <Github className="h-3.5 w-3.5" />
                     Source
                   </a>
                 ) : null}
                 {project.liveUrl ? (
-                  <a href={project.liveUrl} target="_blank" rel="noreferrer" className="button-secondary">
-                    <ArrowUpRight className="h-4 w-4" />
+                  <a href={project.liveUrl} target="_blank" rel="noreferrer" className="button-secondary text-xs py-2 px-3">
+                    <ArrowUpRight className="h-3.5 w-3.5" />
                     Live
                   </a>
                 ) : null}
@@ -247,41 +247,41 @@ function AuthorshipVerificationBox({
   };
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-spark/25 bg-[#101217] p-5 shadow-xl transition-all duration-300 hover:border-spark/40">
+    <div className="relative overflow-hidden rounded-2xl border border-spark/25 bg-[#101217] p-4 sm:p-4.5 shadow-xl transition-all duration-300 hover:border-spark/40">
       {/* Background glow accent */}
-      <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-spark/10 blur-3xl" />
+      <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-spark/10 blur-3xl" />
 
       {/* Terminal Header */}
-      <div className="flex items-center justify-between border-b border-white/10 pb-3">
+      <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
         <div className="flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
-          <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
-          <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
-          <span className="ml-2 font-mono text-[0.7rem] uppercase tracking-wider text-slate-400">
+          <span className="h-2 w-2 rounded-full bg-red-500/80" />
+          <span className="h-2 w-2 rounded-full bg-amber-500/80" />
+          <span className="h-2 w-2 rounded-full bg-emerald-500/80" />
+          <span className="ml-1.5 font-mono text-[0.65rem] uppercase tracking-wider text-slate-400">
             Dev Signature Verification
           </span>
         </div>
-        <div className="inline-flex items-center gap-1 rounded-full border border-spark/30 bg-spark/10 px-2.5 py-0.5 text-[0.68rem] font-semibold text-spark">
+        <div className="inline-flex items-center gap-1 rounded-full border border-spark/30 bg-spark/10 px-2 py-0.5 text-[0.62rem] font-semibold text-spark">
           <ShieldCheck className="h-3 w-3" />
           <span>Live Proof</span>
         </div>
       </div>
 
       {/* Role explanation */}
-      <div className="mt-3 rounded-lg border border-white/5 bg-white/[0.02] p-2.5">
-        <p className="text-[0.72rem] leading-relaxed text-slate-300">
+      <div className="mt-2.5 rounded-lg border border-white/5 bg-white/[0.02] p-2">
+        <p className="text-[0.68rem] leading-relaxed text-slate-300">
           <span className="font-semibold text-spark">Ongoing Scope:</span> Active maintenance, bug fixing, and continuous development of new features on the live platform.
         </p>
       </div>
 
       {/* How to verify guide */}
-      <div className="mt-4">
-        <p className="text-xs font-semibold uppercase tracking-wider text-slate-200">
+      <div className="mt-3">
+        <p className="text-[0.7rem] font-semibold uppercase tracking-wider text-slate-200">
           How to verify in live source:
         </p>
-        <ol className="mt-2.5 space-y-2 text-xs leading-relaxed text-slate-400">
-          <li className="flex items-start gap-2">
-            <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-white/10 font-mono text-[0.65rem] font-bold text-slate-200">
+        <ol className="mt-2 space-y-1.5 text-[0.72rem] leading-snug text-slate-400">
+          <li className="flex items-start gap-1.5">
+            <span className="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-white/10 font-mono text-[0.6rem] font-bold text-slate-200">
               1
             </span>
             <span>
@@ -301,29 +301,25 @@ function AuthorshipVerificationBox({
               in your browser.
             </span>
           </li>
-          <li className="flex items-start gap-2">
-            <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-white/10 font-mono text-[0.65rem] font-bold text-slate-200">
+          <li className="flex items-start gap-1.5">
+            <span className="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-white/10 font-mono text-[0.6rem] font-bold text-slate-200">
               2
             </span>
             <span>
               Right-click and select <strong className="text-slate-200">Inspect</strong> (or press{" "}
-              <kbd className="rounded border border-white/15 bg-white/5 px-1 py-0.5 font-mono text-[0.65rem] text-slate-300">
+              <kbd className="rounded border border-white/15 bg-white/5 px-1 py-0.2 font-mono text-[0.6rem] text-slate-300">
                 Ctrl + U
-              </kbd>{" "}
-              /{" "}
-              <kbd className="rounded border border-white/15 bg-white/5 px-1 py-0.5 font-mono text-[0.65rem] text-slate-300">
-                ⌘ + ⌥ + U
               </kbd>
               ).
             </span>
           </li>
-          <li className="flex items-start gap-2">
-            <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-white/10 font-mono text-[0.65rem] font-bold text-slate-200">
+          <li className="flex items-start gap-1.5">
+            <span className="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-white/10 font-mono text-[0.6rem] font-bold text-slate-200">
               3
             </span>
             <span>
               Press{" "}
-              <kbd className="rounded border border-white/15 bg-white/5 px-1 py-0.5 font-mono text-[0.65rem] text-slate-300">
+              <kbd className="rounded border border-white/15 bg-white/5 px-1 py-0.2 font-mono text-[0.6rem] text-slate-300">
                 Ctrl + F
               </kbd>{" "}
               and search for <strong className="font-mono text-spark">Aman Naryal</strong>.
@@ -333,31 +329,31 @@ function AuthorshipVerificationBox({
       </div>
 
       {/* Code Snippet Box */}
-      <div className="mt-4 rounded-xl border border-white/10 bg-[#0A0C10] p-3">
-        <div className="flex items-center justify-between text-[0.68rem] text-slate-500">
+      <div className="mt-3 rounded-lg border border-white/10 bg-[#0A0C10] p-2.5">
+        <div className="flex items-center justify-between text-[0.62rem] text-slate-500">
           <span className="font-mono">HTML Source (~line 1141)</span>
           <span className="font-mono text-emerald-400">Verified Comment Tag</span>
         </div>
-        <pre className="mt-2 overflow-x-auto font-mono text-xs leading-5 text-spark/95">
+        <pre className="mt-1.5 overflow-x-auto font-mono text-[11px] leading-4 text-spark/95">
           <code>{verification.snippet}</code>
         </pre>
       </div>
 
       {/* Action buttons */}
-      <div className="mt-4 flex flex-wrap gap-2.5">
+      <div className="mt-3 flex flex-wrap gap-2">
         <button
           type="button"
           onClick={handleCopy}
-          className="inline-flex items-center gap-1.5 rounded-lg border border-spark/30 bg-spark/10 px-3 py-1.5 text-xs font-medium text-spark transition-colors hover:bg-spark/20"
+          className="inline-flex items-center gap-1.5 rounded-lg border border-spark/30 bg-spark/10 px-2.5 py-1 text-xs font-medium text-spark transition-colors hover:bg-spark/20"
         >
           {copied ? (
             <>
-              <Check className="h-3.5 w-3.5 text-spark" />
+              <Check className="h-3 w-3 text-spark" />
               <span>Copied &quot;{verification.copyQuery}&quot;!</span>
             </>
           ) : (
             <>
-              <Copy className="h-3.5 w-3.5" />
+              <Copy className="h-3 w-3" />
               <span>Copy &quot;{verification.copyQuery}&quot;</span>
             </>
           )}
@@ -368,9 +364,9 @@ function AuthorshipVerificationBox({
             href={liveUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-200 transition-colors hover:border-white/30 hover:bg-white/10"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/5 px-2.5 py-1 text-xs font-medium text-slate-200 transition-colors hover:border-white/30 hover:bg-white/10"
           >
-            <ExternalLink className="h-3.5 w-3.5" />
+            <ExternalLink className="h-3 w-3" />
             <span>Open & Inspect Site</span>
           </a>
         ) : null}

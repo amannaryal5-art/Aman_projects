@@ -137,8 +137,8 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="section-shell scroll-mt-28 py-20 md:py-28">
-      <div className="section-frame grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+    <section id="contact" className="section-shell scroll-mt-24 py-14 md:py-20">
+      <div className="section-frame grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
         <div>
           <SectionHeading
             eyebrow="Contact"
@@ -146,7 +146,7 @@ export function ContactSection() {
             description="I’m currently open to new opportunities. Whether you have a project in mind or want to discuss a role, feel free to reach out."
           />
 
-          <div className="mt-10 grid gap-4">
+          <div className="mt-6 grid gap-2.5 sm:gap-3">
             {links.map((link) => {
               const Icon = link.icon;
 
@@ -156,14 +156,14 @@ export function ContactSection() {
                   href={link.href}
                   target={link.href.startsWith("http") ? "_blank" : undefined}
                   rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-                  className="contact-link-card"
+                  className="contact-link-card !py-2.5 !px-3"
                 >
-                  <div className="contact-link-icon">
-                    <Icon className="h-5 w-5" />
+                  <div className="contact-link-icon !w-8 !h-8">
+                    <Icon className="h-4 w-4" />
                   </div>
                   <div>
-                    <p className="contact-link-label">{link.label}</p>
-                    <p className="contact-link-value">{link.value}</p>
+                    <p className="contact-link-label text-[11px] mt-0">{link.label}</p>
+                    <p className="contact-link-value text-xs sm:text-sm mt-0">{link.value}</p>
                   </div>
                 </a>
               );
@@ -172,30 +172,30 @@ export function ContactSection() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.45 }}
-          className="neo-card p-6 md:p-8"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.4 }}
+          className="neo-card p-5 md:p-6"
         >
-          <p className="font-display text-3xl tracking-[-0.04em] text-white">Send a Message</p>
+          <p className="font-display text-2xl tracking-[-0.03em] text-white">Send a Message</p>
 
           {status === "success" ? (
-            <div className="mt-6 rounded-2xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-200">
+            <div className="mt-4 rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-3.5 py-2 text-xs text-emerald-200">
               ✅ Message sent! I&apos;ll get back to you soon.
             </div>
           ) : null}
 
           {status === "error" ? (
-            <div className="mt-6 rounded-2xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-200">
+            <div className="mt-4 rounded-xl border border-red-400/30 bg-red-400/10 px-3.5 py-2 text-xs text-red-200">
               ❌ {errorMsg || "Something went wrong. Please email me directly."}
             </div>
           ) : null}
 
-          <form className="mt-8 grid gap-4" onSubmit={handleSubmit}>
-            <div className="grid gap-4 md:grid-cols-2">
+          <form className="mt-5 grid gap-3" onSubmit={handleSubmit}>
+            <div className="grid gap-3 md:grid-cols-2">
               <input
-                className="contact-input"
+                className="contact-input !py-2.5 !px-3 text-xs sm:text-sm"
                 type="text"
                 name="name"
                 placeholder="Your Name"
@@ -203,7 +203,7 @@ export function ContactSection() {
                 onChange={handleChange}
               />
               <input
-                className="contact-input"
+                className="contact-input !py-2.5 !px-3 text-xs sm:text-sm"
                 type="email"
                 name="email"
                 placeholder="Your Email"
@@ -212,7 +212,7 @@ export function ContactSection() {
               />
             </div>
             <input
-              className="contact-input"
+              className="contact-input !py-2.5 !px-3 text-xs sm:text-sm"
               type="text"
               name="subject"
               placeholder="Subject"
@@ -230,7 +230,7 @@ export function ContactSection() {
               onChange={handleChange}
             />
             <textarea
-              className="contact-input min-h-[170px] resize-none"
+              className="contact-input min-h-[125px] resize-none !py-2.5 !px-3 text-xs sm:text-sm"
               name="message"
               placeholder="Tell me about your project or opportunity."
               value={formData.message}
@@ -239,7 +239,7 @@ export function ContactSection() {
             <button
               type="submit"
               disabled={status === "loading"}
-              className="button-primary w-full justify-center disabled:cursor-not-allowed disabled:opacity-70"
+              className="button-primary w-full justify-center text-xs py-2.5 disabled:cursor-not-allowed disabled:opacity-70"
             >
               {status === "loading" ? (
                 <>
@@ -255,15 +255,15 @@ export function ContactSection() {
             </button>
           </form>
 
-          <div className="mt-6 flex flex-wrap gap-3">
-            <a href={developer.linkedin} target="_blank" rel="noreferrer" className="social-chip">
-              <Linkedin className="h-4 w-4" />
+          <div className="mt-4 flex flex-wrap gap-2.5">
+            <a href={developer.linkedin} target="_blank" rel="noreferrer" className="social-chip !w-8 !h-8">
+              <Linkedin className="h-3.5 w-3.5" />
             </a>
-            <a href={developer.github} target="_blank" rel="noreferrer" className="social-chip">
-              <Github className="h-4 w-4" />
+            <a href={developer.github} target="_blank" rel="noreferrer" className="social-chip !w-8 !h-8">
+              <Github className="h-3.5 w-3.5" />
             </a>
-            <a href={`mailto:${developer.email}`} className="social-chip">
-              <Mail className="h-4 w-4" />
+            <a href={`mailto:${developer.email}`} className="social-chip !w-8 !h-8">
+              <Mail className="h-3.5 w-3.5" />
             </a>
           </div>
         </motion.div>

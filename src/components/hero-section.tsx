@@ -7,16 +7,16 @@ import { AnimatedPortrait } from "@/components/AnimatedPortrait";
 
 export function HeroSection() {
   return (
-    <section id="top" className="section-shell relative pt-24">
+    <section id="top" className="section-shell relative pt-20 md:pt-24 pb-4">
       <div className="hero-panel">
         <div className="hero-orb hero-orb-left" />
         <div className="hero-orb hero-orb-right" />
 
         <div className="hero-layout">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
             className="hero-copy"
           >
             <div className="availability-pill">
@@ -25,7 +25,7 @@ export function HeroSection() {
             </div>
 
             {/* Mobile Animated Portrait */}
-            <div className="lg:hidden my-6 flex items-center justify-center">
+            <div className="lg:hidden my-4 flex items-center justify-center">
               <AnimatedPortrait size="md" />
             </div>
 
@@ -68,25 +68,25 @@ export function HeroSection() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 28 }}
+            initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.65, delay: 0.12, ease: "easeOut" }}
+            transition={{ duration: 0.55, delay: 0.1, ease: "easeOut" }}
             className="hero-visual"
           >
-            <div className="hero-visual-card p-6 flex flex-col items-center">
+            <div className="hero-visual-card p-5 flex flex-col items-center">
               {/* Grand Animated Portrait */}
-              <div className="py-6 my-2">
+              <div className="py-2.5">
                 <AnimatedPortrait size="lg" />
               </div>
 
               {/* Code window */}
-              <div className="code-window w-full mt-4">
+              <div className="code-window w-full mt-3">
                 <div className="code-window-bar">
                   <span className="code-dot bg-[#ff5d77]" />
                   <span className="code-dot bg-[#ffcf5a]" />
                   <span className="code-dot bg-[#29d391]" />
                 </div>
-                <pre className="code-snippet">
+                <pre className="code-snippet !py-2.5 !px-3 !text-[12px] leading-relaxed">
 {`const stack = {
   frontend: ["Next.js", "React", "TypeScript"],
   backend: ["Node.js", "NestJS", "FastAPI"],
@@ -101,4 +101,3 @@ export function HeroSection() {
     </section>
   );
 }
-
