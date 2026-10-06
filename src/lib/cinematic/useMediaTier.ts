@@ -9,8 +9,9 @@ export interface MediaTierInfo {
 }
 
 export function useMediaTier(): MediaTierInfo {
+  // Safe default: start with "low" to prevent premature WebGL context allocation
   const [tierInfo, setTierInfo] = useState<MediaTierInfo>({
-    tier: "high",
+    tier: "low",
     isReducedMotion: false,
   });
 
@@ -20,16 +21,19 @@ export function useMediaTier(): MediaTierInfo {
 
     // Detect hardware limits
     const cores = navigator.hardwareConcurrency || 4;
+    const isTouchOnly =
+      window.matchMedia("(pointer: coarse)").matches &&
+      !window.matchMedia("(pointer: fine)").matches;
     const isMobile =
       /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
-      window.innerWidth < 768 ||
-      ("ontouchstart" in window && window.innerWidth < 1024);
+      window.innerWidth < 1024 ||
+      isTouchOnly;
     const dpr = window.devicePixelRatio || 1;
 
     let tier: MediaTier = "high";
-    if (isReducedMotion || cores <= 2) {
+    if (isReducedMotion || isMobile || cores <= 2) {
       tier = "low";
-    } else if (isMobile || cores <= 4 || dpr > 2.5) {
+    } else if (cores <= 4 || dpr > 2.5) {
       tier = "mid";
     }
 

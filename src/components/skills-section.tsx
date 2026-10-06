@@ -6,22 +6,18 @@ import { SKILL_CATEGORIES, SkillCategoryData, SkillItem } from "@/data/skillsDat
 /**
  * Reusable SkillCard component
  * Displays official technology logo, name, and subtext badge
- * Features dark glassmorphism, subtle hover elevation, logo scale, and lime spark accents
+ * Features dark glassmorphism, hardware-accelerated hover elevation, logo scale, and lime spark accents
  */
-export function SkillCard({ skill, index }: { skill: SkillItem; index: number }) {
+export function SkillCard({ skill }: { skill: SkillItem; index: number }) {
   const Icon = skill.icon;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.35, delay: Math.min(index * 0.03, 0.3), ease: [0.16, 1, 0.3, 1] }}
-      className="group relative flex flex-col justify-between p-4 rounded-xl border border-hairline bg-graphite-900 transition-[transform,border-color,background-color] duration-300 ease-out hover:-translate-y-1 hover:border-spark/45 hover:bg-graphite-800 min-h-[105px] select-none"
+    <div
+      className="group relative flex flex-col justify-between p-4 rounded-xl border border-hairline bg-graphite-900 transition-[transform,border-color,background-color] duration-200 ease-out hover:-translate-y-1 hover:border-spark/45 hover:bg-graphite-800 min-h-[105px] select-none will-change-transform"
     >
       {/* Subtle hover gradient glow */}
       <div
-        className="pointer-events-none absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        className="pointer-events-none absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"
         style={{
           background: "radial-gradient(circle at 50% 0%, rgba(182, 255, 46, 0.08), transparent 70%)",
         }}
@@ -31,7 +27,7 @@ export function SkillCard({ skill, index }: { skill: SkillItem; index: number })
       {/* Top Row: Logo & Subtext */}
       <div className="relative z-10 flex items-start justify-between gap-2">
         <div
-          className="text-2xl sm:text-[28px] transition-transform duration-300 ease-out group-hover:scale-110 drop-shadow-sm flex items-center justify-center w-8 h-8"
+          className="text-2xl sm:text-[28px] transition-transform duration-200 ease-out group-hover:scale-110 drop-shadow-sm flex items-center justify-center w-8 h-8"
           style={{ color: skill.brandColor }}
         >
           <Icon className="w-full h-full" aria-hidden="true" />
@@ -48,7 +44,7 @@ export function SkillCard({ skill, index }: { skill: SkillItem; index: number })
           {skill.name}
         </h4>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -61,10 +57,10 @@ export function SkillCategory({ category, categoryIndex }: { category: SkillCate
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.5, delay: categoryIndex * 0.06, ease: [0.16, 1, 0.3, 1] }}
+      viewport={{ once: true, amount: 0.08 }}
+      transition={{ duration: 0.45, delay: categoryIndex * 0.05, ease: [0.16, 1, 0.3, 1] }}
       className="relative rounded-2xl border border-hairline bg-graphite-950 p-5 sm:p-7"
     >
       {/* Category Header */}

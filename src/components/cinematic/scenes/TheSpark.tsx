@@ -9,6 +9,7 @@ export function TheSpark() {
   const groupRef = useRef<THREE.Group>(null);
   const outerRef = useRef<THREE.Mesh>(null);
   const innerRef = useRef<THREE.Mesh>(null);
+  const targetScaleVec = useRef(new THREE.Vector3());
 
   useFrame((_, delta) => {
     if (!groupRef.current || !outerRef.current || !innerRef.current) return;
@@ -30,10 +31,8 @@ export function TheSpark() {
     const targetScale = Math.max(0.4, 1 - p * 0.9);
     const targetY = (1 - p * 2) * 0.2;
 
-    groupRef.current.scale.lerp(
-      new THREE.Vector3(targetScale, targetScale, targetScale),
-      0.08
-    );
+    targetScaleVec.current.set(targetScale, targetScale, targetScale);
+    groupRef.current.scale.lerp(targetScaleVec.current, 0.08);
     groupRef.current.position.y += (targetY - groupRef.current.position.y) * 0.08;
   });
 

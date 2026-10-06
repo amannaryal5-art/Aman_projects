@@ -1,12 +1,21 @@
 "use client";
 
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { scrollState } from "@/lib/cinematic/scrollState";
 
 export function GridFloor() {
   const gridRef = useRef<THREE.GridHelper>(null);
+
+  const gridHelper = useMemo(() => {
+    return new THREE.GridHelper(
+      40,
+      40,
+      new THREE.Color("#B6FF2E"),
+      new THREE.Color("#2E323E")
+    );
+  }, []);
 
   useFrame((_, delta) => {
     if (!gridRef.current) return;
@@ -24,14 +33,7 @@ export function GridFloor() {
 
   return (
     <primitive
-      object={
-        new THREE.GridHelper(
-          40,
-          40,
-          new THREE.Color("#B6FF2E"),
-          new THREE.Color("#2E323E")
-        )
-      }
+      object={gridHelper}
       ref={gridRef}
       position={[0, -2.8, 0]}
     />

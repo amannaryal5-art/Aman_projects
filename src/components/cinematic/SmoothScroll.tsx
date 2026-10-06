@@ -16,35 +16,57 @@ interface SmoothScrollProps {
 
 export function SmoothScroll({ children }: SmoothScrollProps) {
   useEffect(() => {
-    // Skip Lenis on touch devices - native scroll is smoother on mobile
+    // Detect mobile touch devices
     const isTouchDevice =
-      "ontouchstart" in window ||
-      navigator.maxTouchPoints > 0 ||
-      /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      typeof window !== "undefined" &&
+      ("ontouchstart" in window ||
+        /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+        (window.matchMedia("(pointer: coarse)").matches && !window.matchMedia("(pointer: fine)").matches));
 
     if (isTouchDevice) {
-      // Still track scroll progress for HUD without Lenis overhead
-      const handleNativeScroll = () => {
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        if (docHeight <= 0) return;
-        const progress = Math.max(0, Math.min(1, window.scrollY / docHeight));
-        scrollState.progress = progress;
-        scrollState.sceneIndex = Math.min(
-          Math.floor(progress * SCENES.length),
-          SCENES.length - 1
-        );
-        scrollState.sceneProgress = (progress * SCENES.length) % 1;
+      // Touch devices: use native scrolling with non-blocking, RAF-throttled progress tracking
+      let ticking = false;
+      let cachedDocHeight = 0;
+
+      const updateDimensions = () => {
+        cachedDocHeight = document.documentElement.scrollHeight - window.innerHeight;
       };
+
+      updateDimensions();
+      window.addEventListener("resize", updateDimensions, { passive: true });
+
+      const handleNativeScroll = () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            if (cachedDocHeight > 0) {
+              const progress = Math.max(0, Math.min(1, window.scrollY / cachedDocHeight));
+              scrollState.progress = progress;
+              scrollState.sceneIndex = Math.min(
+                Math.floor(progress * SCENES.length),
+                SCENES.length - 1
+              );
+              scrollState.sceneProgress = (progress * SCENES.length) % 1;
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      };
+
       window.addEventListener("scroll", handleNativeScroll, { passive: true });
-      return () => window.removeEventListener("scroll", handleNativeScroll);
+
+      return () => {
+        window.removeEventListener("resize", updateDimensions);
+        window.removeEventListener("scroll", handleNativeScroll);
+      };
     }
 
-    // Desktop: use Lenis for smooth wheel scrolling
+    // Desktop: use Lenis for buttery-smooth wheel scrolling
     const lenis = new Lenis({
       lerp: MOTION_CONFIG.scroll.lenisLerp,
       smoothWheel: true,
       wheelMultiplier: 1.0,
-      touchMultiplier: 1.5,
+      touchMultiplier: 1.2,
     });
 
     lenis.on("scroll", (e: { progress: number; velocity: number; direction: number }) => {
@@ -67,14 +89,21 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
     };
 
     gsap.ticker.add(tickerCallback);
-    gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(500, 33);
 
-    // Pointer tracking for ambient 3D parallax & cursor (desktop only)
+    // RAF-throttled pointer tracking for ambient 3D parallax & cursor (desktop only)
+    let pointerTicking = false;
     const handlePointerMove = (e: PointerEvent) => {
-      const x = (e.clientX / window.innerWidth) * 2 - 1;
-      const y = -(e.clientY / window.innerHeight) * 2 + 1;
-      scrollState.pointer.targetX = x;
-      scrollState.pointer.targetY = y;
+      if (!pointerTicking) {
+        requestAnimationFrame(() => {
+          const x = (e.clientX / window.innerWidth) * 2 - 1;
+          const y = -(e.clientY / window.innerHeight) * 2 + 1;
+          scrollState.pointer.targetX = x;
+          scrollState.pointer.targetY = y;
+          pointerTicking = false;
+        });
+        pointerTicking = true;
+      }
     };
 
     window.addEventListener("pointermove", handlePointerMove, { passive: true });

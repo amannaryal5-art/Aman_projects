@@ -8,15 +8,23 @@ export function Preloader() {
   const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
-    // Quick bypass if reduced motion is requested
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) {
+    // Quick bypass if reduced motion is requested or already visited in this session
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const hasVisited =
+      typeof window !== "undefined" &&
+      sessionStorage.getItem("portfolio_loaded") === "true";
+
+    if (prefersReduced || hasVisited) {
       setIsComplete(true);
       return;
     }
 
-    const isMobile = window.innerWidth < 768 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    const duration = isMobile ? 600 : 1200; // ms
+    const isMobile =
+      typeof window !== "undefined" &&
+      (window.innerWidth < 768 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent));
+    const duration = isMobile ? 400 : 900; // ms
     const startTime = performance.now();
 
     const updateCounter = (currentTime: number) => {
@@ -31,7 +39,8 @@ export function Preloader() {
       if (progress < 1) {
         requestAnimationFrame(updateCounter);
       } else {
-        setTimeout(() => setIsComplete(true), 150);
+        sessionStorage.setItem("portfolio_loaded", "true");
+        setTimeout(() => setIsComplete(true), 100);
       }
     };
 
@@ -46,14 +55,14 @@ export function Preloader() {
           className="fixed inset-0 z-[100] flex flex-col justify-between pointer-events-none"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           aria-hidden="true"
         >
           {/* Top Letterbox Curtain */}
           <motion.div
             className="w-full h-1/2 bg-graphite-950 border-b border-hairline origin-top"
             exit={{ y: "-100%" }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           />
 
           {/* Center HUD status */}
@@ -79,7 +88,7 @@ export function Preloader() {
           <motion.div
             className="w-full h-1/2 bg-graphite-950 border-t border-hairline origin-bottom"
             exit={{ y: "100%" }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           />
         </motion.div>
       )}

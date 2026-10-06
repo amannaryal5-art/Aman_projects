@@ -9,14 +9,14 @@ export function SceneHud() {
   const percentRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    // Only render HUD on desktop (hidden via CSS on mobile anyway)
-    if (window.innerWidth < 768) return;
+    // Only render HUD on desktop
+    if (typeof window === "undefined" || window.innerWidth < 768) return;
 
-    let animId: number;
     let lastSceneIdx = -1;
     let lastPercent = -1;
+    let ticking = false;
 
-    const tick = () => {
+    const updateHud = () => {
       const idx = scrollState.sceneIndex;
       const pct = Math.min(Math.max(Math.round(scrollState.progress * 100), 0), 100);
 
@@ -31,11 +31,24 @@ export function SceneHud() {
         percentRef.current.textContent = `${String(pct).padStart(2, "0")}%`;
       }
 
-      animId = requestAnimationFrame(tick);
+      ticking = false;
     };
 
-    animId = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(animId);
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateHud);
+        ticking = true;
+      }
+    };
+
+    // Run initial update once on mount
+    updateHud();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (

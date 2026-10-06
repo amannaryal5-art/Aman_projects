@@ -993,3 +993,71 @@ article {
     opacity: 0.4;
   }
 }
+
+/* Hardware-Accelerated Compositor Animations (0 JS CPU overhead) */
+@keyframes spinClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinCounterClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes floatBobbing {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -7px, 0);
+  }
+}
+
+@keyframes ambientPulseGlow {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(0.94);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.06);
+  }
+}
+
+.anim-spin-clockwise {
+  animation: spinClockwise 26s linear infinite;
+  will-change: transform;
+}
+
+.anim-spin-counter {
+  animation: spinCounterClockwise 38s linear infinite;
+  will-change: transform;
+}
+
+.anim-float-bobbing {
+  animation: floatBobbing 4.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.anim-ambient-pulse {
+  animation: ambientPulseGlow 4s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-spin-clockwise,
+  .anim-spin-counter,
+  .anim-float-bobbing,
+  .anim-ambient-pulse {
+    animation: none !important;
+  }
+}

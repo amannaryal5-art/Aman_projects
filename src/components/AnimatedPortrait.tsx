@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface AnimatedPortraitProps {
   size?: "sm" | "md" | "lg";
@@ -14,8 +14,6 @@ export function AnimatedPortrait({
   className = "",
   showBadges = true,
 }: AnimatedPortraitProps) {
-  const shouldReduceMotion = useReducedMotion();
-
   // Size dimensions for container and rings
   const dimensions = {
     sm: {
@@ -45,38 +43,20 @@ export function AnimatedPortrait({
     <div
       className={`relative flex items-center justify-center select-none ${className}`}
     >
-      {/* 1. Ambient Background Pulse Glow */}
-      <motion.div
-        className="pointer-events-none absolute rounded-full bg-spark/15 blur-2xl -z-10"
+      {/* 1. Ambient Background Pulse Glow (GPU hardware-accelerated CSS) */}
+      <div
+        className="pointer-events-none absolute rounded-full anim-ambient-pulse -z-10"
         style={{
-          width: "120%",
-          height: "120%",
-        }}
-        animate={
-          shouldReduceMotion
-            ? undefined
-            : {
-                opacity: [0.35, 0.7, 0.35],
-                scale: [0.92, 1.08, 0.92],
-              }
-        }
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
+          width: "125%",
+          height: "125%",
+          background: "radial-gradient(circle, rgba(182, 255, 46, 0.16) 0%, transparent 68%)",
         }}
         aria-hidden="true"
       />
 
       {/* 2. Outer Rotating Orbital Ring (Clockwise) with Satellite Spark */}
-      <motion.div
-        className={`pointer-events-none absolute rounded-full border border-dashed border-spark/25 ${dimensions.outerRing}`}
-        animate={shouldReduceMotion ? undefined : { rotate: 360 }}
-        transition={{
-          duration: 26,
-          repeat: Infinity,
-          ease: "linear",
-        }}
+      <div
+        className={`pointer-events-none absolute rounded-full border border-dashed border-spark/25 anim-spin-clockwise ${dimensions.outerRing}`}
         aria-hidden="true"
       >
         {/* Orbiting Satellite Spark Node */}
@@ -86,17 +66,11 @@ export function AnimatedPortrait({
             <span className="relative inline-flex rounded-full h-3 w-3 bg-spark shadow-spark-sm" />
           </span>
         </div>
-      </motion.div>
+      </div>
 
       {/* 3. Inner Counter-Rotating Hairline Ring */}
-      <motion.div
-        className={`pointer-events-none absolute rounded-full border border-hairline ${dimensions.innerRing}`}
-        animate={shouldReduceMotion ? undefined : { rotate: -360 }}
-        transition={{
-          duration: 38,
-          repeat: Infinity,
-          ease: "linear",
-        }}
+      <div
+        className={`pointer-events-none absolute rounded-full border border-hairline anim-spin-counter ${dimensions.innerRing}`}
         aria-hidden="true"
       >
         {/* Subtle cardinal tick marks */}
@@ -104,23 +78,11 @@ export function AnimatedPortrait({
         <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-1.5 h-1.5 rounded-full bg-white/20" />
         <span className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-white/20" />
         <span className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-white/20" />
-      </motion.div>
+      </div>
 
       {/* 4. Floating Main Portrait Container */}
       <motion.div
-        className="relative group cursor-pointer"
-        animate={
-          shouldReduceMotion
-            ? undefined
-            : {
-                y: [0, -8, 0],
-              }
-        }
-        transition={{
-          duration: 4.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        className="relative group cursor-pointer anim-float-bobbing"
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.98 }}
       >
@@ -158,21 +120,15 @@ export function AnimatedPortrait({
         {showBadges && (
           <>
             {/* Top-Left: Identity HUD Chip */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.4 }}
+            <div
               className={`absolute -top-2 -left-2 z-20 font-mono ${dimensions.badgeText} ${dimensions.badgePad} tracking-wider uppercase text-graphite-300 bg-graphite-950/90 border border-hairline rounded-full shadow-card flex items-center gap-1.5 backdrop-blur-sm group-hover:border-spark/35 group-hover:text-graphite-100 transition-colors`}
             >
               <span className="w-1.5 h-1.5 rounded-full bg-spark" />
               <span>AMAN // DEV</span>
-            </motion.div>
+            </div>
 
             {/* Bottom-Right: Active Radar Status Pill */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.35, duration: 0.4 }}
+            <div
               className={`absolute -bottom-2 -right-2 z-20 font-mono ${dimensions.badgeText} ${dimensions.badgePad} tracking-widest uppercase text-spark bg-graphite-950/95 border border-spark/45 rounded-full shadow-[0_4px_20px_rgba(182,255,46,0.25)] flex items-center gap-2 group-hover:shadow-[0_4px_28px_rgba(182,255,46,0.45)] group-hover:border-spark transition-all`}
             >
               <span className="relative flex h-2 w-2">
@@ -180,7 +136,7 @@ export function AnimatedPortrait({
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-spark" />
               </span>
               <span className="font-semibold">AVAILABLE</span>
-            </motion.div>
+            </div>
           </>
         )}
       </motion.div>

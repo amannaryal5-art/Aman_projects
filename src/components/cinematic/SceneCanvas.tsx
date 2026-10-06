@@ -14,14 +14,14 @@ export function SceneCanvas() {
     setMounted(true);
   }, []);
 
-  // Completely skip WebGL on mobile and reduced-motion devices or before mount
-  if (!mounted || isReducedMotion || tier === "low" || tier === "mid") {
+  // Completely skip WebGL on mobile, reduced-motion, or low/mid-spec devices
+  if (!mounted || isReducedMotion || tier !== "high") {
     return (
       <div
         className="pointer-events-none fixed inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(circle at 50% 30%, rgba(182, 255, 46, 0.06) 0%, transparent 60%)",
+            "radial-gradient(circle at 50% 30%, rgba(182, 255, 46, 0.05) 0%, transparent 60%)",
         }}
         aria-hidden="true"
       />
@@ -35,11 +35,13 @@ export function SceneCanvas() {
     >
       <Canvas
         camera={{ position: [0, 0, 5], fov: 45 }}
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
         gl={{
           alpha: true,
-          antialias: true,
+          antialias: false,
           powerPreference: "high-performance",
+          stencil: false,
+          depth: true,
         }}
       >
         <Suspense fallback={null}>

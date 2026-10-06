@@ -9,63 +9,41 @@ interface DustConeProps {
   count?: number;
 }
 
-export function DustCone({ count = 180 }: DustConeProps) {
+export function DustCone({ count = 160 }: DustConeProps) {
   const pointsRef = useRef<THREE.Points>(null);
 
-  // Generate particle positions within a conical volume
-  const [positions, initialPositions] = useMemo(() => {
+  // Generate particle positions once within a conical volume
+  const positions = useMemo(() => {
     const pos = new Float32Array(count * 3);
-    const initial = new Float32Array(count * 3);
 
     for (let i = 0; i < count; i++) {
-      // Height along cone: y from -3 to 4
-      const y = (Math.random() - 0.4) * 8;
-      // Radius expands downwards: larger radius at lower y
+      // Height along cone: y from -4 to 4
+      const y = (Math.random() - 0.5) * 8;
       const coneRadius = Math.max(0.2, (4 - y) * 0.45);
       const angle = Math.random() * Math.PI * 2;
       const r = Math.sqrt(Math.random()) * coneRadius;
 
-      const x = Math.cos(angle) * r;
-      const z = Math.sin(angle) * r;
-
       const idx = i * 3;
-      pos[idx] = x;
+      pos[idx] = Math.cos(angle) * r;
       pos[idx + 1] = y;
-      pos[idx + 2] = z;
-
-      initial[idx] = x;
-      initial[idx + 1] = y;
-      initial[idx + 2] = z;
+      pos[idx + 2] = Math.sin(angle) * r;
     }
 
-    return [pos, initial];
+    return pos;
   }, [count]);
 
   useFrame((_, delta) => {
     if (!pointsRef.current) return;
 
-    const geo = pointsRef.current.geometry;
-    const posAttr = geo.attributes.position as THREE.BufferAttribute;
-    const array = posAttr.array as Float32Array;
-
+    // Smooth transform animation without CPU vertex buffer mutation
     const velocityInfluence = scrollState.velocity * 0.02;
+    pointsRef.current.position.y -= (0.12 + velocityInfluence) * delta;
+    pointsRef.current.rotation.y += delta * 0.04;
 
-    for (let i = 0; i < count; i++) {
-      const idx = i * 3;
-      // Particle drift downwards
-      array[idx + 1] -= (0.15 + velocityInfluence) * delta;
-
-      // Wrap around when passing bottom threshold
-      if (array[idx + 1] < -4.5) {
-        array[idx + 1] = 4.5;
-      }
-
-      // Gentle wobble on X and Z
-      array[idx] = initialPositions[idx] + Math.sin(delta * 2 + i) * 0.05;
-      array[idx + 2] = initialPositions[idx + 2] + Math.cos(delta * 2 + i) * 0.05;
+    // Wrap around smoothly
+    if (pointsRef.current.position.y < -3.5) {
+      pointsRef.current.position.y = 3.5;
     }
-
-    posAttr.needsUpdate = true;
   });
 
   return (
@@ -79,7 +57,7 @@ export function DustCone({ count = 180 }: DustConeProps) {
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.035}
+        size={0.032}
         color="#B6FF2E"
         transparent
         opacity={0.35}
