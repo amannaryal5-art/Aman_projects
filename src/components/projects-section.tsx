@@ -1,30 +1,94 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useMotionTemplate, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
-import { ArrowUpRight, Check, Copy, ExternalLink, Github, ShieldCheck } from "lucide-react";
+import { motion, AnimatePresence, useMotionTemplate, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
+import {
+  ArrowUpRight,
+  Check,
+  Copy,
+  ExternalLink,
+  FlaskConical,
+  Github,
+  ShieldAlert,
+  ShieldCheck,
+  ShoppingBag,
+  X
+} from "lucide-react";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { SectionHeading } from "@/components/section-heading";
 import { projects, Project } from "@/lib/data";
 
 export function ProjectsSection() {
+  const [selectedVerification, setSelectedVerification] = useState<{
+    project: Project;
+    verification: NonNullable<Project["verification"]>;
+  } | null>(null);
+
+  // Close modal on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setSelectedVerification(null);
+      }
+    };
+    if (selectedVerification) {
+      window.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [selectedVerification]);
+
   return (
-    <AnimatedSection id="projects" className="section-shell scroll-mt-24 py-14 md:py-20">
+    <AnimatedSection id="projects" className="section-shell scroll-mt-24 py-14 md:py-20 relative">
       <SectionHeading
         eyebrow="Portfolio"
         title="Featured Projects"
-        description="A focused selection of production client platforms, enterprise systems, and full stack engineering architectures built for real-world reliability."
+        description="Production platforms, client systems, and modern full-stack architectures engineered for high performance and reliability."
       />
-      <div className="mt-10 grid gap-5 lg:grid-cols-2">
+
+      {/* Modern, Balanced 3-Column Grid */}
+      <div className="mt-10 grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-stretch">
         {projects.map((project, index) => (
-          <ProjectCard key={project.title} project={project} index={index} />
+          <ModernProjectCard
+            key={project.title}
+            project={project}
+            index={index}
+            onOpenVerification={() => {
+              if (project.verification) {
+                setSelectedVerification({ project, verification: project.verification });
+              }
+            }}
+          />
         ))}
       </div>
+
+      {/* Recruiter Verification Modal */}
+      <AnimatePresence>
+        {selectedVerification && (
+          <VerificationModal
+            data={selectedVerification}
+            onClose={() => setSelectedVerification(null)}
+          />
+        )}
+      </AnimatePresence>
     </AnimatedSection>
   );
 }
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+function ModernProjectCard({
+  project,
+  index,
+  onOpenVerification
+}: {
+  project: Project;
+  index: number;
+  onOpenVerification: () => void;
+}) {
   const reduced = useReducedMotion();
   const [isMobile, setIsMobile] = useState(true);
 
@@ -32,197 +96,198 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
     setIsMobile(window.innerWidth < 768 || "ontouchstart" in window);
   }, []);
 
+  // 3D Perspective Tilt Physics
   const pointerX = useMotionValue(50);
   const pointerY = useMotionValue(50);
-  const rotateX = useSpring(useTransform(pointerY, [0, 100], [8, -8]), { stiffness: 180, damping: 22 });
-  const rotateY = useSpring(useTransform(pointerX, [0, 100], [-8, 8]), { stiffness: 180, damping: 22 });
-  const glare = useMotionTemplate`radial-gradient(circle at ${pointerX}% ${pointerY}%, rgba(255, 255, 255, 0.1), transparent 40%)`;
+  const rotateX = useSpring(useTransform(pointerY, [0, 100], [6, -6]), { stiffness: 220, damping: 24 });
+  const rotateY = useSpring(useTransform(pointerX, [0, 100], [-6, 6]), { stiffness: 220, damping: 24 });
+  const glare = useMotionTemplate`radial-gradient(circle at ${pointerX}% ${pointerY}%, rgba(255, 255, 255, 0.12), transparent 45%)`;
 
   const updateTilt = (event: React.MouseEvent<HTMLElement>) => {
-    if (reduced || isMobile || project.featured) return;
+    if (reduced || isMobile) return;
     const bounds = event.currentTarget.getBoundingClientRect();
     pointerX.set(((event.clientX - bounds.left) / bounds.width) * 100);
     pointerY.set(((event.clientY - bounds.top) / bounds.height) * 100);
   };
 
   const resetTilt = () => {
-    if (reduced || isMobile || project.featured) return;
+    if (reduced || isMobile) return;
     pointerX.set(50);
     pointerY.set(50);
   };
 
+  // Distinct Icon and Accent Color per project
+  const isChromato = project.title.toLowerCase().includes("chromato");
+  const isThreads = project.title.toLowerCase().includes("threads");
+  const isCrie = project.title.toLowerCase().includes("crie");
+
+  const IconComponent = isChromato ? FlaskConical : isThreads ? ShoppingBag : ShieldAlert;
+  const accentColor = isChromato ? "#B6FF2E" : isThreads ? "#38BDF8" : "#34D399";
+
+  // Flatten top 5-6 tech items for clean pills
+  const techPills = project.techUsed
+    ? project.techUsed.flatMap((cat) => cat.items).slice(0, 5)
+    : [];
+
   return (
     <motion.article
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.12 }}
-      transition={{ duration: 0.35, delay: index * 0.05 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.4, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
       onMouseMove={updateTilt}
       onMouseLeave={resetTilt}
-      className={`project-card ${project.featured ? "lg:col-span-2 border-spark/25 shadow-2xl" : "project-card-tilt"}`}
-      style={reduced || isMobile || project.featured ? undefined : { rotateX, rotateY, transformPerspective: 1000 }}
+      style={reduced || isMobile ? undefined : { rotateX, rotateY, transformPerspective: 1000 }}
+      className="group relative flex flex-col justify-between rounded-2xl border border-hairline bg-graphite-900/90 shadow-card transition-all duration-300 hover:border-spark/45 hover:shadow-spark-sm select-none overflow-hidden h-full will-change-transform"
     >
-      <div className="project-card-glow" />
-      {!reduced && !isMobile && !project.featured && (
-        <motion.div aria-hidden="true" className="project-card-glare" style={{ background: glare }} />
+      {/* Background radial spotlight */}
+      <div
+        className="pointer-events-none absolute -right-12 -top-12 h-36 w-36 rounded-full opacity-20 blur-3xl transition-opacity duration-300 group-hover:opacity-40"
+        style={{ backgroundColor: accentColor }}
+        aria-hidden="true"
+      />
+
+      {!reduced && !isMobile && (
+        <motion.div aria-hidden="true" className="project-card-glare pointer-events-none" style={{ background: glare }} />
       )}
 
-      <div className="relative z-10">
-        {/* Compact banner header */}
-        <div className="project-card-banner !min-h-[3.75rem] sm:!min-h-[4.25rem] py-2.5 flex items-center justify-between px-5 md:px-7">
-          <div className="flex items-center gap-2.5">
-            {project.badge ? (
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-spark/30 bg-spark/10 px-2.5 py-0.5 font-mono text-[0.68rem] uppercase tracking-wider text-spark">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-spark opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-spark" />
-                </span>
-                {project.badge}
+      {/* Top Visual Header Banner */}
+      <div className="relative border-b border-hairline bg-gradient-to-br from-graphite-800/80 via-graphite-900 to-graphite-950 p-5">
+        <div className="flex items-center justify-between gap-2">
+          {/* Status pill */}
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-graphite-950/70 px-2.5 py-1 font-mono text-[11px] text-graphite-300">
+            {isChromato ? (
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-spark opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-spark" />
               </span>
             ) : (
-              <span className="font-mono text-xs uppercase tracking-widest text-slate-500">
-                {project.category}
-              </span>
+              <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: accentColor }} />
             )}
-          </div>
-          <span className="project-card-year text-[0.7rem] py-0.5 px-2">{project.year ?? "2026"}</span>
+            <span className="font-medium text-graphite-200">{project.badge ?? project.category}</span>
+          </span>
+
+          {/* Year pill */}
+          <span className="rounded-full border border-hairline bg-graphite-950/70 px-2 py-0.5 font-mono text-[11px] text-graphite-400">
+            {project.year ?? "2026"}
+          </span>
         </div>
 
-        {/* Card Body with tighter padding */}
-        <div className="p-5 md:p-6">
-          {project.featured && project.verification ? (
-            /* Featured Enterprise Layout (2 columns on large screens) */
-            <div className="grid gap-6 lg:grid-cols-12 lg:items-start">
-              {/* Left Column: Overview & Tech Stack */}
-              <div className="space-y-4 lg:col-span-7">
-                <div>
-                  <div className="flex flex-wrap items-center gap-2">
-                    <p className="text-xs uppercase tracking-[0.22em] text-spark">{project.category}</p>
-                    <span className="text-slate-600" aria-hidden>•</span>
-                    <span className="font-mono text-xs text-slate-400">Production Client</span>
-                    <span className="text-slate-600" aria-hidden>•</span>
-                    <span className="rounded-md border border-spark/20 bg-spark/5 px-2 py-0.5 font-mono text-[0.65rem] text-spark">
-                      Maintenance & Feature Dev
-                    </span>
-                  </div>
-                  <h3 className="mt-1.5 font-display text-2xl tracking-[-0.03em] text-white md:text-3xl">
-                    {project.title}
-                  </h3>
-                  {project.subtitle ? (
-                    <p className="mt-1 text-xs font-medium text-slate-300 md:text-sm">
-                      {project.subtitle}
-                    </p>
-                  ) : null}
-                </div>
+        {/* Branded Project Icon */}
+        <div className="mt-5 flex items-center gap-3.5">
+          <div
+            className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-graphite-950/90 shadow-sm transition-transform duration-300 group-hover:scale-110"
+            style={{ color: accentColor }}
+          >
+            <IconComponent className="h-6 w-6" />
+          </div>
 
-                <ul className="list-disc space-y-1.5 pl-4 text-xs leading-6 text-slate-300 sm:text-[13.5px]">
-                  {project.summary.map((line, i) => (
-                    <li key={i}>{line}</li>
-                  ))}
-                </ul>
+          <div>
+            <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-spark font-medium">
+              {project.category}
+            </span>
+            <h3 className="font-display text-xl font-bold tracking-tight text-white group-hover:text-spark transition-colors">
+              {project.title}
+            </h3>
+          </div>
+        </div>
 
-                {project.techUsed?.length ? (
-                  <div className="rounded-xl border border-white/10 bg-graphite-800/80 p-3 sm:p-3.5">
-                    <p className="text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-spark/90">
-                      Architecture & Stack
-                    </p>
-                    <div className="mt-2 space-y-1.5">
-                      {project.techUsed.map((row) => (
-                        <p key={row.title} className="text-xs leading-5 text-slate-300">
-                          <span className="font-medium text-slate-100">{row.title}</span>
-                          <span className="text-slate-500"> — </span>
-                          <span>{row.items.join(", ")}</span>
-                        </p>
-                      ))}
-                    </div>
-                  </div>
-                ) : null}
+        {project.subtitle && (
+          <p className="mt-2 text-xs font-medium text-graphite-400 truncate">
+            {project.subtitle}
+          </p>
+        )}
+      </div>
 
-                <div className="flex flex-wrap gap-2.5 pt-1">
-                  {project.liveUrl ? (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="button-primary inline-flex items-center gap-1.5 text-xs py-2 px-3.5"
-                    >
-                      <ArrowUpRight className="h-3.5 w-3.5" />
-                      Visit Live Platform
-                    </a>
-                  ) : null}
-                </div>
-              </div>
+      {/* Middle Card Content */}
+      <div className="flex flex-col justify-between flex-1 p-5 space-y-4">
+        {/* Bullet Points */}
+        <ul className="space-y-2 text-xs leading-relaxed text-slate-300 sm:text-[13px]">
+          {project.summary.map((line, i) => (
+            <li key={i} className="flex items-start gap-2">
+              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-spark/80" />
+              <span>{line}</span>
+            </li>
+          ))}
+        </ul>
 
-              {/* Right Column: Authorship Verification Console */}
-              <div className="lg:col-span-5">
-                <AuthorshipVerificationBox
-                  verification={project.verification}
-                  liveUrl={project.liveUrl}
-                />
-              </div>
+        {/* Tech Pills */}
+        {techPills.length > 0 && (
+          <div className="pt-2">
+            <p className="font-mono text-[10px] uppercase tracking-wider text-graphite-500 mb-2">
+              Core Tech Stack
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              {techPills.map((tech) => (
+                <span
+                  key={tech}
+                  className="rounded-md border border-hairline bg-graphite-950/80 px-2 py-0.5 font-mono text-[11px] text-graphite-300 transition-colors hover:border-spark/30 hover:text-white"
+                >
+                  {tech}
+                </span>
+              ))}
             </div>
-          ) : (
-            /* Standard 2-column Grid Card Layout */
-            <div>
-              <div>
-                <p className="text-xs uppercase tracking-[0.22em] text-spark">{project.category}</p>
-                <h3 className="mt-2 font-display text-2xl tracking-[-0.04em] text-white md:text-3xl">{project.title}</h3>
-                {project.subtitle ? (
-                  <p className="mt-1 text-xs font-medium text-slate-300">{project.subtitle}</p>
-                ) : null}
-              </div>
+          </div>
+        )}
+      </div>
 
-              <ul className="mt-3 list-disc space-y-1.5 pl-4 text-xs leading-6 text-slate-300 sm:text-[13.5px]">
-                {project.summary.map((line, i) => (
-                  <li key={i}>{line}</li>
-                ))}
-              </ul>
+      {/* Bottom Action Footer */}
+      <div className="border-t border-hairline/80 bg-graphite-950/60 p-4 flex items-center justify-between gap-2 flex-wrap">
+        <div className="flex items-center gap-2 flex-wrap">
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-spark/30 bg-spark/10 px-3 py-1.5 font-mono text-xs font-medium text-spark transition-all duration-200 hover:bg-spark hover:text-graphite-950 hover:shadow-spark-sm"
+            >
+              <span>Live Site</span>
+              <ExternalLink className="h-3 w-3" />
+            </a>
+          )}
 
-              {project.techUsed?.length ? (
-                <div className="mt-4 rounded-xl border border-white/10 bg-graphite-800 p-3 sm:p-3.5">
-                  <p className="text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-spark/90">Tech used</p>
-                  <div className="mt-2 space-y-1.5">
-                    {project.techUsed.map((row) => (
-                      <p key={row.title} className="text-xs leading-5 text-slate-300">
-                        <span className="font-medium text-slate-100">{row.title}</span>
-                        <span className="text-slate-500"> — </span>
-                        <span>{row.items.join(", ")}</span>
-                      </p>
-                    ))}
-                  </div>
-                </div>
-              ) : null}
-
-              <div className="mt-5 flex flex-wrap gap-2.5">
-                {project.githubUrl ? (
-                  <a href={project.githubUrl} target="_blank" rel="noreferrer" className="button-secondary text-xs py-2 px-3">
-                    <Github className="h-3.5 w-3.5" />
-                    Source
-                  </a>
-                ) : null}
-                {project.liveUrl ? (
-                  <a href={project.liveUrl} target="_blank" rel="noreferrer" className="button-secondary text-xs py-2 px-3">
-                    <ArrowUpRight className="h-3.5 w-3.5" />
-                    Live
-                  </a>
-                ) : null}
-              </div>
-            </div>
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-hairline bg-graphite-900 px-3 py-1.5 font-mono text-xs font-medium text-graphite-300 transition-all duration-200 hover:border-hairline hover:bg-graphite-800 hover:text-white"
+            >
+              <Github className="h-3.5 w-3.5" />
+              <span>Source</span>
+            </a>
           )}
         </div>
+
+        {/* Interactive Verification Trigger (For Chromato Scientific) */}
+        {project.verification && (
+          <button
+            type="button"
+            onClick={onOpenVerification}
+            className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-graphite-900/90 px-2.5 py-1.5 font-mono text-[11px] text-slate-300 transition-all duration-200 hover:border-spark/40 hover:text-spark hover:bg-spark/5"
+            title="Inspect developer signature in live production source"
+          >
+            <ShieldCheck className="h-3.5 w-3.5 text-spark" />
+            <span>Verify Proof</span>
+          </button>
+        )}
       </div>
     </motion.article>
   );
 }
 
-function AuthorshipVerificationBox({
-  verification,
-  liveUrl
+function VerificationModal({
+  data,
+  onClose
 }: {
-  verification: NonNullable<Project["verification"]>;
-  liveUrl?: string;
+  data: {
+    project: Project;
+    verification: NonNullable<Project["verification"]>;
+  };
+  onClose: () => void;
 }) {
   const [copied, setCopied] = useState(false);
+  const { project, verification } = data;
 
   const handleCopy = () => {
     if (typeof navigator !== "undefined" && navigator.clipboard) {
@@ -247,130 +312,168 @@ function AuthorshipVerificationBox({
   };
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-spark/25 bg-[#101217] p-4 sm:p-4.5 shadow-xl transition-all duration-300 hover:border-spark/40">
-      {/* Background glow accent */}
-      <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-spark/10 blur-3xl" />
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      {/* Blurred backdrop */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 bg-black/80 backdrop-blur-md"
+        onClick={onClose}
+        aria-hidden="true"
+      />
 
-      {/* Terminal Header */}
-      <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
-        <div className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded-full bg-red-500/80" />
-          <span className="h-2 w-2 rounded-full bg-amber-500/80" />
-          <span className="h-2 w-2 rounded-full bg-emerald-500/80" />
-          <span className="ml-1.5 font-mono text-[0.65rem] uppercase tracking-wider text-slate-400">
-            Dev Signature Verification
+      {/* Modal Dialog Box */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 14 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 10 }}
+        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10 w-full max-w-lg rounded-2xl border border-spark/30 bg-graphite-950 p-6 shadow-2xl overflow-hidden"
+      >
+        {/* Glow accent */}
+        <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-spark/10 blur-3xl" />
+
+        {/* Terminal Header */}
+        <div className="flex items-center justify-between border-b border-hairline pb-3.5">
+          <div className="flex items-center gap-2">
+            <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
+            <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
+            <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
+            <span className="ml-2 font-mono text-xs uppercase tracking-wider text-graphite-300">
+              Source Code Verification
+            </span>
+          </div>
+
+          <button
+            type="button"
+            onClick={onClose}
+            className="rounded-lg border border-hairline p-1 text-graphite-400 hover:text-white hover:bg-graphite-900 transition-colors"
+            aria-label="Close modal"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+
+        {/* Project Context */}
+        <div className="mt-4 flex items-center justify-between gap-2">
+          <div>
+            <h4 className="font-display text-lg font-bold text-white">
+              {project.title}
+            </h4>
+            <p className="font-mono text-xs text-spark">
+              {project.subtitle}
+            </p>
+          </div>
+          <span className="inline-flex items-center gap-1 rounded-full border border-spark/30 bg-spark/10 px-2.5 py-0.5 text-[11px] font-mono font-medium text-spark">
+            <ShieldCheck className="h-3 w-3" />
+            Verified
           </span>
         </div>
-        <div className="inline-flex items-center gap-1 rounded-full border border-spark/30 bg-spark/10 px-2 py-0.5 text-[0.62rem] font-semibold text-spark">
-          <ShieldCheck className="h-3 w-3" />
-          <span>Live Proof</span>
+
+        {/* Role Scope note */}
+        <div className="mt-3 rounded-lg border border-white/5 bg-white/[0.02] p-3 text-xs leading-relaxed text-slate-300">
+          <span className="font-semibold text-spark">Production Note:</span> Aman is actively maintaining the live platform, resolving production issues, and engineering new features. The official development &amp; maintenance credit is verifiable in production HTML.
         </div>
-      </div>
 
-      {/* Role explanation */}
-      <div className="mt-2.5 rounded-lg border border-white/5 bg-white/[0.02] p-2">
-        <p className="text-[0.68rem] leading-relaxed text-slate-300">
-          <span className="font-semibold text-spark">Ongoing Scope:</span> Active maintenance, bug fixing, and continuous development of new features on the live platform.
-        </p>
-      </div>
-
-      {/* How to verify guide */}
-      <div className="mt-3">
-        <p className="text-[0.7rem] font-semibold uppercase tracking-wider text-slate-200">
-          How to verify in live source:
-        </p>
-        <ol className="mt-2 space-y-1.5 text-[0.72rem] leading-snug text-slate-400">
-          <li className="flex items-start gap-1.5">
-            <span className="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-white/10 font-mono text-[0.6rem] font-bold text-slate-200">
-              1
-            </span>
-            <span>
-              Open{" "}
-              {liveUrl ? (
+        {/* Step-by-Step Instructions */}
+        <div className="mt-4">
+          <p className="font-mono text-xs font-semibold uppercase tracking-wider text-slate-200">
+            How to verify in live source code:
+          </p>
+          <ol className="mt-2 space-y-2 text-xs leading-relaxed text-slate-400">
+            <li className="flex items-start gap-2">
+              <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-white/10 font-mono text-[10px] font-bold text-slate-200">
+                1
+              </span>
+              <span>
+                Open{" "}
                 <a
-                  href={liveUrl}
+                  href={project.liveUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="font-medium text-spark underline underline-offset-2 transition-colors hover:text-white"
+                  className="font-medium text-spark underline underline-offset-2 hover:text-white"
                 >
                   chromatoscientific.com
-                </a>
-              ) : (
-                "chromatoscientific.com"
-              )}{" "}
-              in your browser.
-            </span>
-          </li>
-          <li className="flex items-start gap-1.5">
-            <span className="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-white/10 font-mono text-[0.6rem] font-bold text-slate-200">
-              2
-            </span>
-            <span>
-              Right-click and select <strong className="text-slate-200">Inspect</strong> (or press{" "}
-              <kbd className="rounded border border-white/15 bg-white/5 px-1 py-0.2 font-mono text-[0.6rem] text-slate-300">
-                Ctrl + U
-              </kbd>
-              ).
-            </span>
-          </li>
-          <li className="flex items-start gap-1.5">
-            <span className="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-white/10 font-mono text-[0.6rem] font-bold text-slate-200">
-              3
-            </span>
-            <span>
-              Press{" "}
-              <kbd className="rounded border border-white/15 bg-white/5 px-1 py-0.2 font-mono text-[0.6rem] text-slate-300">
-                Ctrl + F
-              </kbd>{" "}
-              and search for <strong className="font-mono text-spark">Aman Naryal</strong>.
-            </span>
-          </li>
-        </ol>
-      </div>
-
-      {/* Code Snippet Box */}
-      <div className="mt-3 rounded-lg border border-white/10 bg-[#0A0C10] p-2.5">
-        <div className="flex items-center justify-between text-[0.62rem] text-slate-500">
-          <span className="font-mono">HTML Source (~line 1141)</span>
-          <span className="font-mono text-emerald-400">Verified Comment Tag</span>
+                </a>{" "}
+                in your browser.
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-white/10 font-mono text-[10px] font-bold text-slate-200">
+                2
+              </span>
+              <span>
+                Right-click anywhere and click <strong className="text-slate-200">Inspect</strong> (or press{" "}
+                <kbd className="rounded border border-white/15 bg-white/5 px-1 py-0.5 font-mono text-[10px] text-slate-300">
+                  Ctrl + U
+                </kbd>{" "}
+                /{" "}
+                <kbd className="rounded border border-white/15 bg-white/5 px-1 py-0.5 font-mono text-[10px] text-slate-300">
+                  ⌘ + ⌥ + U
+                </kbd>
+                ).
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-white/10 font-mono text-[10px] font-bold text-slate-200">
+                3
+              </span>
+              <span>
+                Press{" "}
+                <kbd className="rounded border border-white/15 bg-white/5 px-1 py-0.5 font-mono text-[10px] text-slate-300">
+                  Ctrl + F
+                </kbd>{" "}
+                and search for <strong className="font-mono text-spark">Aman Naryal</strong>.
+              </span>
+            </li>
+          </ol>
         </div>
-        <pre className="mt-1.5 overflow-x-auto font-mono text-[11px] leading-4 text-spark/95">
-          <code>{verification.snippet}</code>
-        </pre>
-      </div>
 
-      {/* Action buttons */}
-      <div className="mt-3 flex flex-wrap gap-2">
-        <button
-          type="button"
-          onClick={handleCopy}
-          className="inline-flex items-center gap-1.5 rounded-lg border border-spark/30 bg-spark/10 px-2.5 py-1 text-xs font-medium text-spark transition-colors hover:bg-spark/20"
-        >
-          {copied ? (
-            <>
-              <Check className="h-3 w-3 text-spark" />
-              <span>Copied &quot;{verification.copyQuery}&quot;!</span>
-            </>
-          ) : (
-            <>
-              <Copy className="h-3 w-3" />
-              <span>Copy &quot;{verification.copyQuery}&quot;</span>
-            </>
-          )}
-        </button>
+        {/* Code Snippet */}
+        <div className="mt-4 rounded-xl border border-white/10 bg-[#0A0C10] p-3">
+          <div className="flex items-center justify-between text-[11px] text-slate-500 pb-1.5 border-b border-white/5 font-mono">
+            <span>HTML Source (~line 1141)</span>
+            <span className="text-emerald-400">Match Confirmed</span>
+          </div>
+          <pre className="mt-2 overflow-x-auto font-mono text-xs leading-5 text-spark/95">
+            <code>{verification.snippet}</code>
+          </pre>
+        </div>
 
-        {liveUrl ? (
-          <a
-            href={liveUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/5 px-2.5 py-1 text-xs font-medium text-slate-200 transition-colors hover:border-white/30 hover:bg-white/10"
+        {/* Action Buttons */}
+        <div className="mt-5 flex items-center justify-between gap-3 flex-wrap">
+          <button
+            type="button"
+            onClick={handleCopy}
+            className="inline-flex items-center gap-1.5 rounded-lg border border-spark/30 bg-spark/10 px-3.5 py-2 font-mono text-xs font-medium text-spark transition-colors hover:bg-spark/20"
           >
-            <ExternalLink className="h-3 w-3" />
-            <span>Open & Inspect Site</span>
-          </a>
-        ) : null}
-      </div>
+            {copied ? (
+              <>
+                <Check className="h-3.5 w-3.5 text-spark" />
+                <span>Copied &quot;{verification.copyQuery}&quot;!</span>
+              </>
+            ) : (
+              <>
+                <Copy className="h-3.5 w-3.5" />
+                <span>Copy &quot;{verification.copyQuery}&quot;</span>
+              </>
+            )}
+          </button>
+
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-hairline bg-graphite-900 px-3.5 py-2 font-mono text-xs font-medium text-slate-200 transition-colors hover:border-spark/30 hover:text-white hover:bg-graphite-800"
+            >
+              <ExternalLink className="h-3.5 w-3.5" />
+              <span>Open Live Website</span>
+            </a>
+          )}
+        </div>
+      </motion.div>
     </div>
   );
 }

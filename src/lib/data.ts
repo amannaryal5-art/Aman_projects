@@ -41,15 +41,15 @@ export type Project = {
 export const chromatoTechUsed: ProjectTechCategory[] = [
   {
     title: "Frontend & Architecture",
-    items: ["Custom WordPress Theme", "PHP", "Bootstrap 5", "jQuery", "Responsive CSS3"]
+    items: ["WordPress", "PHP", "Bootstrap 5", "jQuery", "Responsive CSS3"]
   },
   {
     title: "Backend & Systems",
-    items: ["MySQL Database", "Apache / Nginx", "RESTful Form Processing", "SMTP Gateway"]
+    items: ["MySQL", "Apache / Nginx", "REST Forms", "SMTP Gateway"]
   },
   {
     title: "Production & Maintenance",
-    items: ["Feature Development", "Technical SEO & Schema", "Speed Optimization", "Security Hardening", "Live Bugfixes"]
+    items: ["Feature Dev", "Technical SEO", "Speed Optimization", "Live Bugfixes"]
   }
 ];
 
@@ -67,7 +67,7 @@ export const threadsAppTechUsed: ProjectTechCategory[] = [
 export const crieTechUsed: ProjectTechCategory[] = [
   {
     title: "Backend",
-    items: ["Python", "FastAPI", "SQLite", "Uvicorn", "Groq", "APScheduler"]
+    items: ["Python", "FastAPI", "SQLite", "Uvicorn", "Groq LLM", "APScheduler"]
   },
   {
     title: "Frontend",
@@ -75,26 +75,23 @@ export const crieTechUsed: ProjectTechCategory[] = [
   },
   {
     title: "Platform",
-    items: ["X-API-Key auth", "Role-based access", "FastAPI + SPA deploy"]
+    items: ["X-API-Key Auth", "Role-based Access", "FastAPI + Vercel"]
   }
 ];
 
 export const projects: Project[] = [
   {
     title: "Chromato Scientific",
-    subtitle: "Website Maintenance & Feature Development",
-    badge: "Active Maintenance & Dev",
-    year: "Ongoing Maintenance",
+    subtitle: "Website Maintenance & Feature Engineering",
+    badge: "Production Client",
+    year: "Live",
     summary: [
-      "Actively maintaining and engineering new features for Chromato Scientific Pvt. Ltd. (an international manufacturer of pharmaceutical reference standards, API impurities, and deuterated compounds).",
-      "Building new UI modules and enhancing functionality on top of the established production platform, including inquiry flows and chemical catalog listings.",
-      "Handling regular technical maintenance: resolving production bugs, optimizing page load speeds, refining mobile responsiveness, and updating SEO schema architectures.",
-      "Verifiable in production source: Official 'Website Development & Maintenance' developer signature credited to Aman Naryal."
+      "Actively maintaining and engineering new features for Chromato Scientific Pvt. Ltd. (pharmaceutical reference standards & chemical synthesis).",
+      "Building UI modules, CAS catalog search flows, speed/SEO optimizations, and live production bugfixes with developer signature in source."
     ],
     techUsed: chromatoTechUsed,
     category: "enterprise",
     liveUrl: "https://chromatoscientific.com/",
-    featured: true,
     verification: {
       signature: "Website Development & Maintenance | Developer: Aman Naryal",
       copyQuery: "Aman Naryal",
@@ -109,22 +106,25 @@ export const projects: Project[] = [
   },
   {
     title: "ThreadsApp",
+    subtitle: "Full-Stack Fashion E-Commerce Platform",
+    badge: "Full Stack App",
     year: "2026",
     summary: [
-      "Fashion e-commerce with a customer storefront and admin dashboard.",
-      "Next.js and Node.js on PostgreSQL; Razorpay, Shiprocket, and NextAuth for checkout, shipping, and secure access."
+      "Complete fashion e-commerce ecosystem featuring a high-converting customer storefront and comprehensive admin management suite.",
+      "Engineered on Next.js, Node.js, and PostgreSQL with integrated Razorpay payments, Shiprocket logistics APIs, and NextAuth security."
     ],
     techUsed: threadsAppTechUsed,
     category: "fullstack",
     githubUrl: "https://github.com/amannaryal5-art/Threadsapp"
   },
   {
-    title: "CRIE v3.0 - Cyber Risk Intelligence Engine",
+    title: "CRIE v3.0",
+    subtitle: "Cyber Risk Intelligence & Threat Scan Engine",
+    badge: "AI & Threat Intel",
     year: "2026",
     summary: [
-      "Full-stack platform for analyzing suspicious text, websites, malware, IOCs, and monitored assets.",
-      "FastAPI engines for risk scoring, threat intel, fusion scans, cases, ARIA monitoring, alerts, and reports.",
-      "React dashboard with API-key login, role-based access, and production-ready FastAPI or Vercel deployment."
+      "Full-stack cyber threat intelligence platform analyzing suspicious web assets, malware artifacts, IOCs, and monitored digital assets.",
+      "Engineered with FastAPI backend, Groq LLM fusion scans, ARIA monitoring feeds, and high-performance React dashboard."
     ],
     techUsed: crieTechUsed,
     category: "fullstack",
