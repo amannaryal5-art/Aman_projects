@@ -15,16 +15,43 @@ export type ProjectTechCategory = {
   items: string[];
 };
 
+export type ProjectVerification = {
+  signature: string;
+  copyQuery: string;
+  steps: string[];
+  snippet: string;
+};
+
 export type Project = {
   title: string;
+  subtitle?: string;
+  badge?: string;
+  year?: string;
   summary: string[];
   /** Grouped stack for detailed project cards (optional). */
   techUsed?: ProjectTechCategory[];
-  category: "fullstack" | "ai";
+  category: "fullstack" | "ai" | "enterprise";
   githubUrl?: string;
   liveUrl?: string;
+  featured?: boolean;
   comingSoon?: boolean;
+  verification?: ProjectVerification;
 };
+
+export const chromatoTechUsed: ProjectTechCategory[] = [
+  {
+    title: "Frontend & Architecture",
+    items: ["Custom WordPress Theme", "PHP", "Bootstrap 5", "jQuery", "Responsive CSS3"]
+  },
+  {
+    title: "Backend & Systems",
+    items: ["MySQL Database", "Apache / Nginx", "RESTful Form Processing", "SMTP Gateway"]
+  },
+  {
+    title: "Production & SEO",
+    items: ["Technical SEO & Schema.org", "Speed Optimization", "SSL Hardening", "Live Maintenance"]
+  }
+];
 
 export const threadsAppTechUsed: ProjectTechCategory[] = [
   {
@@ -54,7 +81,35 @@ export const crieTechUsed: ProjectTechCategory[] = [
 
 export const projects: Project[] = [
   {
+    title: "Chromato Scientific",
+    subtitle: "Enterprise Pharmaceutical Portal & Chemical Catalog System",
+    badge: "Live Enterprise Production",
+    year: "Production • Live",
+    summary: [
+      "Official corporate web platform and digital product catalog for Chromato Scientific Pvt. Ltd., an international manufacturer of pharmaceutical reference standards, API impurities, and deuterated compounds.",
+      "Engineered and maintained the high-traffic chemical catalog with CAS numbers, impurity categories, and automated RFQ/quote inquiry pipelines.",
+      "Optimized technical SEO architecture (Schema.org / OpenGraph), page speed, cross-device responsiveness, and continuous production security hardening.",
+      "Production-verified authorship: Official developer signature embedded directly in the live production source code."
+    ],
+    techUsed: chromatoTechUsed,
+    category: "enterprise",
+    liveUrl: "https://chromatoscientific.com/",
+    featured: true,
+    verification: {
+      signature: "Website Development & Maintenance | Developer: Aman Naryal",
+      copyQuery: "Aman Naryal",
+      steps: [
+        "Open chromatoscientific.com in your browser",
+        "Right-click anywhere and click 'Inspect' (or press Ctrl + U / Cmd + Option + U to View Source)",
+        "Press Ctrl + F (or Cmd + F) and search for 'Aman Naryal'",
+        "Locate the developer credit comment in the HTML source confirming authorship & maintenance"
+      ],
+      snippet: `<!--\nWebsite Development & Maintenance\nDeveloper: Aman Naryal\n-->`
+    }
+  },
+  {
     title: "ThreadsApp",
+    year: "2026",
     summary: [
       "Fashion e-commerce with a customer storefront and admin dashboard.",
       "Next.js and Node.js on PostgreSQL; Razorpay, Shiprocket, and NextAuth for checkout, shipping, and secure access."
@@ -65,6 +120,7 @@ export const projects: Project[] = [
   },
   {
     title: "CRIE v3.0 - Cyber Risk Intelligence Engine",
+    year: "2026",
     summary: [
       "Full-stack platform for analyzing suspicious text, websites, malware, IOCs, and monitored assets.",
       "FastAPI engines for risk scoring, threat intel, fusion scans, cases, ARIA monitoring, alerts, and reports.",

@@ -1,4 +1,4 @@
-import { ArrowUpRight, Github } from "lucide-react";
+import { ArrowUpRight, Github, ShieldCheck } from "lucide-react";
 import { projects } from "@/data/resume";
 
 export function ProjectsList() {
@@ -16,12 +16,28 @@ export function ProjectsList() {
           <article key={project.title} className="resume-panel fade-up delay-3 p-6 md:p-8">
             <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
               <div className="max-w-3xl">
-                <h3 className="font-display text-3xl tracking-[-0.03em] text-text">{project.title}</h3>
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 className="font-display text-3xl tracking-[-0.03em] text-text">{project.title}</h3>
+                  {project.badge ? (
+                    <span className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-2.5 py-0.5 font-mono text-[0.7rem] uppercase tracking-wider text-cyan-300">
+                      {project.badge}
+                    </span>
+                  ) : null}
+                </div>
+                {project.subtitle ? (
+                  <p className="mt-1 text-sm font-medium text-slate-300">{project.subtitle}</p>
+                ) : null}
                 <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-7 text-slate-400">
                   {project.summary.map((line, i) => (
                     <li key={i}>{line}</li>
                   ))}
                 </ul>
+                {project.verificationNote ? (
+                  <div className="mt-4 inline-flex items-center gap-2 rounded-lg border border-accent/20 bg-accent/5 px-3 py-1.5 text-xs text-accent">
+                    <ShieldCheck className="h-4 w-4 shrink-0" />
+                    <span>{project.verificationNote}</span>
+                  </div>
+                ) : null}
                 {project.techUsed?.length ? (
                   <div className="mt-5 rounded-lg border border-white/10 bg-white/[0.02] p-4">
                     <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-cyan-400/90">
@@ -41,10 +57,12 @@ export function ProjectsList() {
               </div>
 
               <div className="flex flex-wrap gap-3 md:justify-end">
-                <a href={project.githubUrl} target="_blank" rel="noreferrer" className="button-secondary">
-                  <Github className="h-4 w-4" />
-                  GitHub
-                </a>
+                {project.githubUrl ? (
+                  <a href={project.githubUrl} target="_blank" rel="noreferrer" className="button-secondary">
+                    <Github className="h-4 w-4" />
+                    GitHub
+                  </a>
+                ) : null}
                 {project.liveUrl ? (
                   <a href={project.liveUrl} target="_blank" rel="noreferrer" className="button-secondary">
                     <ArrowUpRight className="h-4 w-4" />

@@ -1,5 +1,5 @@
 import type { ProjectTechCategory } from "@/lib/data";
-import { crieTechUsed, developer, threadsAppTechUsed } from "@/lib/data";
+import { chromatoTechUsed, crieTechUsed, developer, threadsAppTechUsed } from "@/lib/data";
 
 export const resumeProfile = {
   name: developer.name,
@@ -14,7 +14,7 @@ export const resumeProfile = {
 };
 
 export const resumeSummary =
-  "Full Stack Developer specializing in Node.js, TypeScript, and PostgreSQL. I build scalable APIs and deliver end-to-end products. Previously worked as a Trainee Engineer at CognexiaAI LLP.";
+  "Full Stack Developer specializing in Node.js, TypeScript, and PostgreSQL. I build scalable APIs and deliver end-to-end products. Experienced in enterprise web maintenance and API-driven application development.";
 
 export type ResumeExperience = {
   company: string;
@@ -135,13 +135,30 @@ export const certifications: CertificationEntry[] = [
 
 export type ResumeProject = {
   title: string;
+  subtitle?: string;
+  badge?: string;
   summary: string[];
   techUsed?: ProjectTechCategory[];
-  githubUrl: string;
+  githubUrl?: string;
   liveUrl?: string;
+  verificationNote?: string;
 };
 
 export const projects: ResumeProject[] = [
+  {
+    title: "Chromato Scientific",
+    subtitle: "Enterprise Pharmaceutical Portal & Chemical Catalog System",
+    badge: "Production Client",
+    summary: [
+      "Official corporate web platform and digital product catalog for Chromato Scientific Pvt. Ltd., an international manufacturer of pharmaceutical reference standards, API impurities, and deuterated compounds.",
+      "Maintained dynamic inquiry systems, CAS number chemical catalog searches, and quotation generation pipelines serving global pharma clients.",
+      "Engineered responsive UI enhancements, technical SEO schema architecture, database performance optimizations, and continuous security maintenance.",
+      "Verified in production: Official developer signature embedded directly in the live website source code."
+    ],
+    techUsed: chromatoTechUsed,
+    liveUrl: "https://chromatoscientific.com/",
+    verificationNote: "Verified Developer Signature in live source code (Developer: Aman Naryal)"
+  },
   {
     title: "ThreadsApp",
     summary: [
