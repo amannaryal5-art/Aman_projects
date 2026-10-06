@@ -100,6 +100,10 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                     <p className="text-xs uppercase tracking-[0.22em] text-spark">{project.category}</p>
                     <span className="text-slate-600" aria-hidden>•</span>
                     <span className="font-mono text-xs text-slate-400">Production Client</span>
+                    <span className="text-slate-600" aria-hidden>•</span>
+                    <span className="rounded-md border border-spark/20 bg-spark/5 px-2 py-0.5 font-mono text-[0.68rem] text-spark">
+                      Maintenance & Feature Dev
+                    </span>
                   </div>
                   <h3 className="mt-2 font-display text-3xl tracking-[-0.03em] text-white md:text-4xl">
                     {project.title}
@@ -261,6 +265,13 @@ function AuthorshipVerificationBox({
           <ShieldCheck className="h-3 w-3" />
           <span>Live Proof</span>
         </div>
+      </div>
+
+      {/* Role explanation */}
+      <div className="mt-3 rounded-lg border border-white/5 bg-white/[0.02] p-2.5">
+        <p className="text-[0.72rem] leading-relaxed text-slate-300">
+          <span className="font-semibold text-spark">Ongoing Scope:</span> Active maintenance, bug fixing, and continuous development of new features on the live platform.
+        </p>
       </div>
 
       {/* How to verify guide */}

@@ -48,8 +48,8 @@ export const chromatoTechUsed: ProjectTechCategory[] = [
     items: ["MySQL Database", "Apache / Nginx", "RESTful Form Processing", "SMTP Gateway"]
   },
   {
-    title: "Production & SEO",
-    items: ["Technical SEO & Schema.org", "Speed Optimization", "SSL Hardening", "Live Maintenance"]
+    title: "Production & Maintenance",
+    items: ["Feature Development", "Technical SEO & Schema", "Speed Optimization", "Security Hardening", "Live Bugfixes"]
   }
 ];
 
@@ -82,14 +82,14 @@ export const crieTechUsed: ProjectTechCategory[] = [
 export const projects: Project[] = [
   {
     title: "Chromato Scientific",
-    subtitle: "Enterprise Pharmaceutical Portal & Chemical Catalog System",
-    badge: "Live Enterprise Production",
-    year: "Production • Live",
+    subtitle: "Website Maintenance & Feature Development",
+    badge: "Active Maintenance & Dev",
+    year: "Ongoing Maintenance",
     summary: [
-      "Official corporate web platform and digital product catalog for Chromato Scientific Pvt. Ltd., an international manufacturer of pharmaceutical reference standards, API impurities, and deuterated compounds.",
-      "Engineered and maintained the high-traffic chemical catalog with CAS numbers, impurity categories, and automated RFQ/quote inquiry pipelines.",
-      "Optimized technical SEO architecture (Schema.org / OpenGraph), page speed, cross-device responsiveness, and continuous production security hardening.",
-      "Production-verified authorship: Official developer signature embedded directly in the live production source code."
+      "Actively maintaining and engineering new features for Chromato Scientific Pvt. Ltd. (an international manufacturer of pharmaceutical reference standards, API impurities, and deuterated compounds).",
+      "Building new UI modules and enhancing functionality on top of the established production platform, including inquiry flows and chemical catalog listings.",
+      "Handling regular technical maintenance: resolving production bugs, optimizing page load speeds, refining mobile responsiveness, and updating SEO schema architectures.",
+      "Verifiable in production source: Official 'Website Development & Maintenance' developer signature credited to Aman Naryal."
     ],
     techUsed: chromatoTechUsed,
     category: "enterprise",
@@ -100,9 +100,9 @@ export const projects: Project[] = [
       copyQuery: "Aman Naryal",
       steps: [
         "Open chromatoscientific.com in your browser",
-        "Right-click anywhere and click 'Inspect' (or press Ctrl + U / Cmd + Option + U to View Source)",
+        "Right-click anywhere and select 'Inspect' (or press Ctrl + U / Cmd + Option + U to View Source)",
         "Press Ctrl + F (or Cmd + F) and search for 'Aman Naryal'",
-        "Locate the developer credit comment in the HTML source confirming authorship & maintenance"
+        "Locate the official maintenance & development credit in the production source code"
       ],
       snippet: `<!--\nWebsite Development & Maintenance\nDeveloper: Aman Naryal\n-->`
     }

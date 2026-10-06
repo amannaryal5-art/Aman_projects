@@ -147,17 +147,17 @@ export type ResumeProject = {
 export const projects: ResumeProject[] = [
   {
     title: "Chromato Scientific",
-    subtitle: "Enterprise Pharmaceutical Portal & Chemical Catalog System",
-    badge: "Production Client",
+    subtitle: "Website Maintenance & Feature Development",
+    badge: "Ongoing Maintenance & Dev",
     summary: [
-      "Official corporate web platform and digital product catalog for Chromato Scientific Pvt. Ltd., an international manufacturer of pharmaceutical reference standards, API impurities, and deuterated compounds.",
-      "Maintained dynamic inquiry systems, CAS number chemical catalog searches, and quotation generation pipelines serving global pharma clients.",
-      "Engineered responsive UI enhancements, technical SEO schema architecture, database performance optimizations, and continuous security maintenance.",
-      "Verified in production: Official developer signature embedded directly in the live website source code."
+      "Actively maintaining and engineering new features for Chromato Scientific Pvt. Ltd. (an international manufacturer of pharmaceutical reference standards, API impurities, and deuterated compounds).",
+      "Building new UI modules and enhancing functionality on top of the established production platform, including inquiry flows and chemical catalog listings.",
+      "Handling regular technical maintenance: resolving production bugs, optimizing page load speeds, refining mobile responsiveness, and updating SEO schema architectures.",
+      "Verifiable in production source: Official 'Website Development & Maintenance' developer signature credited to Aman Naryal."
     ],
     techUsed: chromatoTechUsed,
     liveUrl: "https://chromatoscientific.com/",
-    verificationNote: "Verified Developer Signature in live source code (Developer: Aman Naryal)"
+    verificationNote: "Official Development & Maintenance credit in live source code (Developer: Aman Naryal)"
   },
   {
     title: "ThreadsApp",
