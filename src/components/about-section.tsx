@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Download, Mail, MapPin } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import { developer } from "@/lib/data";
 import { AnimatedSection } from "@/components/AnimatedSection";
 
@@ -68,26 +68,19 @@ const developer = {
                 {developer.email}
               </a>
             </div>
-            <div className="info-card !p-3.5">
-              <Download className="info-icon" />
-              <p className="info-card-label mt-1 text-[11px]">Resume</p>
-              <a href="/resume.pdf" target="_blank" rel="noreferrer" className="info-card-value text-xs sm:text-sm mt-0.5 hover:text-spark block">
-                Download CV
-              </a>
-            </div>
-            <div className="info-card !p-3.5 flex items-center gap-3">
-              <div className="relative w-10 h-10 rounded-full overflow-hidden border border-spark/40 shadow-spark-sm shrink-0">
+            <div className="info-card !p-3.5 sm:col-span-2 flex items-center gap-3.5">
+              <div className="relative w-11 h-11 rounded-full overflow-hidden border border-spark/40 shadow-spark-sm shrink-0">
                 <Image
                   src="/aman-profile.png"
                   alt="Aman Naryal"
                   fill
-                  sizes="40px"
+                  sizes="44px"
                   className="object-cover scale-[1.14]"
                 />
               </div>
               <div>
                 <p className="info-card-label mt-0 text-[11px]">Developer</p>
-                <p className="info-card-value mt-0 text-xs sm:text-sm font-semibold text-graphite-100">{developer.name}</p>
+                <p className="info-card-value mt-0 text-sm font-semibold text-graphite-100">{developer.name}</p>
               </div>
             </div>
           </div>
